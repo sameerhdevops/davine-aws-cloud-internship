@@ -1,0 +1,32 @@
+# Private review material and rendered source-document pages
+.local-review/
+
+# Credentials and local configuration
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.p12
+*.pfx
+credentials
+credentials.json
+*.tfstate
+*.tfstate.*
+
+# Tooling and generated files
+node_modules/
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.terraform/
+*.tfplan
+*.log
+tmp/
+temp/
+
+# Unreviewed source evidence must not enter Git accidentally
+evidence-unreviewed/
+unredacted/

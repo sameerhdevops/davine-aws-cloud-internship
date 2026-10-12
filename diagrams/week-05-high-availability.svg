@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="560" viewBox="0 0 1200 560" role="img" aria-labelledby="title desc">
+  <title id="title">Documented Week 5 high-availability pattern</title><desc id="desc">Internet traffic passes through a load balancer and target group to Auto Scaling-managed application instances in two availability zones.</desc>
+  <style>text{font-family:Arial,sans-serif;fill:#172033}.title{font-size:28px;font-weight:bold}.label{font-size:18px;font-weight:bold}.small{font-size:14px}.box{fill:#f7fafc;stroke:#34699a;stroke-width:2}.zone{fill:#eef6ff;stroke:#5c8fc0;stroke-width:2;stroke-dasharray:7 5}.service{fill:#dceeff;stroke:#21639a;stroke-width:2}.instance{fill:#fff1dc;stroke:#b96b00;stroke-width:2}.arrow{stroke:#334155;stroke-width:3;marker-end:url(#a)}</style>
+  <defs><marker id="a" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto"><path d="M0,0 L0,6 L9,3 z" fill="#334155"/></marker></defs>
+  <rect width="1200" height="560" fill="white"/><text x="50" y="48" class="title">Week 5: documented high-availability web-serving pattern</text>
+  <rect x="180" y="85" width="950" height="420" rx="18" class="box"/><text x="205" y="118" class="label">AWS Region / VPC boundary (documented)</text>
+  <rect x="250" y="150" width="350" height="290" rx="12" class="zone"/><text x="275" y="180" class="label">Availability Zone A</text>
+  <rect x="720" y="150" width="350" height="290" rx="12" class="zone"/><text x="745" y="180" class="label">Availability Zone B</text>
+  <rect x="500" y="100" width="310" height="60" rx="10" class="service"/><text x="570" y="137" class="label">Application Load Balancer</text>
+  <rect x="500" y="205" width="310" height="55" rx="10" class="service"/><text x="590" y="239" class="label">Target group</text>
+  <rect x="325" y="300" width="200" height="85" rx="10" class="instance"/><text x="370" y="335" class="label">EC2 instance</text><text x="372" y="360" class="small">Auto Scaling managed</text>
+  <rect x="795" y="300" width="200" height="85" rx="10" class="instance"/><text x="840" y="335" class="label">EC2 instance</text><text x="842" y="360" class="small">Auto Scaling managed</text>
+  <text x="35" y="245" class="label">Internet users</text><line x1="145" y1="235" x2="500" y2="130" class="arrow"/><line x1="655" y1="160" x2="655" y2="205" class="arrow"/><line x1="580" y1="260" x2="430" y2="300" class="arrow"/><line x1="730" y1="260" x2="890" y2="300" class="arrow"/>
+  <text x="370" y="475" class="small">Diagram reconstructed from assignment evidence; not a deployment export.</text>
+</svg>
