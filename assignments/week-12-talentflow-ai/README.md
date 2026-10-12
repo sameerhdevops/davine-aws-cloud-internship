@@ -36,6 +36,12 @@ AWS VPC, subnets, security groups, EC2, Application Load Balancer, Amazon S3, Am
 | Cloud configuration | Capture-time report evidence | The report includes console evidence for selected networking, storage, identity, monitoring, and alerting items. It does not establish current state. |
 | SNS delivery | Explicitly limited | The report says a subscription was pending confirmation; successful alert delivery is not claimed. |
 
+## Read-only source-repository investigation
+
+The supplied TalentFlow AI repository lead was accessible and reviewed without cloning, running, copying, or modifying its contents. It is a public static frontend repository containing HTML, CSS, JavaScript, and an image; no licence file, backend, Terraform/IaC, cloud configuration, build manifest, or deployment guide was found.
+
+The frontend supports a recruitment-interface prototype with candidate, job, interview, dashboard, and browser-local demo behaviour. It does **not** establish a deployed AWS multi-tier system, database persistence, real AI/model integration, server-side authentication, event processing, or the report's cloud-infrastructure claims. The repository includes demo authentication material, which is intentionally neither repeated nor used by this portfolio. Because no licence was found, its code and assets are not copied here.
+
 ## Components that remain unverified or missing
 
 - Original application source code and dependency manifest
@@ -44,9 +50,9 @@ AWS VPC, subnets, security groups, EC2, Application Load Balancer, Amazon S3, Am
 - API/UI source and local test procedure
 - EventBridge rule, SQS consumer/worker, and end-to-end resume-ingestion proof
 - Sanitized deployment record and teardown/cost-control record
-- Original repository URL or project directory that can be inspected without broader searching
+- Authorized source-code publication permission and contribution/ownership boundaries
 
-The report says a codebase was cloned from a Davine Technologies version-control repository. That statement is not enough to attribute all source authorship or to publish third-party code. No source repository was located in the supplied directory.
+The report says a codebase was cloned from a Davine Technologies version-control repository. The accessible repository above is a relevant lead, but it is not sufficient to attribute all source authorship or to publish company-owned code. No project checkout was located in the supplied directory.
 
 ## Report quality notes
 

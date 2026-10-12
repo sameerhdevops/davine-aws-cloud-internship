@@ -19,3 +19,5 @@ The evidence depicts an API-facing workflow involving an Application Load Balanc
 ## Limitations
 
 No Lambda source package, API definition, state-machine definition, database schema, or integration code is included. The available evidence supports individual workflow components and a documented architecture, not a complete reproducible application.
+
+The mission references `AWS_Week9_Task_Submission_Clean.pdf` as supporting material, but that file was not available locally and was not used for this documentation.

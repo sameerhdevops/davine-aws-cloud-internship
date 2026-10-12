@@ -16,6 +16,8 @@
 - The Week 1 range report is a derivative of the complete Week 1 report.
 - TalentFlow AI is documented by a final report, not by retained source code or a reproducible deployment.
 - Historical AWS-console screenshots do not establish current AWS state.
+- A supplied Week 8 brief establishes intended learning topics, not proof of implementation.
+- A referenced Week 9 supporting PDF was not present locally and was not inspected.
 
 ## Validation represented by the material
 
