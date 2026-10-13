@@ -21,3 +21,7 @@ The evidence depicts an API-facing workflow involving an Application Load Balanc
 No Lambda source package, API definition, state-machine definition, database schema, or integration code is included. The available evidence supports individual workflow components and a documented architecture, not a complete reproducible application.
 
 `AWS_Week9_Task_Submission_Clean.pdf` is retained inside a private recovery archive and was used only to reconcile evidence status; it is not published here.
+
+## Evidence
+
+The source captures remain private. The [Week 9 SVG](../../diagrams/week-09-serverless-api.svg) is a public explanatory reconstruction, not a deployment export. See the [central evidence gallery](../../evidence/README.md) for public artifacts and their limitations.

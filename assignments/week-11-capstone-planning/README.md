@@ -15,3 +15,7 @@ The 34-page architecture report and the 13-page final submission are assessed in
 ## What would resolve the uncertainty
 
 An explicitly dated Week 11 brief, submission confirmation, or mentor-provided scope record.
+
+## Evidence
+
+No item is explicitly labelled as a Week 11 submission, so the week remains undetermined. The related TalentFlow reports are discussed under [Week 12](../week-12-talentflow-ai/README.md) and remain private. See the [central evidence gallery](../../evidence/README.md) for public artifacts from other topics.

@@ -1,28 +1,28 @@
 # Evidence and validation
 
+The [central evidence gallery](../evidence/README.md) is the index for the public-safe screenshot derivatives and reproducible validation records. Each item states what it supports and what it cannot establish. The [manifest](../evidence/manifest.csv) contains the same records in a machine-readable form.
+
 ## Evidence levels
 
 | Level | Meaning used here |
 | --- | --- |
 | Directly observed | A report page or screenshot visibly shows the stated screen, configuration field, output, or diagram. |
 | Documented claim | A report describes a component or workflow. It is not independently verified by source code. |
+| Independent portfolio work | Documentation, diagrams, code, or checks authored for this portfolio after the internship evidence review. |
 | Inference | A cautious grouping based on labels and closely related evidence. |
 | Unknown | The available materials do not establish the fact. |
 
-## Key limitations
+## Publication boundary
 
-- The original root held 48 PNGs and four PDFs; later recovery added reports, briefs, and archives. No local application source, raw original IaC, or runnable project checkout was recovered. A later independently reconstructed Terraform baseline is explicitly labelled as such.
-- The consolidated internship PDF is image-based and repeats much of the separate screenshot evidence.
-- The Week 1 range report is a derivative of the complete Week 1 report.
-- TalentFlow AI has a retained final report and an upstream static-front-end reference repository, but no retained original source, original IaC, or reproducible deployment. The published Terraform baseline is a later reconstruction, not recovered source.
-- Historical AWS-console screenshots do not establish current AWS state.
-- Week 8 has a recovered brief, reports, and captures; these establish a submitted activity but not current configuration.
-- A clean Week 9 supporting PDF is retained only inside a private recovery archive and was not published.
+- Two Week 10 screenshot derivatives are public after cropping and visual review. Their original source images remain private and unchanged. The images are dated only as unknown historical captures; neither establishes current AWS state.
+- Other original screenshots, reports, and archives are not included. They can expose account/resource identifiers, endpoints, personal context, or financial details, and employer/third-party redistribution permission is not established for the original documents.
+- The TalentFlow AI upstream repository is linked, not copied. Its inspected root had no visible licence.
+- The Week 12 Terraform baseline is independently reconstructed source. It is not a recovered internship file and is not deployed.
 
-## Validation represented by the material
+## Validation status
 
-The evidence includes a rendered basic web page, Lambda test/API-success screens, Auto Scaling and target-health views, Terraform terminal output, and console configuration views. These are retained as descriptions only because the original captures include sensitive infrastructure details and may require publication permission.
+The local Windows record is in [`evidence/validation/terraform/`](../evidence/validation/terraform/local-validation-2026-10-13.md): `terraform fmt -check` and `terraform init -backend=false` passed; a fresh `terraform validate` attempt did not obtain the AWS provider schema because the provider plugin failed to respond. That is an incomplete validation result, not a pass.
 
-## Review before publication
+The GitHub Actions workflow runs `terraform fmt -check`, `terraform init -backend=false`, and `terraform validate` on Ubuntu, without AWS credentials, a plan, or a deployment. It also checks repository-relative Markdown links. See the root README for the actual workflow result once available.
 
-Before publishing source evidence, verify ownership/permission and redact account IDs, ARNs, resource IDs, public/private addresses, endpoints, sign-in URLs, hostnames, and sample personal data. Reviewers should not infer production readiness, current deployment status, or ownership of cloned code from this portfolio.
+Terraform validation checks source consistency against installed provider schemas. It does not produce an execution plan or prove AWS deployment. Historical screenshots and report claims also do not prove current cloud configuration.

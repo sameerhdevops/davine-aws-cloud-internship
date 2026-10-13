@@ -11,3 +11,7 @@ This is a navigation and learning-context entry only. It does not claim that an 
 ## Relationship to later material
 
 Verified load-balancing and Auto Scaling evidence is available for [Week 5](../week-05-high-availability/README.md). It must not be backdated to fill this gap.
+
+## Evidence
+
+No Week 4 internship source or screenshot was recovered. Week 5 material is not used to fill this gap. The [central evidence gallery](../../evidence/README.md) lists the public-safe evidence available elsewhere in the portfolio.

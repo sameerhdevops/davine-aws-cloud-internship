@@ -23,3 +23,7 @@ The original diagram above is a documentation reconstruction, not a deployment e
 ## Limitations and lessons
 
 No load-balancer configuration, launch template, health-check configuration, or server code is retained. The material is useful as architecture and validation evidence but cannot reproduce the environment. Target health is operational evidence at capture time, not proof of continuous availability.
+
+## Evidence
+
+The recovered report and console captures remain private. The [Week 5 SVG](../../diagrams/week-05-high-availability.svg) is an independently redrawn explanatory diagram, not a screenshot or deployment export. See the [central evidence gallery](../../evidence/README.md) for the portfolio's public evidence index.

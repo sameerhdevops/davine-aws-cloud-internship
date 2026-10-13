@@ -19,3 +19,7 @@ The report frames Lambda as event-driven compute and API Gateway as the HTTP/API
 Any validation described in the report is historical documentation, not a test that can be rerun from this repository. Original report pages remain excluded pending security and publication review.
 
 Related: [Week 9 — serverless integration and scaling](../week-09-serverless-api/README.md).
+
+## Evidence
+
+The Week 6 report is retained privately; no standalone screenshot or runnable source is published. The [central evidence gallery](../../evidence/README.md) lists the public-safe evidence available across the portfolio.

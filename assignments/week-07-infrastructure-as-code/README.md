@@ -25,3 +25,7 @@ The [Week 12 Terraform baseline](../week-12-talentflow-ai/infrastructure/terrafo
 ## Safe improvement path
 
 With authorization, add independently authored, clearly labelled examples with version-pinned providers, variables, remote-state design, least-privilege IAM, restricted ingress, lint/validation output, and a teardown/cost-control procedure. Do not publish state files or identifiers.
+
+## Evidence
+
+The nine Week 7 captures and report remain private; the captures are historical and do not provide reproducible source. The [Week 12 Terraform baseline](../week-12-talentflow-ai/infrastructure/terraform/README.md) is independent follow-on code, not recovered Week 7 work. The [central evidence gallery](../../evidence/README.md) records the public evidence and validation limits.

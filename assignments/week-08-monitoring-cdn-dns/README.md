@@ -19,3 +19,7 @@ The retained brief and reports cover CloudWatch metrics and alarms, CloudTrail, 
 The private material does not establish current DNS, CDN, alarm, or audit configuration. It also does not make an independently reproducible CloudTrail/AWS Config setup available. Original reports and screenshots remain excluded because they require publication and identifier review.
 
 Related: [Week 9 — serverless integration and scaling](../week-09-serverless-api/README.md).
+
+## Evidence
+
+The brief, reports, and console captures remain private. No Week 8 screenshot is published; see the [central evidence gallery](../../evidence/README.md) for the public-safe evidence available elsewhere in the portfolio.
