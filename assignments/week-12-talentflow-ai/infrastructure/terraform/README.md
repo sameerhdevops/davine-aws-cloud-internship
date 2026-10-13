@@ -25,7 +25,7 @@ The ALB, EC2, and RDS security groups are preparatory configuration resources. T
 
 ## Local validation only
 
-Run these non-deploying commands from this directory when Terraform is installed:
+Run these non-deploying commands from this directory. On 2026-10-13 with Terraform v1.16.5, all three passed locally after a lifecycle-configuration `filter {}` correction; results are recorded in [validation-checklist.md](validation-checklist.md).
 
 ```powershell
 terraform fmt -check
@@ -33,7 +33,7 @@ terraform init -backend=false
 terraform validate
 ```
 
-`init -backend=false` may download the pinned AWS provider but does not configure remote state. Do not run `terraform plan`, `terraform apply`, or `terraform destroy` for this portfolio review. Current validation status is recorded in [validation-checklist.md](validation-checklist.md).
+`init -backend=false` may download the pinned AWS provider but does not configure remote state. Do not run `terraform plan`, `terraform apply`, or `terraform destroy` for this portfolio review.
 
 ## Files
 

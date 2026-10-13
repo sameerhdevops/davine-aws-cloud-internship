@@ -45,7 +45,9 @@ The upstream repository should be treated as employer-associated reference mater
 
 The [`infrastructure/terraform`](infrastructure/terraform/README.md) directory contains new, reviewed Terraform source written for this portfolio. It declares a cost-conscious VPC/networking baseline, future-tier security groups, a private versioned SSE-S3 bucket, a future-EC2 S3 read role, CloudWatch log group, SNS topic, and daily S3-storage alarm.
 
-It deliberately creates **no** EC2 instances, RDS database, Application Load Balancer, target group, listener, NAT Gateway, application code, database schema, event processor, or SNS subscription. The security groups model future placement only. Terraform was not installed during integration, so the source has not received Terraform CLI formatting, initialization, or validation; see the [local validation checklist](infrastructure/terraform/validation-checklist.md). No plan, apply, destroy, or AWS deployment was run.
+It deliberately creates **no** EC2 instances, RDS database, Application Load Balancer, target group, listener, NAT Gateway, application code, database schema, event processor, or SNS subscription. The security groups model future placement only.
+
+On 2026-10-13 the baseline received real local CLI validation: Terraform v1.16.5 was installed; `terraform fmt -check` passed; `terraform init -backend=false` succeeded and installed AWS provider v5.100.0; a lifecycle-configuration warning on the resume-bucket rule was corrected by adding an explicit `filter {}`, after which `terraform fmt` and `terraform validate` (no warnings) both passed. A later `terraform plan` attempt failed before producing any plan because valid AWS credentials were unavailable. No `terraform apply` or `terraform destroy` was run, and this portfolio does not claim to have deployed this infrastructure; see the [local validation checklist](infrastructure/terraform/validation-checklist.md).
 
 ## How to make the capstone reproducible later
 
