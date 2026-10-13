@@ -1,64 +1,59 @@
-# Cloud Engineering Internship Portfolio
+# Davine Technologies — AWS Cloud Engineering Internship Portfolio
 
-An evidence-based portfolio of AWS and infrastructure learning work completed in the Davine Technologies internship context. It is aimed at entry-level Cloud Support, AWS Cloud Engineer, Linux Support, Infrastructure Support, NOC, and junior DevOps roles.
+An evidence-led record of a 12-week AWS Cloud Engineering / DevOps internship progression. It is written for entry-level cloud and DevOps review: it separates retained evidence from curriculum framing, report claims, and proposed improvements.
 
-## What this repository demonstrates
+> **Publication boundary:** Original PDFs, screenshots, archives, account details, and unredacted evidence are deliberately excluded. This repository contains public-safe documentation and original explanatory diagrams only.
 
-- AWS core-service exploration and service boundaries
-- EC2 web hosting, Linux access, monitoring, and troubleshooting evidence
-- Load balancing and Auto Scaling concepts
-- Infrastructure as code (IaC) evidence using Terraform and CloudFormation
-- Serverless/API architecture evidence using Lambda, Step Functions, DynamoDB, RDS, and an Application Load Balancer
-- Security, cost, monitoring, and Well-Architected review activities
-- A documented Week 12 capstone: TalentFlow AI
+## TalentFlow AI capstone
 
-## Important evidence note
+**Week 12 — final report retained; source and deployment are not reproducible from this repository.** TalentFlow AI is a recruitment-workflow concept covering candidate tracking, resume ingestion, pipeline management, interview scheduling, and analytics. The capstone report documents a cost-conscious AWS reference design; the separate official project repository contains a static front-end prototype, not the retained Terraform, backend, or deployment assets.
 
-This repository is documentation-first. The original material set contained screenshots and reports, but no application source code, Terraform files, CloudFormation templates, archives, or runnable project directories. Original internship materials are intentionally not copied here: they may contain account/resource identifiers, endpoints, or material requiring publication approval.
+- [Capstone review, architecture, and evidence states](assignments/week-12-talentflow-ai/README.md)
+- [Documented intended architecture](diagrams/talentflow-intended-architecture.svg)
+- [Official TalentFlow AI reference repository](https://github.com/davinetechnologiesprojects07/TalentFlow-AI) — linked, not copied
 
-Claims are labeled by their evidence level. A console screenshot records what was displayed at capture time; it is not evidence of current configuration. A Terraform plan or source listing is not treated as proof of a deployed system.
+## 12-week progression
 
-## Internship timeline
+The weekly subjects below are the supplied organizing framework, not a claim that every item is an employer-authored brief. Status measures the evidence currently retained.
 
-The complete, evidence-rated timeline is in [the 12-week internship timeline](docs/internship-timeline.md). It records `CONFIRMED`, `PROBABLE`, and `UNIDENTIFIED` weeks rather than filling gaps with invented assignments.
+| Week | Focus | Retained-evidence status | Record |
+| --- | --- | --- | --- |
+| 01 | AWS cloud fundamentals | Verified complete | [Read](assignments/week-01-aws-fundamentals/README.md) |
+| 02 | EC2 and host-level security | Verified complete | [Read](assignments/week-02-ec2-web-server/README.md) |
+| 03 | VPC networking | No recovered evidence | [Read](assignments/week-03-vpc-networking/README.md) |
+| 04 | Application load balancing | No recovered evidence | [Read](assignments/week-04-application-load-balancing/README.md) |
+| 05 | High availability and Auto Scaling | Verified complete | [Read](assignments/week-05-high-availability/README.md) |
+| 06 | Serverless architecture | Partially present | [Read](assignments/week-06-serverless-architecture/README.md) |
+| 07 | Infrastructure as Code | Partially present | [Read](assignments/week-07-infrastructure-as-code/README.md) |
+| 08 | Observability, DNS, and CDN | Verified complete | [Read](assignments/week-08-monitoring-cdn-dns/README.md) |
+| 09 | Serverless integration and scaling | Verified complete | [Read](assignments/week-09-serverless-api/README.md) |
+| 10 | Governance, security, and cost | Verified complete | [Read](assignments/week-10-governance-audit/README.md) |
+| 11 | Capstone planning | Undetermined | [Read](assignments/week-11-capstone-planning/README.md) |
+| 12 | TalentFlow AI capstone | Final report retained | [Read](assignments/week-12-talentflow-ai/README.md) |
 
-| Week | Status | Portfolio record |
-| --- | --- | --- |
-| 1 | CONFIRMED | [AWS fundamentals](assignments/week-01-aws-fundamentals/README.md) |
-| 2 | PROBABLE | [EC2 web server](assignments/week-02-ec2-web-server/README.md) |
-| 3 | UNIDENTIFIED | [Timeline entry](docs/internship-timeline.md#week-3) |
-| 4 | UNIDENTIFIED | [Timeline entry](docs/internship-timeline.md#week-4) |
-| 5 | CONFIRMED | [High availability](assignments/week-05-high-availability/README.md) |
-| 6 | UNIDENTIFIED | [Timeline entry](docs/internship-timeline.md#week-6) |
-| 7 | PROBABLE | [Infrastructure as code](assignments/week-07-infrastructure-as-code/README.md) |
-| 8 | UNIDENTIFIED | [Monitoring, CDN, and DNS brief](assignments/week-08-monitoring-cdn-dns/README.md) |
-| 9 | CONFIRMED | [Serverless API](assignments/week-09-serverless-api/README.md) |
-| 10 | PROBABLE | [Security, governance, and cost](assignments/week-10-governance-audit/README.md) |
-| 11 | UNIDENTIFIED | [Timeline entry](docs/internship-timeline.md#week-11) |
-| 12 | CONFIRMED | [TalentFlow AI capstone](assignments/week-12-talentflow-ai/README.md) |
+## Technical themes supported by the material
 
-## Navigate
+AWS IAM, EC2, VPC, S3, RDS, Lambda, API Gateway, DynamoDB, SQS, EventBridge, CloudWatch, Route 53, CloudFront, Elastic Load Balancing, Auto Scaling, Terraform, CloudFormation, Linux, Git, and GitHub. Presence in this list means the topic appears in retained reports or evidence; it does not automatically indicate a currently deployed service.
 
-| Area | Evidence-based scope |
-| --- | --- |
-| [Week 1 - AWS fundamentals](assignments/week-01-aws-fundamentals/README.md) | Core AWS service exploration |
-| [Week 2 - EC2 web server](assignments/week-02-ec2-web-server/README.md) | EC2, Linux access, a basic web page, and monitoring evidence |
-| [Week 5 - High availability](assignments/week-05-high-availability/README.md) | ALB, target groups, launch templates, and Auto Scaling |
-| [Week 7 - Infrastructure as code](assignments/week-07-infrastructure-as-code/README.md) | Terraform and CloudFormation evidence; no source artifacts retained |
-| [Week 8 - Monitoring, CDN, and DNS](assignments/week-08-monitoring-cdn-dns/README.md) | Supplied brief, separated from completion evidence |
-| [Week 9 - Serverless API](assignments/week-09-serverless-api/README.md) | API/Lambda workflow and architecture evidence |
-| [Week 10 - Governance audit](assignments/week-10-governance-audit/README.md) | Security hardening, cost controls, and Well-Architected review evidence |
-| [Week 12 - TalentFlow AI](assignments/week-12-talentflow-ai/README.md) | Capstone report analysis and documented intended architecture |
-| [Security, governance, and cost](cross-cutting/aws-security-governance-cost/README.md) | Cross-cutting review and remediation evidence |
-| [Portfolio map](docs/portfolio-map.md) | Classification and boundaries |
-| [Evidence and validation](docs/evidence-and-validation.md) | What the material supports and what remains unknown |
+## Repository guide
 
-## Scope and ownership
+- [Evidence and validation policy](docs/evidence-and-validation.md)
+- [Full evidence-rated timeline](docs/internship-timeline.md)
+- [Portfolio map and provenance](docs/portfolio-map.md)
+- [Security, governance, and cost themes](cross-cutting/aws-security-governance-cost/README.md)
+- [High-availability diagram](diagrams/week-05-high-availability.svg) and [serverless-flow diagram](diagrams/week-09-serverless-api.svg)
 
-The weekly sections describe internship-context evidence. TalentFlow AI is a separate capstone section. One isolated OmniRoute screenshot was classified as independent/unconfirmed and is not represented as Davine work. No third-party code, reports, raw screenshots, credentials, or unredacted infrastructure details are included.
+## Reproducing verified local components
 
-## Technology topics encountered
+This is a documentation portfolio, not a deployable system. No application source, Terraform module, CloudFormation template, state file, dependency manifest, or approved deployment configuration is published here. Diagrams can be viewed directly in GitHub; no cloud resources need to be created to review this repository.
 
-AWS IAM, EC2, S3, VPC, RDS, Lambda, CloudWatch, Route 53, CloudFront, DynamoDB, Elastic Load Balancing, Auto Scaling, Step Functions, Terraform, CloudFormation, Linux, and Git/GitHub.
+## Security, cost, and attribution
 
-See [evidence and validation](docs/evidence-and-validation.md) before treating any architecture description as a deployment record.
+- Do not treat historic console captures or report statements as proof of current AWS state.
+- Do not run `terraform apply`, provision AWS resources, or use inferred credentials from this repository; none are supplied.
+- The TalentFlow AI source remains with its owner. The upstream project has no visible licence in the inspected root, so its code and image are not redistributed here.
+- This portfolio’s new material is limited to independently written summaries, navigation, and original explanatory diagrams. It does not claim authorship of employer-owned reports or source code.
+
+## Known gaps
+
+Weeks 3 and 4 have no recovered brief, submission, source, or screenshot. Week 6 lacks standalone captures; Week 7 lacks raw IaC files; Week 11 has no explicitly labelled deliverable. See the [timeline](docs/internship-timeline.md) for the exact evidence boundaries.

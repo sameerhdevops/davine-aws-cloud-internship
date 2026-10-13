@@ -2,7 +2,7 @@
 
 ## Evidence status
 
-**Confirmed internship evidence.** A final activity architecture diagram and API-result capture explicitly reference Week 9.
+**Verified complete.** Multiple activity-submission versions, a final architecture diagram, and named API/Lambda/ALB/Auto Scaling/DynamoDB captures are retained privately.
 
 ## Documented architecture
 
@@ -20,4 +20,4 @@ The evidence depicts an API-facing workflow involving an Application Load Balanc
 
 No Lambda source package, API definition, state-machine definition, database schema, or integration code is included. The available evidence supports individual workflow components and a documented architecture, not a complete reproducible application.
 
-The mission references `AWS_Week9_Task_Submission_Clean.pdf` as supporting material, but that file was not available locally and was not used for this documentation.
+`AWS_Week9_Task_Submission_Clean.pdf` is retained inside a private recovery archive and was used only to reconcile evidence status; it is not published here.

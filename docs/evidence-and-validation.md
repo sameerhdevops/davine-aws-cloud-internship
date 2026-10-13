@@ -11,13 +11,13 @@
 
 ## Key limitations
 
-- The source directory had 48 PNGs and 4 PDFs, but no code, IaC files, project archives, or Git repository.
+- The original root held 48 PNGs and four PDFs; later recovery added reports, briefs, and archives. No local application source, raw IaC, or runnable project checkout was recovered.
 - The consolidated internship PDF is image-based and repeats much of the separate screenshot evidence.
 - The Week 1 range report is a derivative of the complete Week 1 report.
-- TalentFlow AI is documented by a final report, not by retained source code or a reproducible deployment.
+- TalentFlow AI has a retained final report and an upstream static-front-end reference repository, but no locally retained source, IaC, or reproducible deployment.
 - Historical AWS-console screenshots do not establish current AWS state.
-- A supplied Week 8 brief establishes intended learning topics, not proof of implementation.
-- A referenced Week 9 supporting PDF was not present locally and was not inspected.
+- Week 8 has a recovered brief, reports, and captures; these establish a submitted activity but not current configuration.
+- A clean Week 9 supporting PDF is retained only inside a private recovery archive and was not published.
 
 ## Validation represented by the material
 

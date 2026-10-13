@@ -1,24 +1,23 @@
-# Week 7 - Infrastructure as code
+# Week 7 — Infrastructure as Code
 
 ## Evidence status
 
-**Strongly supported probable assignment.** A terminal capture labels a CloudFormation template as Week 7. Related terminal captures display Terraform configuration and an interactive apply result.
+**Partially present.** A dated Week 7 technical report (4 September 2026) and nine recovered submission captures are retained privately. They establish the topic and show historical Terraform/CloudFormation activity, but raw `.tf` and template files were not retained.
 
-## Objective
+## Purpose and learning scope
 
-Practice expressing infrastructure declaratively and inspect the difference between an infrastructure definition, a plan, and observed resource state.
+The report explains declarative provisioning, Terraform state and `init` → `plan` → `apply`, CloudFormation stacks, AWS CLI inspection, and resource tagging. The supplied weekly framework places Terraform state management on Wednesday and configuration/workflow practice on Friday.
 
-## What was observed
+## Evidence-backed observations
 
-- Terraform configuration was displayed in a terminal, including a security-group and EC2 resource definition.
-- An interactive Terraform execution screen reported a completed change.
-- A CloudFormation template screen described an S3 bucket for a Week 7 activity.
-- A console capture displayed EC2 instances associated with Terraform-related tags.
+- The report compares Terraform’s HCL and explicit state with AWS-native CloudFormation templates and stack-managed state.
+- Captures show a Terraform configuration/plan/apply workflow, a CloudFormation template view, and EC2 resource tags.
+- The report gives example tags for a development environment and a Terraform-managed resource.
 
-## Accuracy boundary
+## Validation boundary
 
-The source files themselves are not present in this portfolio. A Terraform plan is not proof of deployment, and displayed terminal output is historical capture-time evidence only. This section deliberately does not provide deployment commands or claim a reproducible environment.
+Terminal and console captures are historical observations only. They do not supply provider versions, module layout, state, a sanitized plan, or a reproducible deployment. This repository intentionally contains no reconstructed IaC presented as recovered internship work.
 
-## Improvement path
+## Safe improvement path
 
-To make this project reproducible, retain sanitized `main.tf`, `variables.tf`, provider constraints, a README, a redacted plan, and a teardown record. Use non-public SSH rules and remove resource identifiers before publication.
+With authorization, add independently authored, clearly labelled examples with version-pinned providers, variables, remote-state design, least-privilege IAM, restricted ingress, lint/validation output, and a teardown/cost-control procedure. Do not publish state files or identifiers.

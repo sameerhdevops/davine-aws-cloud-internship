@@ -2,7 +2,7 @@
 
 ## Evidence status
 
-**Strongly supported probable assignment.** A browser capture explicitly labels a basic AWS web server as a Week 2 task. Related screens show an EC2 instance, browser-based Linux access, an Elastic IP, security-group rules, and a CloudWatch alarm.
+**Verified complete.** A recovered assignment brief, a dated Wednesday submission, and related EC2/Linux/Elastic IP/security-group/alarm captures establish the exercise. They are retained privately.
 
 ## Objective
 

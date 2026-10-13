@@ -2,7 +2,7 @@
 
 ## Evidence status
 
-**Confirmed internship evidence.** A diagram and a rendered browser page explicitly label the exercise as Week 5. Related console captures show a launch template, Application Load Balancer (ALB), target group, and Auto Scaling group.
+**Verified complete.** A recovered Week 5 technical report, a diagram, a rendered browser page, and related console captures establish the exercise. They are retained privately.
 
 ## Objective
 

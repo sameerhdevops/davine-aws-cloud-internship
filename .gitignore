@@ -30,3 +30,6 @@ temp/
 # Unreviewed source evidence must not enter Git accidentally
 evidence-unreviewed/
 unredacted/
+
+# Audit-generated reports (local only, not for publication)
+recovery-audit/
