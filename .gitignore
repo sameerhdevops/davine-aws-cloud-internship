@@ -33,3 +33,7 @@ unredacted/
 
 # Audit-generated reports (local only, not for publication)
 recovery-audit/
+
+# Original PowerShell-generated Terraform input; the reviewed canonical copy is
+# under assignments/week-12-talentflow-ai/infrastructure/terraform/.
+weeks/

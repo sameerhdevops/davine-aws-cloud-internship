@@ -2,7 +2,7 @@
 
 ## Executive summary
 
-**Final submission retained; reproducible application and infrastructure source are not retained locally.** TalentFlow AI is documented as a recruitment and talent-management platform for candidate tracking, resume intake, pipeline management, interview scheduling, and analytics. The private 13-page final submission is the canonical capstone deliverable; a separate 34-page architecture report gives broader design context but is not explicitly identified as a Week 11 submission.
+**Final submission retained; original application and infrastructure source are not retained locally.** TalentFlow AI is documented as a recruitment and talent-management platform for candidate tracking, resume intake, pipeline management, interview scheduling, and analytics. The private 13-page final submission is the canonical capstone deliverable; a separate 34-page architecture report gives broader design context but is not explicitly identified as a Week 11 submission. A later independently reconstructed Terraform baseline is included below and is not claimed as original capstone source.
 
 ![Documented TalentFlow AI reference architecture](../../diagrams/talentflow-intended-architecture.svg)
 
@@ -13,7 +13,7 @@ The diagram is an original, public-safe reconstruction of the report’s **inten
 | State | What is supported | What is not established |
 | --- | --- | --- |
 | **IMPLEMENTED** | The official reference repository contains a static browser front end (`index.html`, `style.css`, `script.js`, and an image). | It does not establish a backend, database connection, API, authentication service, AI integration, IaC, or deployment. Ownership/contribution boundaries are not established. |
-| **DOCUMENTED CLOUD CONFIGURATION** | The final report describes VPC/subnet/security-group design, encrypted S3, EC2, RDS, SQS, EventBridge, IAM, CloudWatch, SNS, and Terraform planning. It includes capture-time evidence for selected controls. | The retained portfolio has no source modules, state, sanitized plan, migration, or independently verifiable configuration. |
+| **DOCUMENTED CLOUD CONFIGURATION** | The final report describes VPC/subnet/security-group design, encrypted S3, EC2, RDS, SQS, EventBridge, IAM, CloudWatch, SNS, and Terraform planning. It includes capture-time evidence for selected controls. | The retained portfolio has no original source modules, state, sanitized plan, migration, or independently verifiable configuration. The later Terraform baseline is reconstruction, not proof of the reported implementation. |
 | **TESTED (report claim)** | The report records local front-end checks and a test matrix for repository clone, authentication, VPC/subnets, security-group chaining, S3 security, and Terraform plan compilation. | No test harness, CI output, raw terminal log, source checkout, or independently rerunnable result is retained. The report’s “passed” outcomes are not promoted to independently verified tests. |
 | **DEPLOYED** | The report describes selected cloud foundation configuration and cost-controlled planning for higher-cost components. | No persistent or current deployment is established. The report explicitly frames ALB and Multi-AZ RDS-style higher-cost components as plan-validated rather than continuously maintained. |
 
@@ -41,9 +41,15 @@ The upstream repository should be treated as employer-associated reference mater
 - Its SNS subscription was recorded as pending confirmation, so alert delivery is not claimed.
 - No cloud resources were created, modified, or charged while preparing this portfolio.
 
+## Independently reconstructed Terraform baseline
+
+The [`infrastructure/terraform`](infrastructure/terraform/README.md) directory contains new, reviewed Terraform source written for this portfolio. It declares a cost-conscious VPC/networking baseline, future-tier security groups, a private versioned SSE-S3 bucket, a future-EC2 S3 read role, CloudWatch log group, SNS topic, and daily S3-storage alarm.
+
+It deliberately creates **no** EC2 instances, RDS database, Application Load Balancer, target group, listener, NAT Gateway, application code, database schema, event processor, or SNS subscription. The security groups model future placement only. Terraform was not installed during integration, so the source has not received Terraform CLI formatting, initialization, or validation; see the [local validation checklist](infrastructure/terraform/validation-checklist.md). No plan, apply, destroy, or AWS deployment was run.
+
 ## How to make the capstone reproducible later
 
 1. Obtain written approval to publish a sanitized source copy and record ownership boundaries.
 2. Add a dependency manifest, local run instructions, database schema/migrations, and a safe test procedure.
-3. Add reviewed Terraform with pinned providers, variables, remote-state protections, and a redacted `plan` output; never publish state or credentials.
+3. Install Terraform through an approved process, run the non-deploying validation checklist, and retain only safe validation output; never publish state or credentials.
 4. Separate local checks, static validation, applied infrastructure, and current deployment evidence in a dated validation record.

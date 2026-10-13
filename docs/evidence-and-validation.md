@@ -11,10 +11,10 @@
 
 ## Key limitations
 
-- The original root held 48 PNGs and four PDFs; later recovery added reports, briefs, and archives. No local application source, raw IaC, or runnable project checkout was recovered.
+- The original root held 48 PNGs and four PDFs; later recovery added reports, briefs, and archives. No local application source, raw original IaC, or runnable project checkout was recovered. A later independently reconstructed Terraform baseline is explicitly labelled as such.
 - The consolidated internship PDF is image-based and repeats much of the separate screenshot evidence.
 - The Week 1 range report is a derivative of the complete Week 1 report.
-- TalentFlow AI has a retained final report and an upstream static-front-end reference repository, but no locally retained source, IaC, or reproducible deployment.
+- TalentFlow AI has a retained final report and an upstream static-front-end reference repository, but no retained original source, original IaC, or reproducible deployment. The published Terraform baseline is a later reconstruction, not recovered source.
 - Historical AWS-console screenshots do not establish current AWS state.
 - Week 8 has a recovered brief, reports, and captures; these establish a submitted activity but not current configuration.
 - A clean Week 9 supporting PDF is retained only inside a private recovery archive and was not published.

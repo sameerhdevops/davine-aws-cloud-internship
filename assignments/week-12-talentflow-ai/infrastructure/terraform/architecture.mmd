@@ -1,0 +1,46 @@
+flowchart TB
+  Internet[Internet]
+
+  subgraph AWS["AWS Region: ap-south-1"]
+    IGW["Internet Gateway\naws_internet_gateway.main"]
+
+    subgraph VPC["VPC: 10.0.0.0/16\naws_vpc.main"]
+      PublicRT["Public route table\n0.0.0.0/0 → IGW"]
+      PrivateRT1["Private route table 1\nlocal routes only"]
+      PrivateRT2["Private route table 2\nlocal routes only"]
+
+      subgraph PublicTier["Public subnets (two AZs) — no automatic public IPs"]
+        Public1["aws_subnet.public[0]"]
+        Public2["aws_subnet.public[1]"]
+      end
+
+      subgraph PrivateTier["Isolated private subnets (two AZs) — no NAT gateway"]
+        Private1["aws_subnet.private[0]"]
+        Private2["aws_subnet.private[1]"]
+      end
+
+      IngressSG["Ingress security group\nfuture ALB only"]
+      AppSG["Application security group\nfuture EC2 only"]
+      DbSG["Database security group\nfuture RDS only"]
+    end
+
+    S3["Private S3 resume bucket\nSSE-S3, versioning, public-access block, TLS deny"]
+    Role["EC2 S3 read-only role\nand instance profile"]
+    Logs["CloudWatch Log Group\n7-day default retention"]
+    Alarm["CloudWatch alarm\nS3 BucketSizeBytes / StandardStorage"]
+    Topic["SNS topic\nno subscription configured"]
+  end
+
+  Internet --> IGW --> PublicRT
+  PublicRT --> Public1
+  PublicRT --> Public2
+  PrivateRT1 --> Private1
+  PrivateRT2 --> Private2
+  IngressSG -. "HTTP/HTTPS rules for future ALB" .-> AppSG
+  AppSG -. "HTTP from ingress; MySQL egress" .-> DbSG
+  Role -. "read-only S3 policy for future EC2" .-> S3
+  S3 --> Alarm --> Topic
+  Logs -. "created; no producer configured" .-> AppSG
+
+  classDef future fill:#fff3cd,stroke:#856404,color:#533f03;
+  class IngressSG,AppSG,DbSG future;

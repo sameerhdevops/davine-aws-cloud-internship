@@ -17,6 +17,6 @@ The internship reports and source evidence are preserved privately in their orig
 ## Deliberate omissions
 
 - No unredacted screenshots, reports, ZIP files, source archives, Terraform state, environment files, or credentials.
-- No reconstructed Terraform or CloudFormation templates: the original source files were not retained, and an independent example would not be a recovered internship artifact.
+- No recovered Terraform or CloudFormation templates. A later independent Terraform baseline is published under Week 12 and labelled as reconstructed rather than an internship artifact.
 - No Week 3 or Week 4 completion claim.
 - No claim that the capstone is live, currently deployed, or independently authored.

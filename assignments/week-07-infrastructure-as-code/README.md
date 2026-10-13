@@ -18,6 +18,10 @@ The report explains declarative provisioning, Terraform state and `init` → `pl
 
 Terminal and console captures are historical observations only. They do not supply provider versions, module layout, state, a sanitized plan, or a reproducible deployment. This repository intentionally contains no reconstructed IaC presented as recovered internship work.
 
+## Independently reconstructed follow-on
+
+The [Week 12 Terraform baseline](../week-12-talentflow-ai/infrastructure/terraform/README.md) is new portfolio code reconstructed after the evidence review. It is separate from, and must not be described as, the missing Week 7 source submission. Its scope, security controls, non-deploying validation status, and limitations are documented alongside the code.
+
 ## Safe improvement path
 
 With authorization, add independently authored, clearly labelled examples with version-pinned providers, variables, remote-state design, least-privilege IAM, restricted ingress, lint/validation output, and a teardown/cost-control procedure. Do not publish state files or identifiers.

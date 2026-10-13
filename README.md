@@ -6,9 +6,10 @@ An evidence-led record of a 12-week AWS Cloud Engineering / DevOps internship pr
 
 ## TalentFlow AI capstone
 
-**Week 12 — final report retained; source and deployment are not reproducible from this repository.** TalentFlow AI is a recruitment-workflow concept covering candidate tracking, resume ingestion, pipeline management, interview scheduling, and analytics. The capstone report documents a cost-conscious AWS reference design; the separate official project repository contains a static front-end prototype, not the retained Terraform, backend, or deployment assets.
+**Week 12 — final report retained; original application and infrastructure source, plus a deployment, are not reproducible from this repository.** TalentFlow AI is a recruitment-workflow concept covering candidate tracking, resume ingestion, pipeline management, interview scheduling, and analytics. The capstone report documents a cost-conscious AWS reference design; the separate official project repository contains a static front-end prototype, not the retained original Terraform, backend, or deployment assets.
 
 - [Capstone review, architecture, and evidence states](assignments/week-12-talentflow-ai/README.md)
+- [New reconstructed Terraform baseline](assignments/week-12-talentflow-ai/infrastructure/terraform/README.md) — reviewed source, not applied infrastructure
 - [Documented intended architecture](diagrams/talentflow-intended-architecture.svg)
 - [Official TalentFlow AI reference repository](https://github.com/davinetechnologiesprojects07/TalentFlow-AI) — linked, not copied
 
@@ -45,14 +46,14 @@ AWS IAM, EC2, VPC, S3, RDS, Lambda, API Gateway, DynamoDB, SQS, EventBridge, Clo
 
 ## Reproducing verified local components
 
-This is a documentation portfolio, not a deployable system. No application source, Terraform module, CloudFormation template, state file, dependency manifest, or approved deployment configuration is published here. Diagrams can be viewed directly in GitHub; no cloud resources need to be created to review this repository.
+This is primarily a documentation portfolio. A newly reconstructed [Week 12 Terraform baseline](assignments/week-12-talentflow-ai/infrastructure/terraform/README.md) is published as reviewed source, but it has not been Terraform-CLI-validated or applied and it does not deploy the TalentFlow application. No application source, Terraform state, CloudFormation template, dependency manifest, or approved deployment configuration is published here. Diagrams can be viewed directly in GitHub; no cloud resources need to be created to review this repository.
 
 ## Security, cost, and attribution
 
 - Do not treat historic console captures or report statements as proof of current AWS state.
 - Do not run `terraform apply`, provision AWS resources, or use inferred credentials from this repository; none are supplied.
 - The TalentFlow AI source remains with its owner. The upstream project has no visible licence in the inspected root, so its code and image are not redistributed here.
-- This portfolio’s new material is limited to independently written summaries, navigation, and original explanatory diagrams. It does not claim authorship of employer-owned reports or source code.
+- This portfolio’s new material is limited to independently written summaries, navigation, explanatory diagrams, and a clearly labelled reconstructed Terraform baseline. It does not claim authorship of employer-owned reports or source code.
 
 ## Known gaps
 

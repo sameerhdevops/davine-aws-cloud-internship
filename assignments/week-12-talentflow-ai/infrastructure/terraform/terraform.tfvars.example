@@ -1,0 +1,26 @@
+# =============================================================================
+# TalentFlow AI — Example Variable Values (Safe to Commit to Git)
+# Instructions:
+# 1. Copy this file to "terraform.tfvars" (which is ignored by Git) if you
+#    intend to run a live "terraform plan" or "terraform apply".
+# 2. Replace "s3_bucket_name" with a globally unique lowercase bucket name.
+# 3. NEVER place AWS access keys, secret keys, or account IDs in this file.
+# =============================================================================
+
+aws_region           = "ap-south-1"
+project_name         = "TalentFlow"
+environment          = "dev"
+vpc_cidr             = "10.0.0.0/16"
+availability_zones   = ["ap-south-1a", "ap-south-1b"]
+public_subnet_cidrs  = ["10.0.0.0/20", "10.0.16.0/20"]
+private_subnet_cidrs = ["10.0.128.0/20", "10.0.144.0/20"]
+
+# Replace with your own globally unique bucket name before running plan/apply
+s3_bucket_name = "talentflow-resumes-portfolio-example-001"
+
+# Keep SSH disabled unless actively debugging from a single /32 IP address
+enable_ssh_ingress = false
+allowed_ssh_cidr   = "127.0.0.1/32"
+
+log_retention_days                 = 7
+s3_storage_warning_threshold_bytes = 1073741824
