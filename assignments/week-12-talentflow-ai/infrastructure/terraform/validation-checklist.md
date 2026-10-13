@@ -10,7 +10,7 @@ Terraform v1.16.5, Windows `windows_amd64`, locked `hashicorp/aws` provider v5.1
 
 An earlier validation note reported a successful local validation after a lifecycle-rule warning was corrected with an explicit empty `filter {}`. A fresh rerun in this release environment did not reproduce that result because the provider process failed before returning its schema. The earlier observation is not used as a substitute for the latest result.
 
-The GitHub Actions workflow runs `fmt -check`, backend-free `init`, and `validate` on Ubuntu. The root README should state its result only after the run completes successfully.
+The [GitHub Actions run](https://github.com/sameerhdevops/github-portfolio/actions/runs/38402304332) completed successfully on Ubuntu for commit `cb3653c345e0d7f8284ae910d92b10ece35d885d`; formatting, backend-free initialization, and validation passed. See the [hosted validation record](../../../../evidence/validation/terraform/github-actions-2026-10-13.md). This does not replace the separate local result above.
 
 ## Earlier plan attempt
 

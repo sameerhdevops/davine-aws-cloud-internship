@@ -37,7 +37,7 @@ terraform init -backend=false -input=false
 terraform validate
 ```
 
-The latest Windows run on 2026-10-13 used Terraform v1.16.5 and the locked AWS provider v5.100.0. Formatting and initialization passed. Validation could not load the provider schema because the local provider plugin did not respond. The exact outcome is in the [local validation record](../../../../evidence/validation/terraform/local-validation-2026-10-13.md). GitHub Actions independently runs all three checks on Ubuntu; the root README records the result after a real run completes.
+The latest Windows run on 2026-10-13 used Terraform v1.16.5 and the locked AWS provider v5.100.0. Formatting and initialization passed. Validation could not load the provider schema because the local provider plugin did not respond. The exact outcome is in the [local validation record](../../../../evidence/validation/terraform/local-validation-2026-10-13.md). The [GitHub Actions run](https://github.com/sameerhdevops/github-portfolio/actions/runs/38402304332) independently passed formatting, backend-free initialization, and validation on Ubuntu for commit `cb3653c345e0d7f8284ae910d92b10ece35d885d`; the [hosted validation record](../../../../evidence/validation/terraform/github-actions-2026-10-13.md) documents its scope. Neither run produced a plan or deployed resources.
 
 Do not run `terraform plan`, `terraform apply`, or `terraform destroy` for this portfolio review. A separately recorded earlier plan invocation failed before producing a plan because valid AWS credentials were unavailable; this update did not run a plan. No cloud resource should be created to inspect or validate this code.
 

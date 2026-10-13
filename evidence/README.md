@@ -21,7 +21,7 @@ The original screenshots have not been modified. The public copies are cropped d
 ## Reproducible validation
 
 - [Latest local Terraform output](validation/terraform/local-validation-2026-10-13.md): formatting and backend-free initialization passed on Windows; validation could not load the AWS provider schema because the local plugin did not respond.
-- The repository workflow runs formatting, backend-free initialization, and validation on a GitHub-hosted Ubuntu runner, plus a local Markdown-link check. The workflow does not use AWS credentials and does not run a plan or deployment. Its result is linked from the root README only after the run is confirmed.
+- The [GitHub Actions run](https://github.com/sameerhdevops/github-portfolio/actions/runs/38402304332) passed for commit `cb3653c345e0d7f8284ae910d92b10ece35d885d`: the Markdown-link check and Ubuntu Terraform format, backend-free initialization, and validation jobs succeeded. The workflow does not use AWS credentials and does not run a plan or deployment. See the [hosted validation record](validation/terraform/github-actions-2026-10-13.md).
 
 ## Withheld evidence
 

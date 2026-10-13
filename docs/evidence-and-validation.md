@@ -21,8 +21,8 @@ The [central evidence gallery](../evidence/README.md) is the index for the publi
 
 ## Validation status
 
-The local Windows record is in [`evidence/validation/terraform/`](../evidence/validation/terraform/local-validation-2026-10-13.md): `terraform fmt -check` and `terraform init -backend=false` passed; a fresh `terraform validate` attempt did not obtain the AWS provider schema because the provider plugin failed to respond. That is an incomplete validation result, not a pass.
+The local Windows record is in [`evidence/validation/terraform/`](../evidence/validation/terraform/local-validation-2026-10-13.md): `terraform fmt -check` and `terraform init -backend=false` passed; a fresh `terraform validate` attempt did not obtain the AWS provider schema because the provider plugin failed to respond. That is an incomplete local validation result, not a pass. The [GitHub Actions run](https://github.com/sameerhdevops/github-portfolio/actions/runs/38402304332) succeeded for commit `cb3653c345e0d7f8284ae910d92b10ece35d885d`; hosted Markdown-link checking, formatting, backend-free initialization, and Terraform validation all passed. The [hosted output record](../evidence/validation/terraform/github-actions-2026-10-13.md) preserves the run identity and scope.
 
-The GitHub Actions workflow runs `terraform fmt -check`, `terraform init -backend=false`, and `terraform validate` on Ubuntu, without AWS credentials, a plan, or a deployment. It also checks repository-relative Markdown links. See the root README for the actual workflow result once available.
+The GitHub Actions workflow runs `terraform fmt -check`, `terraform init -backend=false`, and `terraform validate` on Ubuntu, without AWS credentials, a plan, or a deployment. It also checks repository-relative Markdown links. The linked run passed; it is static/schema validation, not a plan or proof of deployment.
 
 Terraform validation checks source consistency against installed provider schemas. It does not produce an execution plan or prove AWS deployment. Historical screenshots and report claims also do not prove current cloud configuration.
