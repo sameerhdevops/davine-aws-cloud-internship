@@ -46,7 +46,7 @@ AWS IAM, EC2, VPC, S3, RDS, Lambda, API Gateway, DynamoDB, SQS, EventBridge, Clo
 
 ## Reproducing verified local components
 
-This is primarily a documentation portfolio. A newly reconstructed [Week 12 Terraform baseline](assignments/week-12-talentflow-ai/infrastructure/terraform/README.md) is published as reviewed source, but it has not been Terraform-CLI-validated or applied and it does not deploy the TalentFlow application. No application source, Terraform state, CloudFormation template, dependency manifest, or approved deployment configuration is published here. Diagrams can be viewed directly in GitHub; no cloud resources need to be created to review this repository.
+This is primarily a documentation portfolio. A newly reconstructed [Week 12 Terraform baseline](assignments/week-12-talentflow-ai/infrastructure/terraform/README.md) is published as reviewed source: on 2026-10-13 it passed local non-deploying checks (`terraform fmt -check`, `terraform init -backend=false`, and `terraform validate` with Terraform v1.16.5 and provider v5.100.0), but no plan was produced and it has not been applied; it does not deploy the TalentFlow application. See the [validation checklist](assignments/week-12-talentflow-ai/infrastructure/terraform/validation-checklist.md). No application source, Terraform state, CloudFormation template, dependency manifest, or approved deployment configuration is published here. Diagrams can be viewed directly in GitHub; no cloud resources need to be created to review this repository.
 
 ## Security, cost, and attribution
 
