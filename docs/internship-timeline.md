@@ -25,4 +25,4 @@ This is the authoritative record for the material available locally on 2026-10-1
 - **Undetermined**: related material exists, but the week association cannot be supported.
 - **Final report retained**: the deliverable exists; implementation claims within it remain separately qualified in the capstone record.
 
-Original evidence remains private pending security and publication review.
+Original reports and source screenshots remain private. Two cropped Week 10 screenshot derivatives have been published after security review; see the [evidence gallery](../evidence/README.md) for their scope and limitations.

@@ -22,3 +22,7 @@ Historical screenshots show SSH/network exposure details. They are not published
 ## Limitations
 
 No server configuration, user-data script, web-page source, or infrastructure definition is available. The exercise demonstrates capture-time evidence, not an active deployment.
+
+## Evidence
+
+Week 2 captures remain private because they expose addresses and resource identifiers. No Week 2 screenshot is published; see the [central evidence gallery](../../evidence/README.md) for the portfolio's public-safe evidence.

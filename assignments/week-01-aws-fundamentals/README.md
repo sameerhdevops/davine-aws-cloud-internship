@@ -21,3 +21,7 @@ The report identifies identity and access management, virtual compute, object st
 ## Limitations
 
 Original report pages and screenshots are withheld pending publication review. The available material does not include reproducible configuration files or assignment instructions.
+
+## Evidence
+
+The source report and captures remain private. No Week 1 screenshot is published; the [central evidence gallery](../../evidence/README.md) lists the public-safe evidence available across the portfolio.

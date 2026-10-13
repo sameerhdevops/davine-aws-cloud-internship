@@ -1,21 +1,21 @@
 # Davine Technologies — AWS Cloud Engineering Internship Portfolio
 
-An evidence-led record of a 12-week AWS Cloud Engineering / DevOps internship progression. It is written for entry-level cloud and DevOps review: it separates retained evidence from curriculum framing, report claims, and proposed improvements.
+This repository is a personal, evidence-rated record of a 12-week AWS Cloud Engineering / DevOps internship progression. It organizes the retained reports and observations without treating every curriculum topic as proof of completed work.
 
-> **Publication boundary:** Original PDFs, screenshots, archives, account details, and unredacted evidence are deliberately excluded. This repository contains public-safe documentation and original explanatory diagrams only.
+**Start here:** [Public evidence gallery](evidence/README.md) · [Evidence-rated timeline](docs/internship-timeline.md) · [Portfolio map and provenance](docs/portfolio-map.md)
 
-## TalentFlow AI capstone
+This is not an official Davine Technologies repository and does not imply company endorsement. Original reports, archives, and unredacted screenshots remain private. Two cropped, public-safe Week 10 screenshot derivatives are included in the gallery; all other screenshots remain withheld.
 
-**Week 12 — final report retained; original application and infrastructure source, plus a deployment, are not reproducible from this repository.** TalentFlow AI is a recruitment-workflow concept covering candidate tracking, resume ingestion, pipeline management, interview scheduling, and analytics. The capstone report documents a cost-conscious AWS reference design; the separate official project repository contains a static front-end prototype, not the retained original Terraform, backend, or deployment assets.
+## Highlights
 
-- [Capstone review, architecture, and evidence states](assignments/week-12-talentflow-ai/README.md)
-- [New reconstructed Terraform baseline](assignments/week-12-talentflow-ai/infrastructure/terraform/README.md) — reviewed source, not applied infrastructure
-- [Documented intended architecture](diagrams/talentflow-intended-architecture.svg)
-- [Official TalentFlow AI reference repository](https://github.com/davinetechnologiesprojects07/TalentFlow-AI) — linked, not copied
+- **Week 10 governance review:** two sanitized historical console captures show the root-account control summary and Trusted Advisor public-snapshot checks. Their scope and limitations are stated beside each image.
+- **Week 12 TalentFlow AI:** retained report claims, upstream prototype scope, and the independently reconstructed Terraform baseline are kept distinct. The application is not deployed by this repository.
+- **Reproducible source:** the Terraform baseline and its local/CI validation records are available under [Week 12](assignments/week-12-talentflow-ai/infrastructure/terraform/README.md). No AWS resources are created by the checks.
+- **Evidence-rated progression:** Weeks 3 and 4 have no recovered evidence; Weeks 6 and 7 are partial; Week 11 remains undetermined. See the [full timeline](docs/internship-timeline.md).
 
 ## 12-week progression
 
-The weekly subjects below are the supplied organizing framework, not a claim that every item is an employer-authored brief. Status measures the evidence currently retained.
+The week titles below are the supplied organizing framework, not a claim that every item is an employer-authored brief. Status refers to the evidence currently retained.
 
 | Week | Focus | Retained-evidence status | Record |
 | --- | --- | --- | --- |
@@ -32,29 +32,32 @@ The weekly subjects below are the supplied organizing framework, not a claim tha
 | 11 | Capstone planning | Undetermined | [Read](assignments/week-11-capstone-planning/README.md) |
 | 12 | TalentFlow AI capstone | Final report retained | [Read](assignments/week-12-talentflow-ai/README.md) |
 
-## Technical themes supported by the material
+## Technical themes
 
-AWS IAM, EC2, VPC, S3, RDS, Lambda, API Gateway, DynamoDB, SQS, EventBridge, CloudWatch, Route 53, CloudFront, Elastic Load Balancing, Auto Scaling, Terraform, CloudFormation, Linux, Git, and GitHub. Presence in this list means the topic appears in retained reports or evidence; it does not automatically indicate a currently deployed service.
+The retained material discusses AWS IAM, EC2, VPC, S3, RDS, Lambda, API Gateway, DynamoDB, SQS, EventBridge, CloudWatch, Route 53, CloudFront, Elastic Load Balancing, Auto Scaling, Terraform, CloudFormation, Linux, Git, and GitHub. A topic appearing in a report or screenshot does not by itself establish that I deployed or currently operate that service.
+
+## Reproduction and validation
+
+This is primarily a documentation portfolio. The independently reconstructed [Week 12 Terraform baseline](assignments/week-12-talentflow-ai/infrastructure/terraform/README.md) defines foundational network, storage, IAM, and monitoring resources, but no application compute, ALB, or database. It has not been applied to AWS.
+
+On Windows with Terraform v1.16.5, the latest local run of `terraform fmt -check` passed and `terraform init -backend=false` succeeded using the locked AWS provider v5.100.0. Local `terraform validate` could not load the provider schema because the provider plugin did not respond; this is an environment/tooling failure, not a successful local validation result. The independent [GitHub Actions run](https://github.com/sameerhdevops/github-portfolio/actions/runs/38402304332) on Ubuntu succeeded for commit `cb3653c345e0d7f8284ae910d92b10ece35d885d`: Markdown links, formatting, backend-free initialization, and Terraform validation all passed. See the [hosted validation record](evidence/validation/terraform/github-actions-2026-10-13.md). Neither local nor hosted checks ran a plan, apply, deployment, or AWS resource operation. A separately recorded earlier plan invocation failed before producing a plan because valid AWS credentials were unavailable; no resources were created.
 
 ## Repository guide
 
+- [Central evidence gallery and manifest](evidence/README.md)
 - [Evidence and validation policy](docs/evidence-and-validation.md)
 - [Full evidence-rated timeline](docs/internship-timeline.md)
 - [Portfolio map and provenance](docs/portfolio-map.md)
-- [Security, governance, and cost themes](cross-cutting/aws-security-governance-cost/README.md)
+- [Security, governance, and cost review](cross-cutting/aws-security-governance-cost/README.md)
 - [High-availability diagram](diagrams/week-05-high-availability.svg) and [serverless-flow diagram](diagrams/week-09-serverless-api.svg)
-
-## Reproducing verified local components
-
-This is primarily a documentation portfolio. A newly reconstructed [Week 12 Terraform baseline](assignments/week-12-talentflow-ai/infrastructure/terraform/README.md) is published as reviewed source: on 2026-10-13 it passed local non-deploying checks (`terraform fmt -check`, `terraform init -backend=false`, and `terraform validate` with Terraform v1.16.5 and provider v5.100.0), but no plan was produced and it has not been applied; it does not deploy the TalentFlow application. See the [validation checklist](assignments/week-12-talentflow-ai/infrastructure/terraform/validation-checklist.md). No application source, Terraform state, CloudFormation template, dependency manifest, or approved deployment configuration is published here. Diagrams can be viewed directly in GitHub; no cloud resources need to be created to review this repository.
 
 ## Security, cost, and attribution
 
-- Do not treat historic console captures or report statements as proof of current AWS state.
-- Do not run `terraform apply`, provision AWS resources, or use inferred credentials from this repository; none are supplied.
-- The TalentFlow AI source remains with its owner. The upstream project has no visible licence in the inspected root, so its code and image are not redistributed here.
-- This portfolio’s new material is limited to independently written summaries, navigation, explanatory diagrams, and a clearly labelled reconstructed Terraform baseline. It does not claim authorship of employer-owned reports or source code.
+- Historical console captures are not proof of current AWS state. The gallery describes exactly what each published crop shows and does not show.
+- Do not run `terraform plan`, `terraform apply`, or `terraform destroy` for this portfolio review. The infrastructure is not deployed, and applying it can incur AWS charges for storage, alarms, logging, notifications, and any future resources.
+- The TalentFlow AI source remains with its owner. The inspected upstream repository had no visible licence, so its code and image are linked, not copied.
+- New portfolio work consists of independently written summaries, navigation, explanatory diagrams, evidence curation, validation automation, and the clearly labelled reconstructed Terraform baseline. It is not presented as original employer source.
 
 ## Known gaps
 
-Weeks 3 and 4 have no recovered brief, submission, source, or screenshot. Week 6 lacks standalone captures; Week 7 lacks raw IaC files; Week 11 has no explicitly labelled deliverable. See the [timeline](docs/internship-timeline.md) for the exact evidence boundaries.
+Weeks 3 and 4 have no recovered brief, submission, source, or screenshot. Week 6 has a report but no standalone captures; Week 7 has report/capture evidence but no raw IaC; Week 11 has no explicitly labelled deliverable. The Week 12 final report is retained privately, but the original application and infrastructure source and a reproducible deployment are not available in this portfolio. The [timeline](docs/internship-timeline.md) records these limits in detail.

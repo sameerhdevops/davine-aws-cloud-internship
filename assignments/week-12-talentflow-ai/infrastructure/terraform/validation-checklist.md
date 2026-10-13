@@ -1,21 +1,27 @@
-# Local validation checklist
+# Terraform validation checklist
 
-## Commands and results (2026-10-13, Terraform v1.16.5)
+## Latest Windows run (2026-10-13)
 
-- [x] `terraform fmt -check` — passed (exit code 0; it also passed before the lifecycle correction below).
-- [x] `terraform init -backend=false` — succeeded; installed `hashicorp/aws` provider v5.100.0, pinned in `.terraform.lock.hcl`.
-- [x] `terraform validate` — passed: `Success! The configuration is valid.` with no warnings, after the correction below.
+Terraform v1.16.5, Windows `windows_amd64`, locked `hashicorp/aws` provider v5.100.0:
 
-## Lifecycle-warning correction
+- [x] `terraform fmt -check` — passed, exit code 0.
+- [x] `terraform init -backend=false -input=false -no-color` — initialized using the provider selected by `.terraform.lock.hcl`, exit code 0. No remote backend was configured.
+- [ ] `terraform validate -no-color` — **not completed**. The local AWS provider plugin failed to respond to Terraform's `GetProviderSchema` request. See the verbatim safe output in the [validation record](../../../../evidence/validation/terraform/local-validation-2026-10-13.md).
 
-The first validation cycle reported a lifecycle-configuration warning for `aws_s3_bucket_lifecycle_configuration.resumes`. An explicit empty `filter {}` was added to the rule `cleanup-noncurrent-versions-and-incomplete-uploads` in `main.tf`. The rule's behavior is unchanged: incomplete multipart uploads are aborted after 7 days and noncurrent object versions expire after 30 days. `terraform fmt` then completed successfully and `terraform validate` passed with no warnings. A backup of the pre-correction file (`main.tf.backup-20261013-131006`) is preserved outside the repository.
+An earlier validation note reported a successful local validation after a lifecycle-rule warning was corrected with an explicit empty `filter {}`. A fresh rerun in this release environment did not reproduce that result because the provider process failed before returning its schema. The earlier observation is not used as a substitute for the latest result.
 
-## Plan/apply status
+The [GitHub Actions run](https://github.com/sameerhdevops/github-portfolio/actions/runs/38402304332) completed successfully on Ubuntu for commit `cb3653c345e0d7f8284ae910d92b10ece35d885d`; formatting, backend-free initialization, and validation passed. See the [hosted validation record](../../../../evidence/validation/terraform/github-actions-2026-10-13.md). This does not replace the separate local result above.
 
-A `terraform plan` attempt was made once on 2026-10-13 using a temporary S3 bucket-name value; it failed before producing any plan because valid AWS credentials were unavailable. No plan output was generated, no `terraform apply` or `terraform destroy` was run, and no AWS resources were created, modified, or charged.
+## Earlier plan attempt
 
-Validating Terraform syntax locally is not the same as planning or deploying. No plan has been produced and this infrastructure is not deployed.
+A separate, earlier validation record noted one `terraform plan` invocation using a temporary bucket-name value. It failed before producing a plan because valid AWS credentials were unavailable. No resource changes followed. This portfolio update did not run `terraform plan`.
 
-## Restrictions for this portfolio review
+## Plan and deployment status
 
-For this review, do not run `terraform plan`, `terraform apply`, or `terraform destroy`, do not configure AWS credentials, and do not create or modify AWS resources by any means. Applying this configuration would incur AWS charges (see the [Terraform README](README.md)); any deployment is out of scope until separately authorized.
+No Terraform plan was produced. No `terraform apply`, `terraform destroy`, AWS CLI deployment, CloudFormation deployment, or cloud resource operation was run during this portfolio update. The infrastructure is **not deployed**.
+
+`terraform validate` is static configuration/schema validation. It is not a plan and does not establish an AWS deployment. The workflow has no AWS credentials and no plan or deployment step.
+
+## Safety limits
+
+Before any real deployment, obtain explicit authorization, replace the example S3 bucket name with an available globally unique name, review current service pricing, configure credentials outside the repository, and inspect an approved plan. Never publish state, credentials, or real `.tfvars` values.

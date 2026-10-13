@@ -13,3 +13,7 @@ This page exists to keep the 12-week progression navigable. It is explanatory co
 A dated brief or submission, a sanitized network diagram, or a redacted routing/security validation record. Any future publication should distinguish security groups (stateful) from network ACLs (stateless) and remove account/resource identifiers.
 
 Next: [Week 4 — application load balancing](../week-04-application-load-balancing/README.md).
+
+## Evidence
+
+No Week 3 internship source or screenshot was recovered. No completion claim or reconstructed internship artifact is made. The [central evidence gallery](../../evidence/README.md) lists the limited public evidence available elsewhere in the portfolio.

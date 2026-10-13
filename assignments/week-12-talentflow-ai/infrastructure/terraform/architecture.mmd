@@ -19,6 +19,8 @@ flowchart TB
         Private2["aws_subnet.private[1]"]
       end
 
+      FutureWorkload["Future EC2 application workload\nnot declared by this configuration"]
+
       IngressSG["Ingress security group\nfuture ALB only"]
       AppSG["Application security group\nfuture EC2 only"]
       DbSG["Database security group\nfuture RDS only"]
@@ -36,11 +38,13 @@ flowchart TB
   PublicRT --> Public2
   PrivateRT1 --> Private1
   PrivateRT2 --> Private2
-  IngressSG -. "HTTP/HTTPS rules for future ALB" .-> AppSG
-  AppSG -. "HTTP from ingress; MySQL egress" .-> DbSG
+  IngressSG -. "ingress 80/443; egress 80 to VPC" .-> AppSG
+  AppSG -. "inbound 80 from ALB SG; MySQL egress 3306" .-> DbSG
   Role -. "read-only S3 policy for future EC2" .-> S3
   S3 --> Alarm --> Topic
-  Logs -. "created; no producer configured" .-> AppSG
+  AppSG -. "rules only; no instance or ENI" .-> FutureWorkload
+  Role -. "instance profile is not attached" .-> FutureWorkload
+  FutureWorkload -. "no log producer configured" .-> Logs
 
   classDef future fill:#fff3cd,stroke:#856404,color:#533f03;
-  class IngressSG,AppSG,DbSG future;
+  class FutureWorkload,IngressSG,AppSG,DbSG future;
