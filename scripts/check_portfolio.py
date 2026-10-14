@@ -43,7 +43,7 @@ def check_week_pages(errors: list[str]) -> None:
         path = ROOT / "assignments" / folder / "README.md"
         if not path.is_file():
             errors.append(f"missing weekly page: assignments/{folder}/README.md")
-        elif f"assignments/{folder}/README.md" not in root_readme:
+        elif not re.search(rf"\]\(assignments/{re.escape(folder)}/README\.md(?:#[^)]*)?\)", root_readme):
             errors.append(f"root README does not link weekly page: assignments/{folder}/README.md")
     if len(WEEKS) != 12:
         errors.append("internal quality check does not list exactly 12 weeks")
@@ -59,44 +59,40 @@ def check_week_pages(errors: list[str]) -> None:
                 errors.append(f"Week 11 page must explicitly contain: {phrase}")
 
 
-def check_manifest(errors: list[str]) -> int:
-    path = ROOT / "evidence/manifest.csv"
-    required = {
-        "artifact_id",
-        "week",
-        "type",
-        "provenance",
-        "evidence_category",
-        "visibility",
-        "publication_path",
-        "date_status",
-        "supported_claim",
-        "limitations",
-        "sanitization_or_withheld_reason",
-    }
-    try:
-        with path.open(encoding="utf-8-sig", newline="") as stream:
-            reader = csv.DictReader(stream)
-            missing = required - set(reader.fieldnames or [])
-            if missing:
-                errors.append(f"manifest missing columns: {', '.join(sorted(missing))}")
-                return 0
-            rows = list(reader)
-    except (OSError, csv.Error) as exc:
-        errors.append(f"could not read evidence manifest: {exc}")
-        return 0
+REQUIRED_MANIFEST_COLUMNS = {
+    "artifact_id",
+    "week",
+    "type",
+    "provenance",
+    "evidence_category",
+    "visibility",
+    "publication_path",
+    "date_status",
+    "supported_claim",
+    "limitations",
+    "sanitization_or_withheld_reason",
+}
+REQUIRED_MANIFEST_VALUES = REQUIRED_MANIFEST_COLUMNS - {"publication_path"}
 
+
+def validate_manifest_rows(rows: list[dict[str, str]], root: Path) -> tuple[list[str], int]:
+    errors: list[str] = []
     seen: set[str] = set()
     public_count = 0
     for line, row in enumerate(rows, start=2):
-        artifact_id = row["artifact_id"].strip()
+        for field in REQUIRED_MANIFEST_VALUES:
+            if not (row.get(field) or "").strip():
+                errors.append(f"manifest line {line}: {field} is required")
+
+        artifact_id = (row.get("artifact_id") or "").strip()
         if not artifact_id or artifact_id in seen:
             errors.append(f"manifest line {line}: blank or duplicate artifact_id")
         seen.add(artifact_id)
-        if row["evidence_category"] not in CATEGORIES:
+        if (row.get("evidence_category") or "").strip() not in CATEGORIES:
             errors.append(f"manifest line {line}: unrecognized evidence_category")
-        visibility = row["visibility"].strip().lower()
-        publication_path = row["publication_path"].strip()
+
+        visibility = (row.get("visibility") or "").strip().lower()
+        publication_path = (row.get("publication_path") or "").strip()
         if visibility == "public":
             public_count += 1
             if not publication_path:
@@ -106,9 +102,9 @@ def check_manifest(errors: list[str]) -> int:
             if relative.is_absolute() or ".." in relative.parts or "\\" in publication_path:
                 errors.append(f"manifest line {line}: publication_path must be repository-relative with forward slashes")
                 continue
-            target = (ROOT / Path(*relative.parts)).resolve()
+            target = (root / Path(*relative.parts)).resolve()
             try:
-                target.relative_to(ROOT.resolve())
+                target.relative_to(root.resolve())
             except ValueError:
                 errors.append(f"manifest line {line}: publication_path escapes the repository")
                 continue
@@ -117,14 +113,29 @@ def check_manifest(errors: list[str]) -> int:
         elif visibility == "withheld":
             if publication_path:
                 errors.append(f"manifest line {line}: withheld artifact must not have a publication_path")
-            if not row["sanitization_or_withheld_reason"].strip():
-                errors.append(f"manifest line {line}: withheld artifact needs a reason")
         else:
             errors.append(f"manifest line {line}: visibility must be public or withheld")
-        if not row["supported_claim"].strip() or not row["limitations"].strip():
-            errors.append(f"manifest line {line}: supported_claim and limitations are required")
     if not rows:
         errors.append("evidence manifest contains no records")
+    return errors, public_count
+
+
+def check_manifest(errors: list[str]) -> int:
+    path = ROOT / "evidence/manifest.csv"
+    try:
+        with path.open(encoding="utf-8-sig", newline="") as stream:
+            reader = csv.DictReader(stream)
+            missing = REQUIRED_MANIFEST_COLUMNS - set(reader.fieldnames or [])
+            if missing:
+                errors.append(f"manifest missing columns: {', '.join(sorted(missing))}")
+                return 0
+            rows = list(reader)
+    except (OSError, csv.Error) as exc:
+        errors.append(f"could not read evidence manifest: {exc}")
+        return 0
+
+    row_errors, public_count = validate_manifest_rows(rows, ROOT)
+    errors.extend(row_errors)
     return public_count
 
 
