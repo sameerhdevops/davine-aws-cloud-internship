@@ -1,17 +1,19 @@
 # Added local demonstrations
 
-The repository includes six small, standard-library demonstrations as added portfolio work. They are separate from internship submissions and are not AWS service emulators or evidence of cloud deployment. They make a few design checks reproducible without AWS credentials or charges; the portfolio does not use the label to claim personal authorship.
+The repository includes six small, standard-library demonstrations as added portfolio work. They are separate from internship submissions and are not AWS service emulators or evidence of cloud deployment. They make a few design checks reproducible without AWS credentials; the portfolio does not use the label to claim personal authorship.
 
-From the repository root, run the full local suite with Python 3.11 or newer:
+From the repository root, the six examples use Python 3.11 or newer. The full suite also includes mocked AWS-audit tests and imports the pinned boto3 runtime dependency:
 
 ```powershell
-python -m unittest discover -s tests -v
+python -m venv .venv
+.venv\Scripts\python -m pip install -r requirements-dev.txt
+.venv\Scripts\python -m unittest discover -s tests -v
 ```
 
 Run the VPC example directly:
 
 ```powershell
-python demos/week03_vpc/validate.py
+.venv\Scripts\python demos/week03_vpc/validate.py
 ```
 
 | Week | Demonstration | What is checked | What is not modeled |
@@ -24,5 +26,7 @@ python demos/week03_vpc/validate.py
 | 10 | [`policy_check.py`](week10_governance/policy_check.py) | A narrow allow-list check against the accompanying named-bucket example | IAM policy evaluation, trust policies, conditions, SCPs, Access Analyzer, or AWS authorization results |
 
 The Week 10 checker supports only the two listed object actions and a named-bucket object ARN in the AWS partition. It intentionally accepts a smaller bucket-name subset: lowercase letters, digits, and internal hyphens, with S3-reserved prefixes and suffixes rejected. Dotted names and account-regional bucket names are out of scope; this check does not establish global name availability. See the [current S3 bucket naming rules](https://docs.aws.amazon.com/AmazonS3/latest/userguide/bucketnamingrules.html).
+
+The separate [AWS posture snapshot](../scripts/aws_audit/README.md) uses boto3 and read-only API calls. Its tests use synthetic responses, not AWS credentials or service emulation.
 
 Each weekly page links the relevant code and records its assumptions. These examples test the repository code only.

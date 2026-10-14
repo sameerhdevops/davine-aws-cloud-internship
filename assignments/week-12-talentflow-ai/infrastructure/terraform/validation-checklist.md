@@ -25,3 +25,15 @@ No Terraform plan was produced. No `terraform apply`, `terraform destroy`, AWS C
 ## Safety limits
 
 Before any real deployment, obtain explicit authorization, replace the example S3 bucket name with an available globally unique name, review current service pricing, configure credentials outside the repository, and inspect an approved plan. Never publish state, credentials, or real `.tfvars` values.
+
+## Future sandbox evidence checklist
+
+This section is intentionally empty. No live sandbox was created or inspected for this portfolio review. Only complete items after a separately authorized and funded exercise, and keep source records private until reviewed for publication.
+
+- [ ] Record approved account/Region scope in a private log; do not publish account IDs.
+- [ ] Record the exact source commit, Terraform/provider versions, and operator window.
+- [ ] Capture the approved change summary with sensitive identifiers redacted.
+- [ ] Verify the created resource inventory, routes, security groups, S3 controls, IAM role/profile relationships, and any data-retention behavior.
+- [ ] If notification testing is in scope, verify subscription confirmation and delivery separately from topic/alarm creation.
+- [ ] Record cleanup verification and the final billing review.
+- [ ] Publish only a reviewed derivative whose caption states what it shows and does not show.

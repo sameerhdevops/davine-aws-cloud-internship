@@ -1,82 +1,109 @@
-# AWS Cloud Engineering Internship Portfolio
+# AWS Cloud Engineering Portfolio
 
-A recruiter-facing record of a 12-week AWS Cloud Engineering internship with Davine Technologies and the TalentFlow AI capstone. It separates **portal schedule status**, **retained internship material**, and **added portfolio work** so a topic, report, screenshot, or Terraform file is not mistaken for something it does not prove.
+[![Portfolio quality](https://github.com/sameerhdevops/davine-aws-cloud-internship/actions/workflows/portfolio-quality.yml/badge.svg?branch=final-polish)](https://github.com/sameerhdevops/davine-aws-cloud-internship/actions/workflows/portfolio-quality.yml?query=branch%3Afinal-polish)
 
-**Start here:** [Strongest work](#strongest-inspectable-work) · [12-week map](#12-week-map) · [Evidence gallery](evidence/README.md) · [Reproducible demos and tests](demos/README.md) · [Week 12 Terraform](assignments/week-12-talentflow-ai/infrastructure/terraform/README.md) · [Validation index](evidence/validation/README.md)
+A 12-week AWS Cloud Engineering internship learning record with the TalentFlow AI capstone context. The repository combines retained-material descriptions, local demonstrations, tests, a read-only AWS posture snapshot tool, and a limited Terraform reconstruction. It separates schedule status, retained evidence, added portfolio work, and deployment status.
 
-This is a personal portfolio, not an official Davine Technologies repository or company endorsement.
+This is a personal portfolio. It is not an official Davine Technologies repository or company endorsement.
 
-## At a glance
-
-- **Internship schedule, as reported by the user:** Weeks 1–11 marked Completed; Week 12 marked Current / Final Week; schedule progress shown as 92%.
-- **Portal submission history, as reported by the user:** “No weekly submissions yet.” No saved portal screenshot or export was found, so portal state is not independently screenshot-verified.
-- **Retained technical evidence:** the existing portfolio record describes reports, briefings, and console captures for multiple weeks. Selected screenshot derivatives are public and show historical observations with scoped captions. Source provenance and redactions require owner verification; see the [evidence policy](docs/evidence-and-validation.md).
-- **Added portfolio work:** six standard-library demonstrations with tests, explanatory diagrams, and a reconstructed Week 12 Terraform baseline. These are separate from internship submissions and do not make an authorship claim about the retained source material.
-- **Deployment status:** the reconstructed Terraform has not been applied. Nothing in this repository establishes a deployed TalentFlow AI application.
+The portal schedule state reported by the owner is **Weeks 1–11 marked Completed** and **Week 12 marked Current / Final Week**. Schedule status does not establish assignment submission or acceptance.
 
 ## Strongest inspectable work
 
-1. [Historical evidence gallery](evidence/README.md): selected screenshot derivatives described by the prior portfolio record, with captions for the visible observation and its limits. Source correspondence and redactions remain **OWNER TO VERIFY** against private originals.
-2. [Local engineering demonstrations](demos/README.md): CIDR/route checks, a health-threshold state machine, event parsing, alarm math, retry/idempotency behavior, and a narrow static policy example. Run them with `python -m unittest discover -s tests -v`.
-3. [TalentFlow AI capstone record](assignments/week-12-talentflow-ai/README.md): the proposed architecture, report observations as recorded in the portfolio, the reconstructed Terraform subset, validation status, and implementation gaps.
-4. [Terraform source and validation record](assignments/week-12-talentflow-ai/infrastructure/terraform/README.md): a non-deployed VPC/S3/IAM/monitoring baseline with backend-free static checks; no credentials or AWS deployment are required for the documented validation workflow.
+- [Evidence gallery](evidence/README.md): selected historical screenshot derivatives, captions, provenance notes, and limits.
+- [Read-only AWS audit](scripts/aws_audit/README.md): boto3 snapshot of regional EC2/security-group settings and account-owned S3 bucket controls, with synthetic [JSON](samples/aws-audit-report.json) and [CSV](samples/aws-audit-report.csv) examples.
+- [Six local demonstrations and tests](demos/README.md): VPC route/CIDR checks, health-threshold transitions, S3 event parsing, alarm arithmetic, idempotency, and a bounded S3 object-policy checker.
+- [TalentFlow AI capstone](assignments/week-12-talentflow-ai/README.md): proposed architecture, report descriptions, implementation boundary, and reconstruction status.
+- [Week 12 Terraform](assignments/week-12-talentflow-ai/infrastructure/terraform/README.md): reviewable VPC, security-group, S3, IAM, logging, and monitoring configuration. It has not been applied to AWS.
 
-## 12-week map
+The capstone illustration below is a documented target architecture reconstructed from portfolio descriptions. It is not a deployment export.
 
-The schedule column reflects only the user-supplied portal state. It is not evidence of a submission. Source-dependent descriptions below are carried forward from the existing portfolio record and require owner verification against the private originals; added portfolio work is listed separately.
+![TalentFlow AI documented intended architecture](diagrams/talentflow-intended-architecture.svg)
 
-| Week | Focus | Portal schedule (reported) | Retained internship evidence | Portfolio page and independent work |
-| --- | --- | --- | --- | --- |
-| 1 | AWS cloud fundamentals | Completed | Named report, brief, and service-console captures; no public-safe standalone image selected | [Week 1](assignments/week-01-aws-fundamentals/README.md) |
-| 2 | EC2 and host-level security | Completed | Brief, dated report, and EC2/Linux/network/alarm captures; one redacted status capture is public | [Week 2](assignments/week-02-ec2-web-server/README.md) |
-| 3 | VPC networking | Completed | No week-specific original brief, submission, screenshot, or source recovered | [Week 3](assignments/week-03-vpc-networking/README.md) · VPC route/CIDR demo |
-| 4 | Application Load Balancing | Completed | No Week 4 deliverable recovered; Week 5 evidence is not backdated | [Week 4](assignments/week-04-application-load-balancing/README.md) · health-threshold demo |
-| 5 | High availability and Auto Scaling | Completed | Report, diagram, console captures, and browser response; one replacement-event crop is public | [Week 5](assignments/week-05-high-availability/README.md) |
-| 6 | Serverless architecture | Completed | Dated two-page report; no standalone execution capture or source | [Week 6](assignments/week-06-serverless-architecture/README.md) · event-parser demo |
-| 7 | Infrastructure as Code | Completed | Report and historical apply/EC2 screenshot; raw templates not recovered | [Week 7](assignments/week-07-infrastructure-as-code/README.md) |
-| 8 | Observability, DNS, and CDN | Completed | Brief, report versions, and CloudWatch captures; one alarm crop is public | [Week 8](assignments/week-08-monitoring-cdn-dns/README.md) · alarm-math demo |
-| 9 | Serverless integration and scaling | Completed | Activity reports and Lambda/Auto Scaling captures; two narrow crops are public | [Week 9](assignments/week-09-serverless-api/README.md) · idempotency demo |
-| 10 | Governance, security, and cost | Completed | Audit/activity reports and IAM/Trusted Advisor/billing/review captures; two sanitized images are public | [Week 10](assignments/week-10-governance-audit/README.md) · static policy example |
-| 11 | Capstone briefing and planning | Completed | No Week 11 assignment/submission; a duplicated 34-page Week 12 capstone briefing is planning context only | [Week 11](assignments/week-11-capstone-planning/README.md) |
-| 12 | TalentFlow AI capstone | Current / Final Week | Final report and partial console evidence retained; no portal receipt or full original application/IaC source | [Week 12](assignments/week-12-talentflow-ai/README.md) · independent Terraform baseline |
+## Twelve-week map
 
-## Reproduce the added demonstrations
+The schedule column reflects the portal state reported by the owner. A completed schedule week is not evidence of a submitted or accepted assignment. See the [timeline](docs/internship-timeline.md) and [evidence policy](docs/EVIDENCE.md) for provenance and detail.
 
-From a local clone with Python 3.11 or newer:
+| Week | Focus | Reported schedule | Page and inspectable work |
+| --- | --- | --- | --- |
+| 1 | AWS cloud fundamentals | Completed | [Week 1](assignments/week-01-aws-fundamentals/README.md) |
+| 2 | EC2 and host-level security | Completed | [Week 2](assignments/week-02-ec2-web-server/README.md) · [historical screenshot](evidence/README.md#week-2-ec2-and-host-level-security) |
+| 3 | VPC networking | Completed | [Week 3](assignments/week-03-vpc-networking/README.md) · [CIDR and route demonstration](demos/week03_vpc/validate.py) |
+| 4 | Application Load Balancing | Completed | [Week 4](assignments/week-04-application-load-balancing/README.md) · [health-threshold demonstration](demos/week04_alb/health_threshold.py) |
+| 5 | High availability and Auto Scaling | Completed | [Week 5](assignments/week-05-high-availability/README.md) · [architecture diagram](diagrams/week-05-high-availability.svg) |
+| 6 | Serverless architecture | Completed | [Week 6](assignments/week-06-serverless-architecture/README.md) · [S3 event parser](demos/week06_serverless/handler.py) |
+| 7 | Infrastructure as Code | Completed | [Week 7](assignments/week-07-infrastructure-as-code/README.md) · [historical lab capture](evidence/README.md#week-7-infrastructure-as-code) |
+| 8 | Observability, DNS, and CDN | Completed | [Week 8](assignments/week-08-monitoring-cdn-dns/README.md) · [alarm arithmetic](demos/week08_observability/alarm_math.py) |
+| 9 | Serverless integration and scaling | Completed | [Week 9](assignments/week-09-serverless-api/README.md) · [idempotency example](demos/week09_integration/idempotency.py) |
+| 10 | Governance, security, and cost | Completed | [Week 10](assignments/week-10-governance-audit/README.md) · [policy checker](demos/week10_governance/policy_check.py) |
+| 11 | Capstone briefing and planning | Completed | [Week 11](assignments/week-11-capstone-planning/README.md) · planning context, not a Week 11 submission |
+| 12 | TalentFlow AI capstone | Current / Final Week | [Week 12](assignments/week-12-talentflow-ai/README.md) · [reconstructed Terraform](assignments/week-12-talentflow-ai/infrastructure/terraform/README.md) |
+
+The portal state reported for the internship also shows 92% schedule progress and “No weekly submissions yet” in the submission-history panel. No portal screenshot or export is retained in this repository; the status is owner-reported.
+
+## Reproduce the local checks
+
+Prerequisites: Python 3.11 or newer, Git, and (for Terraform checks) Terraform 1.16.5. From the repository root:
 
 ```powershell
-python -m unittest discover -s tests -v
-python demos/week03_vpc/validate.py
+python -m venv .venv
+.venv\Scripts\python -m pip install -r requirements-dev.txt
+.venv\Scripts\python -m unittest discover -s tests -v
+.venv\Scripts\python demos/week03_vpc/validate.py
+.venv\Scripts\ruff check demos scripts tests
+.venv\Scripts\ruff format --check demos scripts tests
+.venv\Scripts\python scripts/check_markdown_links.py
+.venv\Scripts\python scripts/check_portfolio.py
+.venv\Scripts\python -m compileall -q demos scripts tests
 ```
 
-The tests are local and dependency-free. They call no AWS APIs and are not AWS service simulators. Scope and limitations for every lab are in the [demo catalog](demos/README.md).
+The demonstrations and audit tests use synthetic data and make no AWS API calls. To inspect the audit command options without credentials, run:
 
-From `assignments/week-12-talentflow-ai/infrastructure/terraform/`, the safe source checks are:
+```powershell
+.venv\Scripts\python -m scripts.aws_audit.cli --help
+```
+
+The optional audit itself uses read-only APIs, but should only be run with an appropriately scoped profile. Real reports can contain resource identifiers and should remain private. See the [audit guide](scripts/aws_audit/README.md).
+
+For the reconstructed Terraform directory, the permitted static checks are:
 
 ```powershell
 terraform fmt -check
-terraform init -backend=false -input=false
+terraform init -backend=false -input=false -lockfile=readonly
 terraform validate
 ```
 
-The [validation index](evidence/validation/README.md) links the dated local and hosted records and distinguishes a Windows provider-process failure from successful Ubuntu schema validation. Those checks do not establish an AWS plan or deployment. **No plan, apply, AWS CLI deployment, or cloud resource operation was run for this portfolio update.**
+The [validation index](evidence/validation/README.md) distinguishes local Windows provider-process failure from hosted Linux validation. These checks do not run a plan or apply. **No AWS resources were created, changed, or destroyed for this portfolio review.**
 
-## Evidence and technical limits
+## Evidence and implementation boundaries
 
-- A completed portal week does not prove that a weekly assignment was submitted. The supplied portal state says no weekly submissions are listed; no portal screenshot/export was found.
-- Existing portfolio records classify the duplicated “Week 11/12” architecture PDF as a Week 12 capstone briefing, not a Week 11 task or submission; verify that source classification against the private original before relying on it.
-- Historical screenshots show only the visible state at their capture time. They do not prove current resources, continuous availability, or ownership of every configuration.
-- The prior portfolio record describes a capstone report with a `4 to add` Terraform plan, an `Insufficient data` alarm, and an SNS email subscription pending confirmation. **OWNER TO VERIFY** those source-dependent details; a plan is not an apply, and the described state does not establish notification delivery.
-- The Week 12 Terraform is a **reconstruction**, not recovered internship code. It does not provision EC2, an ALB, RDS, application code, Lambda, queues, API Gateway, or a log producer.
-- Original PDFs, archives, unredacted screenshots, billing views, personal sample data, and unsafe configuration captures are withheld. The [gallery](evidence/README.md) and [manifest](evidence/manifest.csv) state why.
-- TalentFlow AI upstream source is linked rather than copied.
+- The portal schedule is reported separately from retained-material descriptions and local demonstrations. The available schedule information does not establish weekly submissions or acceptance.
+- Existing portfolio records classify the duplicated 34-page Week 11/12 architecture PDF as a Week 12 capstone briefing, not as a Week 11 task or submission. The private PDF was not reopened for this final pass; its details remain **OWNER TO VERIFY**.
+- Published screenshots are historical observations. The public copies were visually checked, but matching them to private originals and confirming the source redactions remain **OWNER TO VERIFY**.
+- The TalentFlow AI application and its original infrastructure source are not present in the tracked repository. The proposed architecture is distinct from the smaller Terraform reconstruction.
+- The Terraform defines selected network, security-group, S3, IAM, CloudWatch, and SNS resources. It does not provision the application instances, ALB, database, Lambda/API, or a log producer, and it has not been applied.
+- See [scope](docs/SCOPE.md), [evidence and provenance](docs/EVIDENCE.md), [security notes](docs/SECURITY-NOTES.md), and [validation records](evidence/validation/README.md).
 
-## Repository guide
+## Repository map
 
-- [Evidence gallery and publication manifest](evidence/README.md)
-- [Evidence-rated timeline](docs/internship-timeline.md)
-- [Evidence classification and validation policy](docs/evidence-and-validation.md)
-- [Portfolio provenance map](docs/portfolio-map.md)
-- [Independent demonstrations and test command](demos/README.md)
-- [Security, governance, and cost review](cross-cutting/aws-security-governance-cost/README.md)
-- [Terraform architecture source](assignments/week-12-talentflow-ai/infrastructure/terraform/architecture.mmd)
+```mermaid
+flowchart TD
+  root[Portfolio] --> weeks[assignments/ — 12 weekly pages]
+  root --> demos[demos/ — local examples]
+  demos --> tests[tests/ — unittest suite]
+  root --> audit[scripts/aws_audit/ — read-only AWS snapshot]
+  root --> tf[Week 12 — Terraform reconstruction]
+  root --> evidence[evidence/ — gallery, manifest, validation]
+  root --> docs[docs/ — evidence, scope, security]
+  root --> automation[GitHub Actions and quality scripts]
+```
+
+The [diagram source](diagrams/repository-structure.mmd) and [Terraform security-group/network diagram](assignments/week-12-talentflow-ai/infrastructure/terraform/architecture.mmd) are also available as files.
+
+## Provenance and contact
+
+Retained internship descriptions, added portfolio work, independent reconstructions, and validation results have distinct labels. The term “reconstruction” describes how an artifact relates to the available source material; it is not a personal-authorship or deployment claim. The [evidence gallery](evidence/README.md) includes captions and a [file-level manifest](evidence/manifest.csv).
+
+AI tools assisted with parts of the implementation and documentation. I review the project, test its behavior, and am responsible for explaining the work I present.
+
+GitHub profile: [sameerhdevops](https://github.com/sameerhdevops).

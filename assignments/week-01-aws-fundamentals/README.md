@@ -23,6 +23,6 @@ Start with the requirement and the service boundary, then verify the relevant pe
 
 ## Validation and limits
 
-There is no Week 1 code in this repository to execute. The report and captures are privately retained and were inspected, but no completion certificate, portal upload, reviewer approval, or current AWS state is established here. The [evidence gallery](../../evidence/README.md) explains the public publication boundary.
+There is no Week 1 code in this repository to execute. Earlier portfolio records describe a report and captures, but the private originals were not reopened for this final review. No completion certificate, portal upload, reviewer approval, or current AWS state is established here. See the [evidence policy](../../docs/EVIDENCE.md) and [gallery](../../evidence/README.md) for the publication boundary.
 
 Next: [Week 2 — EC2 and host-level security](../week-02-ec2-web-server/README.md).
