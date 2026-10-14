@@ -1,23 +1,33 @@
 # Portfolio map and provenance
 
-## What is public here
+## Repository layout
 
-| Material | Classification | Rationale |
+| Path | Purpose | Provenance |
 | --- | --- | --- |
-| Markdown summaries in `assignments/`, `docs/`, and `cross-cutting/` | ALLOW_PUBLIC | Independently written summaries that preserve evidence boundaries. |
-| SVG diagrams in `diagrams/` | ALLOW_PUBLIC | Original explanatory diagrams, labelled as documented or intended rather than deployment evidence. |
-| Two cropped Week 10 screenshot derivatives under `evidence/assets/` | ALLOW_PUBLIC | Original internship captures sanitized to remove account context, visually reviewed, and described with capture-time limitations. |
-| Original internship screenshots, PDFs, and ZIP archives | EXCLUDE | They may expose account/resource identifiers, endpoints, personal or financial information, or employer-owned content. Originals remain unchanged in the source collection. |
-| `recovery-audit/`, `.local-review/`, and external private review records | ALLOW_PRIVATE_ONLY | Local evidence review and release records; never part of the public release. |
-| TalentFlow AI upstream code and assets | NEEDS_PERMISSION | The inspected repository has no visible licence. It is linked, not copied. |
+| `assignments/week-01-...` through `week-12-...` | Weekly narrative and evidence boundary | Independently written summaries of original records plus clearly labeled portfolio work |
+| `evidence/` | Public gallery, CSV manifest, and validation records | Sanitized derivatives or actual local/hosted check records |
+| `demos/` and `tests/` | Small local engineering examples with tests | Newly authored, standard-library portfolio demonstrations |
+| `diagrams/` | Week 5, Week 9, and capstone explanatory flows | Independent reconstructions; not AWS exports |
+| `assignments/week-12-talentflow-ai/infrastructure/terraform/` | Reconstructed baseline | Independent Terraform source, not recovered Week 7 or capstone implementation |
+| `docs/` and `cross-cutting/` | Timeline, evidence policy, provenance, security, governance, cost | Independently authored documentation |
 
-## Authorship boundary
+## Public and private materials
 
-The internship reports and source evidence are preserved privately in their original locations. This repository adds curation, safe technical summaries, links, evidence derivatives, validation automation, and explanatory diagrams. The Week 12 Terraform source is a later, independent reconstruction. None of these additions are presented as recovered Davine Technologies source or as evidence of a deployment.
+The repository publishes nine selected screenshot derivatives from Weeks 2, 5, 7, 8, 9, 10, and 12. All have captions and manifest entries. The public set includes no raw source PDF or archive. Budget/Cost Explorer screenshots, incomplete Well-Architected review capture, person-like DynamoDB sample record, raw endpoint/resource identifiers, and the Week 7 open-SSH launch-form screenshot are withheld; the relevant interpretation is documented.
 
-## Deliberate omissions
+`recovery-audit/`, `.local-review/`, and local Terraform state/cache directories are private or generated. `.gitignore` excludes them and credentials; they are not release artifacts. Local audit inventories may contain source paths and must remain outside Git.
 
-- No private PDFs or ZIP archives, unredacted screenshots, credentials, Terraform state, real `.tfvars`, or private audit inventory.
-- No recovered Terraform or CloudFormation templates. The independent Terraform baseline is under Week 12 and is clearly labelled.
-- No Week 3 or Week 4 completion claim.
-- No claim that the TalentFlow AI capstone is live, currently deployed, or independently authored.
+## Authorship and source attribution
+
+The Week 11/12 briefing is treated as planning context for Week 12. Its duplicate copies have identical content; PDF metadata identifies a different author. The final report is a retained original artifact titled “Final Submission,” but no portal receipt establishes upload or acceptance. The original application and Terraform source were not recovered. The upstream TalentFlow AI project is linked rather than copied; the inspected upstream repository had no visible licence.
+
+The public repository adds evidence curation, independent summaries, local examples/tests, explanatory diagrams, validation automation, and a new Terraform reconstruction. Those additions are not represented as employer-provided source or deployment evidence.
+
+## Claims deliberately not made
+
+- No claim that all 12 weeks have original assignment submissions.
+- No claim that a Week 11 submission exists.
+- No claim that TalentFlow AI is live, deployed, production-ready, or independently authored.
+- No claim that the independent Terraform baseline has been applied.
+- No claim that a plan, architecture diagram, or screenshot alone proves complete AWS behavior.
+- No claim that schedule progress, portal status, or report titles constitute a portal receipt.

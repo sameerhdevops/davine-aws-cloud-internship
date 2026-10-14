@@ -1,32 +1,33 @@
-# Week 10 — Governance, security, and cost review
+# Week 10 — Governance, security, and cost
 
-## Evidence status
+## Objective and recovered evidence
 
-**Verified complete as retained activity evidence.** A five-page activity report, a four-page audit report, and historical budget, Cost Explorer, security, Trusted Advisor, and Well-Architected captures are retained privately. This status does not claim a current or fully remediated AWS account.
+The recovered audit/activity reports and screenshots cover IAM root-account signals, Trusted Advisor snapshot checks, Well-Architected review state, and billing views. The [cross-cutting review](../../cross-cutting/aws-security-governance-cost/README.md) records the distinctions and conflicting observations. Two safe console crops are embedded below so evidence is visible within the weekly page.
 
-## Purpose and topics
+### Root-account control summary
 
-The material covers Well-Architected review, IAM and security posture, Trusted Advisor, AWS Budgets, Cost Explorer, and cost-conscious remediation framing.
+![Sanitized IAM dashboard crop reporting root MFA enabled and no active root access keys at capture time.](../../evidence/assets/cross-cutting/aws-security-governance-cost/iam-dashboard-root-controls.png)
 
-## Evidence
+*Sanitized derivative of an original screenshot; capture date unknown. It shows dashboard-reported root controls only, not who set them, present account state, or least privilege for other identities.*
 
-Two sanitized derivatives are published in the [central evidence gallery](../../evidence/README.md) and the [cross-cutting review](../../cross-cutting/aws-security-governance-cost/README.md):
+### Trusted Advisor public snapshot checks
 
-- The IAM dashboard crop showed root MFA enabled and no active root access keys at the unknown capture time. It does not prove who configured the controls or their current state.
-- The Trusted Advisor crop showed zero public EBS snapshots and zero public RDS snapshots in the displayed checks at capture time. It does not establish the absence of other findings.
+![Sanitized Trusted Advisor crop reporting zero public EBS and RDS snapshots in the displayed checks.](../../evidence/assets/cross-cutting/aws-security-governance-cost/trusted-advisor-public-snapshots.png)
 
-The original screenshots are unchanged and remain private. Budget and Cost Explorer images were withheld because they expose account-specific financial details. The Well-Architected image records an incomplete review. The before/after remediation image includes identifiers and claims without independent verification. No public screenshot demonstrates a CloudWatch alarm or completed remediation.
+*Sanitized derivative of an original screenshot; capture date unknown. It does not establish a clean account-wide review or the unexpanded S3 check.*
 
-## What can be stated safely
+**Portal schedule:** Week 10 is marked Completed as reported by the user. No portal screenshot/export was found, and the supplied submission history says “No weekly submissions yet.”
 
-- Week 10 activity and audit submissions exist in the private source collection.
-- Historical captures cover budget/cost review and security/governance consoles.
-- The reports document recommendations and review themes; they do not prove those recommendations were applied or remain in effect.
+## Important interpretation and independent policy check
 
-## Validation boundary
+The Well-Architected console capture shows 0 of 57 questions answered and 0 issues recorded; it does not support a claim that a review was completed. Billing captures show different contexts: one selected Cost Explorer view reports $0 for its date/filter selection, while a budget view reports spend above its $1 budget and a higher forecast. Those figures are not merged into one cost claim. The audit report and dashboard also differ on some root-account details; capture time and account context are not sufficient to establish a single current state. Billing and raw review screenshots are withheld because they expose account-specific financial or identifying information.
 
-The reports and screenshots record a point in time. They do not prove that every recommendation was implemented, persisted, or remains in effect. This portfolio does not claim a live hardened environment or a cost outcome.
+[`example-policy.json`](../../demos/week10_governance/example-policy.json) and [`policy_check.py`](../../demos/week10_governance/policy_check.py) demonstrate a narrow static allow-list for object actions on one named example bucket. Run `python -m unittest discover -s tests -v`. The checker is **not** AWS IAM policy simulation or Access Analyzer; it is a small teaching example and must not be used as a security gate for real policies.
 
-## Security note
+Use budgets and alerts before labs, tag owners/environment, identify idle public IPs and endpoints, and include teardown. For access review, evaluate identity/resource policies, trust relationships, conditions, boundaries, SCPs, and effective permissions—not only one dashboard tile.
 
-Original material can expose account, identity, endpoint, resource, or financial context. It is withheld from Git. The public derivatives remove identifying headers and retain only the specific observations stated above.
+For an interview: “I would preserve the review scope and timestamp, distinguish a zero-finding snapshot from a completed assessment, and validate spend with the selected period and filters before drawing a conclusion.”
+
+See the [gallery](../../evidence/README.md#week-10-governance-security-and-cost), [cross-cutting review](../../cross-cutting/aws-security-governance-cost/README.md), and [demo catalog](../../demos/README.md).
+
+Next: [Week 11 — capstone briefing and planning](../week-11-capstone-planning/README.md).

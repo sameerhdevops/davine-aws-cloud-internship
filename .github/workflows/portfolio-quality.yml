@@ -23,6 +23,10 @@ jobs:
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
       - name: Check relative links and anchors
         run: python scripts/check_markdown_links.py
+      - name: Check weekly pages and evidence manifest
+        run: python scripts/check_portfolio.py
+      - name: Run independent local demonstration tests
+        run: python -m unittest discover -s tests -v
 
   terraform:
     name: Validate reconstructed Terraform

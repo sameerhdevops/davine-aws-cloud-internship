@@ -1,25 +1,29 @@
 # Week 6 — Serverless architecture
 
-## Evidence status
+## Objective and recovered material
 
-**Partially present.** A dated two-page technical report identifies Week 6 as “Serverless & Event-Driven Architecture” and discusses Lambda and API Gateway. Standalone console captures and runnable source files were not retained.
+A dated, two-page Week 6 report titled “Serverless & Event-Driven Architecture” discusses Lambda and API Gateway, asynchronous processing, and least-privilege access. No standalone execution screenshot, API definition, Lambda package, IAM policy, or test harness from that internship exercise was retained.
 
-## Purpose and topics
+**Portal schedule:** Week 6 is marked Completed in the portal state reported by the user. No saved portal screenshot/export was found; the supplied portal history separately says “No weekly submissions yet.” The report is evidence of documented exploration, not proof of upload or deployed behavior.
 
-The report frames Lambda as event-driven compute and API Gateway as the HTTP/API entry point. It discusses asynchronous processing and least-privilege access as architectural concerns.
+## Independent local event parser
 
-## What can be stated safely
+[`handler.py`](../../demos/week06_serverless/handler.py) accepts a small S3-notification-shaped event, validates its record structure, URL-decodes object keys, and returns bucket/key pairs. It uses only Python’s standard library and runs locally; it is not deployed Lambda code.
 
-- A formal Week 6 report is retained privately.
-- The report describes Lambda/API Gateway concepts and a serverless workflow.
-- No local Lambda function, API definition, IAM policy, test harness, or reproducible validation artifact is available.
+```powershell
+python -m unittest discover -s tests -v
+```
 
-## Validation boundary
+The broader serverless design separates a synchronous API response from asynchronous work. API Gateway can authenticate/throttle HTTP entry points; Lambda handles bounded event-driven compute; a queue can absorb bursts and support retries; a dead-letter path and idempotency strategy are needed for poison messages and duplicate delivery. IAM execution roles should grant only the actions needed on the required resources.
 
-Any validation described in the report is historical documentation, not a test that can be rerun from this repository. Original report pages remain excluded pending security and publication review.
+## Operations, security, and cost
 
-Related: [Week 9 — serverless integration and scaling](../week-09-serverless-api/README.md).
+Retries can repeat side effects, so handlers should validate input, log correlation identifiers without exposing applicant data, and make writes idempotent. Set timeouts and memory based on measured work, bound concurrency when downstream capacity is limited, and alarm on errors, throttles, duration, and queue age. Request and duration pricing can be attractive at low utilization, but high volume, provisioned concurrency, data transfer, logs, and downstream services affect cost.
 
-## Evidence
+For an interview: “I would decide whether a request needs an immediate response or can be queued, then set retry, idempotency, timeout, and observability behavior around that boundary.”
 
-The Week 6 report is retained privately; no standalone screenshot or runnable source is published. The [central evidence gallery](../../evidence/README.md) lists the public-safe evidence available across the portfolio.
+## Validation and limits
+
+The local tests verify event parsing and malformed-input handling only. They do not test AWS event delivery, Lambda runtime behavior, IAM, API Gateway, retries, or notification delivery. The Week 6 report’s described concepts remain report-described. See [independent demonstrations](../../demos/README.md) and the [gallery](../../evidence/README.md).
+
+Next: [Week 7 — Infrastructure as Code](../week-07-infrastructure-as-code/README.md).

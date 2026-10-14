@@ -1,29 +1,29 @@
-# Week 5 - High availability and Auto Scaling
+# Week 5 — High availability and Auto Scaling
 
-## Evidence status
+## Objective and architecture
 
-**Verified complete.** A recovered Week 5 technical report, a diagram, a rendered browser page, and related console captures establish the exercise. They are retained privately.
+The recovered exercise explored an internet-facing Application Load Balancer forwarding HTTP traffic to an instance target group, with EC2 capacity managed by an Auto Scaling group across Availability Zones. The explanatory [diagram](../../diagrams/week-05-high-availability.svg) is an independent redraw, not an AWS export.
 
-## Objective
+![Historical Auto Scaling activity shows a successful launch in response to an unhealthy instance; instance identifiers are redacted.](../../evidence/assets/week-05-high-availability/week-05-asg-replacement-event.png)
 
-Explore a multi-AZ web-serving pattern that distributes traffic through an ALB and manages instance capacity through an Auto Scaling group.
+*Sanitized derivative of an original Week 5 console capture (2026-08-20). It records one successful replacement activity whose cause mentions an unhealthy instance. It does not establish sustained availability, all targets healthy, or current state.*
 
-## Architecture represented
+## Recovered internship evidence
 
-![Original Week 5 architecture diagram](../../diagrams/week-05-high-availability.svg)
+**Original internship artifacts:** an August report, diagram, ALB/target-group/launch-template/Auto Scaling captures, and a browser response were found. One target-group capture shows two registered targets: one healthy and one unhealthy. The ALB-detail capture was still `Provisioning`; it must not be described as active based on that screenshot. The published crop was selected because it shows the replacement event clearly and avoids exposing instance IDs.
 
-The original diagram above is a documentation reconstruction, not a deployment export. It represents internet ingress through an ALB, routing to a target group, and application instances in multiple availability zones managed by Auto Scaling.
+**Portal schedule:** Week 5 is marked Completed as reported by the user. There is no saved portal screenshot/export, and the supplied portal history says “No weekly submissions yet.” Retained technical artifacts do not independently prove portal submission or review.
 
-## Evidence-backed observations
+## Decisions and failure behavior
 
-- Launch-template, target-group, load-balancer, and Auto Scaling screens were captured.
-- A browser capture showed a high-availability web page served through a load-balancer hostname.
-- Target-health and scaling-activity views were captured, including a historical unhealthy target state.
+The pattern separates the public listener from instance targets and uses a launch template and desired/minimum/maximum group capacity. Health checks give the load balancer a routing signal; Auto Scaling has its own replacement policy and activity history. Multi-AZ placement reduces a single-zone dependency but does not remove application, database, DNS, quota, or deployment failure modes. A target can be unhealthy during bootstrap or because of an incorrect path, port, security group, or process.
 
-## Limitations and lessons
+Operationally, compare the target’s health reason, instance status checks, application logs, and scaling activity before changing capacity. Scaling increases can raise compute, load-balancer, and data-transfer charges; set bounds and alarms and plan cleanup.
 
-No load-balancer configuration, launch template, health-check configuration, or server code is retained. The material is useful as architecture and validation evidence but cannot reproduce the environment. Target health is operational evidence at capture time, not proof of continuous availability.
+For an interview: “The screenshot shows an unhealthy target followed by a successful replacement event. It demonstrates one recovery action, not a measured availability SLO. I would still verify replacement health and the end-to-end response.”
 
-## Evidence
+## Reproduction and limits
 
-The recovered report and console captures remain private. The [Week 5 SVG](../../diagrams/week-05-high-availability.svg) is an independently redrawn explanatory diagram, not a screenshot or deployment export. See the [central evidence gallery](../../evidence/README.md) for the portfolio's public evidence index.
+The historical AWS environment cannot be reproduced from this repository because the launch template, target configuration, application source, and IaC were not retained. The local [Week 4 health-threshold demo](../week-04-application-load-balancing/README.md) is only a conceptual state machine. See the [gallery](../../evidence/README.md#week-5-high-availability-and-auto-scaling) for the exact crop and limitations.
+
+Next: [Week 6 — serverless architecture](../week-06-serverless-architecture/README.md).

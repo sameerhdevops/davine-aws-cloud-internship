@@ -1,28 +1,40 @@
-# Evidence and validation
+# Evidence and validation policy
 
-The [central evidence gallery](../evidence/README.md) is the index for the public-safe screenshot derivatives and reproducible validation records. Each item states what it supports and what it cannot establish. The [manifest](../evidence/manifest.csv) contains the same records in a machine-readable form.
+The [evidence gallery](../evidence/README.md) displays selected, sanitized original screenshots and links the [CSV manifest](../evidence/manifest.csv). The [12-week timeline](internship-timeline.md) keeps portal schedule status separate from retained artifacts and local demonstrations.
 
-## Evidence levels
+## Classification standard
 
-| Level | Meaning used here |
+| Classification | Meaning in this portfolio |
 | --- | --- |
-| Directly observed | A report page or screenshot visibly shows the stated screen, configuration field, output, or diagram. |
-| Documented claim | A report describes a component or workflow. It is not independently verified by source code. |
-| Independent portfolio work | Documentation, diagrams, code, or checks authored for this portfolio after the internship evidence review. |
-| Inference | A cautious grouping based on labels and closely related evidence. |
-| Unknown | The available materials do not establish the fact. |
+| Original internship artifact | A report, screenshot, or record found in the supplied source collection. It remains private unless an identified derivative is published. |
+| Sanitized evidence derivative | A separate crop/redaction of an original artifact, with the technical observation unchanged and redactions documented. |
+| Independent reconstruction | A reasoned diagram or configuration written for the portfolio from incomplete source material. It does not establish deployment. |
+| Reproducible demonstration | New local code, diagram, or test written to demonstrate one bounded behavior. |
+| Independently validated | A specific check actually run, with command, environment, result, and limitations recorded. |
+| Not established by retained evidence | No retained source or reproducible check supports the claim. |
 
-## Publication boundary
+## Portal schedule versus submission evidence
 
-- Two Week 10 screenshot derivatives are public after cropping and visual review. Their original source images remain private and unchanged. The images are dated only as unknown historical captures; neither establishes current AWS state.
-- Other original screenshots, reports, and archives are not included. They can expose account/resource identifiers, endpoints, personal context, or financial details, and employer/third-party redistribution permission is not established for the original documents.
-- The TalentFlow AI upstream repository is linked, not copied. Its inspected root had no visible licence.
-- The Week 12 Terraform baseline is independently reconstructed source. It is not a recovered internship file and is not deployed.
+The user supplied portal state reports Weeks 1–11 as Completed, Week 12 as Current/Final, and schedule progress as 92%. The same supplied portal history says “No weekly submissions yet.” No saved portal screenshot/export was found in the inspected source materials, so this information is attributed to the user rather than independently screenshot-verified. Schedule progress is not proof of weekly assignment submission, acceptance, or technical deployment.
 
-## Validation status
+## Public release boundary
 
-The local Windows record is in [`evidence/validation/terraform/`](../evidence/validation/terraform/local-validation-2026-10-13.md): `terraform fmt -check` and `terraform init -backend=false` passed; a fresh `terraform validate` attempt did not obtain the AWS provider schema because the provider plugin failed to respond. That is an incomplete local validation result, not a pass. The [GitHub Actions run](https://github.com/sameerhdevops/github-portfolio/actions/runs/38402304332) succeeded for commit `cb3653c345e0d7f8284ae910d92b10ece35d885d`; hosted Markdown-link checking, formatting, backend-free initialization, and Terraform validation all passed. The [hosted output record](../evidence/validation/terraform/github-actions-2026-10-13.md) preserves the run identity and scope.
+- Public screenshots are selected derivatives, not source originals. Redactions are visible, originals were left unchanged, and each image’s limitation appears adjacent to the image and in the manifest.
+- Original PDFs, ZIPs, and unredacted console images are not included. They contain account/resource identifiers, endpoints, personal context, billing details, or unsupported/third-party material.
+- The Week 11/12 architecture PDF files are byte-identical copies of a Week 12 briefing; neither is a Week 11 assignment submission.
+- The capstone final report is retained privately. Its title does not prove a portal upload or acceptance; a plan is not an apply; an `Insufficient data` alarm and pending SNS confirmation do not prove alert delivery.
+- TalentFlow AI upstream code is linked rather than copied because the inspected repository had no visible licence.
 
-The GitHub Actions workflow runs `terraform fmt -check`, `terraform init -backend=false`, and `terraform validate` on Ubuntu, without AWS credentials, a plan, or a deployment. It also checks repository-relative Markdown links. The linked run passed; it is static/schema validation, not a plan or proof of deployment.
+## Validation boundaries
 
-Terraform validation checks source consistency against installed provider schemas. It does not produce an execution plan or prove AWS deployment. Historical screenshots and report claims also do not prove current cloud configuration.
+The dependency-free demonstrations are tested with:
+
+```powershell
+python -m unittest discover -s tests -v
+```
+
+Their local tests validate only the included Python functions and assertions; they do not call AWS APIs or emulate complete AWS services. The run record is [local-demo-tests-2026-10-14.md](../evidence/validation/local-demo-tests-2026-10-14.md).
+
+Terraform checks are `terraform fmt -check`, `terraform init -backend=false`, and `terraform validate`. The latest Windows record is [local-validation-2026-10-14.md](../evidence/validation/terraform/local-validation-2026-10-14.md): formatting and initialization passed; the provider process did not return its schema, so validation failed before configuration validation. The last published-main [Ubuntu run](https://github.com/sameerhdevops/github-portfolio/actions/runs/38403674986) passed its recorded link, formatting, backend-free initialization, and validate steps for `1d75790fa9a37e29b1f2afb65603567070e3404b`; the [run record](../evidence/validation/terraform/github-actions-main-2026-10-13.md) explains that it predates this branch. The current branch must pass its own CI. Neither static validation result proves a plan or deployment. No plan, apply, destroy, authenticated AWS CLI call, or cloud resource operation is part of this portfolio review.
+
+The Markdown check verifies repository-relative links and heading fragments. The additional portfolio check validates all 12 weekly pages, public manifest paths, allowed classification values, and common public-path/status requirements. Neither check proves technical correctness by itself; the weekly content and source claims were separately reviewed.

@@ -1,31 +1,23 @@
 # Week 7 — Infrastructure as Code
 
-## Evidence status
+## Objective and recovered evidence
 
-**Partially present.** A dated Week 7 technical report (4 September 2026) and nine recovered submission captures are retained privately. They establish the topic and show historical Terraform/CloudFormation activity, but raw `.tf` and template files were not retained.
+The recovered September 4 report and screenshots discuss Terraform/CloudFormation and show an EC2 workflow. The selected historical CloudShell crop contains `Apply complete! Resources: 1 added, 0 changed, 0 destroyed` followed by an `aws ec2 describe-instances` result showing one `t3.micro` in `running` state. The instance identifier and query/tag details were removed.
 
-## Purpose and learning scope
+![Sanitized historical CloudShell output showing one Terraform resource added and a resulting EC2 instance in running state as a t3.micro; instance and query identifiers are redacted.](../../evidence/assets/week-07-terraform/week-07-terraform-apply-observed.png)
 
-The report explains declarative provisioning, Terraform state and `init` → `plan` → `apply`, CloudFormation stacks, AWS CLI inspection, and resource tagging. The supplied weekly framework places Terraform state management on Wednesday and configuration/workflow practice on Friday.
+*Original internship screenshot, published as a sanitized derivative (2026-09-04). This is a historical capture of a Week 7 lab; it is not validation or deployment evidence for the independent Week 12 Terraform code.*
 
-## Evidence-backed observations
+**Portal schedule:** Week 7 is marked Completed as reported by the user. No portal screenshot/export was located; the supplied submission history says “No weekly submissions yet.”
 
-- The report compares Terraform’s HCL and explicit state with AWS-native CloudFormation templates and stack-managed state.
-- Captures show a Terraform configuration/plan/apply workflow, a CloudFormation template view, and EC2 resource tags.
-- The report gives example tags for a development environment and a Terraform-managed resource.
+## Technical judgment and security finding
 
-## Validation boundary
+The local file set does not contain the raw Week 7 `.tf`/YAML templates, so the historical apply cannot be reproduced or reviewed for drift, state safety, or full resource scope. A separate original launch-form capture displays SSH ingress from `0.0.0.0/0` and AWS’s warning that it allows access from all IP addresses. It is not evidence that this rule was applied to the Terraform-created instance, but it is a genuine unsafe configuration shown during the same learning period; it is withheld from the public gallery and documented as a security lesson. Prefer a managed access channel or tightly scoped temporary ingress, and never commit state, credentials, or real variable files.
 
-Terminal and console captures are historical observations only. They do not supply provider versions, module layout, state, a sanitized plan, or a reproducible deployment. This repository intentionally contains no reconstructed IaC presented as recovered internship work.
+For an interview: “A successful apply only says Terraform completed its requested changes. I would also review the plan, state handling, post-apply health, IAM scope, ingress, and cleanup. Here the screenshot supports one historical resource creation, not the Week 12 project.”
 
-## Independently reconstructed follow-on
+## Reproduction and limits
 
-The [Week 12 Terraform baseline](../week-12-talentflow-ai/infrastructure/terraform/README.md) is new portfolio code reconstructed after the evidence review. It is separate from, and must not be described as, the missing Week 7 source submission. Its scope, security controls, non-deploying validation status, and limitations are documented alongside the code.
+No original Week 7 source is available to rerun. The separate [Week 12 Terraform baseline](../week-12-talentflow-ai/infrastructure/terraform/README.md) is independently reconstructed and has its own format/init/validate record; it has not been applied. See the [gallery](../../evidence/README.md#week-7-infrastructure-as-code) and [portfolio provenance map](../../docs/portfolio-map.md).
 
-## Safe improvement path
-
-With authorization, add independently authored, clearly labelled examples with version-pinned providers, variables, remote-state design, least-privilege IAM, restricted ingress, lint/validation output, and a teardown/cost-control procedure. Do not publish state files or identifiers.
-
-## Evidence
-
-The nine Week 7 captures and report remain private; the captures are historical and do not provide reproducible source. The [Week 12 Terraform baseline](../week-12-talentflow-ai/infrastructure/terraform/README.md) is independent follow-on code, not recovered Week 7 work. The [central evidence gallery](../../evidence/README.md) records the public evidence and validation limits.
+Next: [Week 8 — observability, DNS, and CDN](../week-08-monitoring-cdn-dns/README.md).
