@@ -27,7 +27,7 @@ A bounded stdin edge-case probe exercised malformed VPC input, duplicate routes,
 | `terraform init -backend=false -input=false -lockfile=readonly -no-color` | Exit 0; reused the locked AWS provider | Backend-free provider initialization; `.terraform.lock.hcl` remained byte-for-byte unchanged. |
 | `terraform validate -no-color` | Exit 1 on Windows | The provider plugin did not return `GetProviderSchema`. The focused retry failed with the same plugin-process error. The checked `main.tf` and `variables.tf` blobs match commit `232d6d4`; local schema validation therefore remains **blocked by the Windows provider process**, not a passing check. |
 
-The separate prior Ubuntu workflow result in the [release-branch record](terraform/github-actions-release-2026-10-14.md) passed validation for its exact, older commit. It is not the result for this review. The current pull-request workflow must be checked for this branch’s hosted result.
+The separate older Ubuntu workflow result in the [release-branch record](terraform/github-actions-release-2026-10-14.md) applies to its exact older commit. The initial pull-request run [38531004190](https://github.com/sameerhdevops/github-portfolio/actions/runs/38531004190) passed for commit `27e437238c17b56acb7b48e4da3394b83e4fb3ed`; see the [commit-scoped PR record](github-actions-pr-3-2026-10-14.md). That hosted run is separate from the Windows provider-process failure.
 
 No `terraform plan`, `apply`, or `destroy`, AWS CLI resource operation, or AWS deployment was run for this review. This repository’s Terraform remains a reconstruction and has not been applied.
 
