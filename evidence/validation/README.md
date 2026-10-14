@@ -12,6 +12,8 @@ The [local validation record](final-polish-local-2026-10-14.md) applies to sourc
 
 ## Pull request validation
 
+The [final-polish PR #4 run](github-actions-pr-4-2026-10-14.md) passed all three jobs on commit `2acf6a6047c132cc83b6c4a43d07c2b9f3d8d8cd`, including Ubuntu Terraform validation and the full-history secret scan. The record was committed afterward, so it does not claim that later commit passed this run.
+
 The initial PR run [38531004190](https://github.com/sameerhdevops/github-portfolio/actions/runs/38531004190) passed both jobs for commit `27e437238c17b56acb7b48e4da3394b83e4fb3ed`. Its exact scope is recorded in [the PR validation record](github-actions-pr-3-2026-10-14.md). The commit adding that record must be evaluated by its own PR run.
 
 ## Earlier local and hosted records
