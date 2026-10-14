@@ -20,7 +20,7 @@ The historical security-group capture shows SSH limited to one `/32`, while HTTP
 
 Elastic IPs and continuously running instances can incur charges. Review address attachment and instance lifecycle, and remove lab resources through an authorized cleanup process after use.
 
-For an interview: “I distinguish EC2 instance checks from application health. The instance can pass platform checks while the service is unavailable, so I would also verify the process, listener, security-group path, and application response.”
+“I distinguish EC2 instance checks from application health. The instance can pass platform checks while the service is unavailable, so I would also verify the process, listener, security-group path, and application response.”
 
 ## Limitations and links
 

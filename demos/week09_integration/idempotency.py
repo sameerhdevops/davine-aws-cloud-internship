@@ -14,6 +14,8 @@ class InMemoryIdempotency:
         self._results: dict[str, Result] = {}
 
     def handle(self, idempotency_key: str) -> Result:
+        if not isinstance(idempotency_key, str):
+            raise TypeError("idempotency key must be a string")
         if not idempotency_key.strip():
             raise ValueError("idempotency key cannot be empty")
         cached = self._results.get(idempotency_key)

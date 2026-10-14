@@ -19,7 +19,7 @@ The example gives public subnets a default route through an Internet Gateway and
 
 Security groups are stateful filters attached to network interfaces; network ACLs are stateless subnet-level filters. Routes determine where a packet can go, while those controls determine whether it can pass. A public route does not itself assign a public address. Production CIDR and AZ choices must account for existing networks, growth, service quotas, and failover needs.
 
-For an interview: “I would verify address containment and overlap first, trace the route table associated with the subnet, then check both security-group directions and stateless NACL return traffic. I would not label a subnet public solely from its name.”
+“I would verify address containment and overlap first, trace the route table associated with the subnet, then check both security-group directions and stateless NACL return traffic. I would not label a subnet public solely from its name.”
 
 ## Validation and limitations
 

@@ -6,7 +6,7 @@ A dated, two-page Week 6 report titled “Serverless & Event-Driven Architecture
 
 **Portal schedule:** Week 6 is marked Completed in the portal state reported by the user. No saved portal screenshot/export was found; the supplied portal history separately says “No weekly submissions yet.” The report is evidence of documented exploration, not proof of upload or deployed behavior.
 
-## Independent local event parser
+## Local S3 event-parser demonstration
 
 [`handler.py`](../../demos/week06_serverless/handler.py) accepts a small S3-notification-shaped event, validates its record structure, URL-decodes object keys, and returns bucket/key pairs. It uses only Python’s standard library and runs locally; it is not deployed Lambda code.
 
@@ -20,7 +20,7 @@ The broader serverless design separates a synchronous API response from asynchro
 
 Retries can repeat side effects, so handlers should validate input, log correlation identifiers without exposing applicant data, and make writes idempotent. Set timeouts and memory based on measured work, bound concurrency when downstream capacity is limited, and alarm on errors, throttles, duration, and queue age. Request and duration pricing can be attractive at low utilization, but high volume, provisioned concurrency, data transfer, logs, and downstream services affect cost.
 
-For an interview: “I would decide whether a request needs an immediate response or can be queued, then set retry, idempotency, timeout, and observability behavior around that boundary.”
+“I would decide whether a request needs an immediate response or can be queued, then set retry, idempotency, timeout, and observability behavior around that boundary.”
 
 ## Validation and limits
 

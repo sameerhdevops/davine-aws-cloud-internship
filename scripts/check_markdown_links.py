@@ -28,11 +28,57 @@ def markdown_files() -> list[Path]:
 
 
 def strip_code(text: str) -> str:
-    return FENCE_RE.sub("", text)
+    text = FENCE_RE.sub("", text)
+    output: list[str] = []
+    index = 0
+    while index < len(text):
+        if text[index] != "`":
+            output.append(text[index])
+            index += 1
+            continue
+
+        preceding_slashes = 0
+        cursor = index - 1
+        while cursor >= 0 and text[cursor] == "\\":
+            preceding_slashes += 1
+            cursor -= 1
+        if preceding_slashes % 2:
+            output.append(text[index])
+            index += 1
+            continue
+
+        end = index
+        while end < len(text) and text[end] == "`":
+            end += 1
+        delimiter = text[index:end]
+        closing = end
+        match_start: int | None = None
+        match_end: int | None = None
+        while closing < len(text):
+            candidate = text.find("`", closing)
+            if candidate < 0:
+                break
+            candidate_end = candidate
+            while candidate_end < len(text) and text[candidate_end] == "`":
+                candidate_end += 1
+            if text[candidate:candidate_end] == delimiter:
+                match_start, match_end = candidate, candidate_end
+                break
+            closing = candidate_end
+
+        if match_start is None or match_end is None:
+            output.append(delimiter)
+            index = end
+            continue
+
+        code_span = text[index:match_end]
+        output.extend("\n" if char == "\n" else " " for char in code_span)
+        index = match_end
+    return "".join(output)
 
 
 def heading_anchors(path: Path) -> set[str]:
-    text = strip_code(path.read_text(encoding="utf-8"))
+    text = FENCE_RE.sub("", path.read_text(encoding="utf-8"))
     anchors = set(HTML_ID_RE.findall(text))
     seen: dict[str, int] = {}
     for match in HEADING_RE.finditer(text):

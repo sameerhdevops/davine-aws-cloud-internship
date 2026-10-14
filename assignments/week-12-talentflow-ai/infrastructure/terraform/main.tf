@@ -5,9 +5,11 @@
 # IAM role, CloudWatch logging/alarming, and SNS alerting. This is independently
 # reconstructed portfolio code; it is not a recovered internship source file.
 #
-# Cost Safety:
-# - Creates zero EC2 instances, zero RDS databases, zero ALBs, and zero NAT Gateways.
-# - Auto-assign public IPv4 is disabled on all subnets to prevent idle IP fees.
+# Cost boundary:
+# - Declares no EC2 instances, RDS databases, ALBs, or NAT Gateways.
+# - Other declared resources may incur charges if this configuration is applied.
+# - Automatic public IPv4 assignment is disabled on all subnets. This setting
+#   does not prevent other public IPv4 addresses or resources from incurring charges.
 # =============================================================================
 
 # -----------------------------------------------------------------------------

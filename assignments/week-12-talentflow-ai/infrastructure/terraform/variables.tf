@@ -8,8 +8,8 @@ variable "aws_region" {
   default     = "ap-south-1"
 
   validation {
-    condition     = can(regex("^[a-z]{2}-[a-z]+-[0-9]+$", var.aws_region))
-    error_message = "The aws_region value must be a valid AWS region format (for example, ap-south-1)."
+    condition     = can(regex("^[a-z0-9]{2,4}(-[a-z0-9]+)*-[0-9]+$", var.aws_region))
+    error_message = "Use a lowercase AWS-style region identifier, for example ap-south-1; this check does not verify region availability."
   }
 }
 
@@ -41,7 +41,7 @@ variable "vpc_cidr" {
   default     = "10.0.0.0/16"
 
   validation {
-    condition     = can(cidrhost(var.vpc_cidr, 0))
+    condition     = can(cidrhost(var.vpc_cidr, 0)) && can(cidrnetmask(var.vpc_cidr))
     error_message = "The vpc_cidr must be a valid IPv4 CIDR block."
   }
 }
@@ -58,7 +58,7 @@ variable "availability_zones" {
 }
 
 variable "public_subnet_cidrs" {
-  description = "Non-overlapping IPv4 CIDR blocks for the two public subnets."
+  description = "Two distinct IPv4 CIDR blocks for the public subnets; cross-subnet overlap and containment are not checked."
   type        = list(string)
   default     = ["10.0.0.0/20", "10.0.16.0/20"]
 
@@ -66,14 +66,14 @@ variable "public_subnet_cidrs" {
     condition = (
       length(var.public_subnet_cidrs) == 2 &&
       length(distinct(var.public_subnet_cidrs)) == 2 &&
-      alltrue([for cidr in var.public_subnet_cidrs : can(cidrhost(cidr, 0))])
+      alltrue([for cidr in var.public_subnet_cidrs : can(cidrhost(cidr, 0)) && can(cidrnetmask(cidr))])
     )
     error_message = "Provide two distinct, valid IPv4 CIDR blocks for public_subnet_cidrs."
   }
 }
 
 variable "private_subnet_cidrs" {
-  description = "Non-overlapping IPv4 CIDR blocks for the two isolated private subnets."
+  description = "Two distinct IPv4 CIDR blocks for the private subnets; cross-subnet overlap and containment are not checked."
   type        = list(string)
   default     = ["10.0.128.0/20", "10.0.144.0/20"]
 
@@ -81,19 +81,29 @@ variable "private_subnet_cidrs" {
     condition = (
       length(var.private_subnet_cidrs) == 2 &&
       length(distinct(var.private_subnet_cidrs)) == 2 &&
-      alltrue([for cidr in var.private_subnet_cidrs : can(cidrhost(cidr, 0))])
+      alltrue([for cidr in var.private_subnet_cidrs : can(cidrhost(cidr, 0)) && can(cidrnetmask(cidr))])
     )
     error_message = "Provide two distinct, valid IPv4 CIDR blocks for private_subnet_cidrs."
   }
 }
 
 variable "s3_bucket_name" {
-  description = "Globally unique name for the private TalentFlow candidate resume S3 bucket."
+  description = "A globally unique private TalentFlow resume-bucket name using this module's lowercase alphanumeric/hyphen subset."
   type        = string
 
   validation {
-    condition     = can(regex("^[a-z0-9][a-z0-9.-]{1,61}[a-z0-9]$", var.s3_bucket_name))
-    error_message = "The s3_bucket_name must be 3-63 characters long and contain only lowercase letters, numbers, dots, or hyphens."
+    condition = (
+      can(regex("^[a-z0-9][a-z0-9-]{1,61}[a-z0-9]$", var.s3_bucket_name)) &&
+      !startswith(var.s3_bucket_name, "xn--") &&
+      !startswith(var.s3_bucket_name, "sthree-") &&
+      !startswith(var.s3_bucket_name, "amzn-s3-demo-") &&
+      !endswith(var.s3_bucket_name, "-s3alias") &&
+      !endswith(var.s3_bucket_name, "--ol-s3") &&
+      !endswith(var.s3_bucket_name, "--x-s3") &&
+      !endswith(var.s3_bucket_name, "--table-s3") &&
+      !endswith(var.s3_bucket_name, "-an")
+    )
+    error_message = "Use 3-63 lowercase letters, numbers, or internal hyphens; avoid reserved S3 prefixes/suffixes. This subset excludes dotted and account-regional names."
   }
 }
 
@@ -109,7 +119,7 @@ variable "allowed_ssh_cidr" {
   default     = "127.0.0.1/32"
 
   validation {
-    condition     = can(cidrhost(var.allowed_ssh_cidr, 0)) && var.allowed_ssh_cidr != "0.0.0.0/0" && endswith(var.allowed_ssh_cidr, "/32")
+    condition     = can(cidrhost(var.allowed_ssh_cidr, 0)) && can(cidrnetmask(var.allowed_ssh_cidr)) && var.allowed_ssh_cidr != "0.0.0.0/0" && endswith(var.allowed_ssh_cidr, "/32")
     error_message = "For security, allowed_ssh_cidr must be a single-host /32 CIDR block and must never be 0.0.0.0/0."
   }
 }
