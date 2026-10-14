@@ -10,13 +10,13 @@ The recovered brief and September report cover CloudWatch metrics/alarms, CloudT
 
 **Portal schedule:** Week 8 is marked Completed as reported by the user. No portal screenshot/export was found; the supplied submission history says “No weekly submissions yet.” The report itself notes that CloudTrail, Route 53, and CloudFront captures were missing; this portfolio does not imply those console screenshots were recovered.
 
-## Independent alarm reasoning demo
+## Local alarm-arithmetic demonstration
 
 [`alarm_math.py`](../../demos/week08_observability/alarm_math.py) calculates a simple numeric M-of-N threshold decision for a short list of datapoints. Run `python -m unittest discover -s tests -v` from the repository root. This **reproducible demonstration** does not emulate CloudWatch aggregation, alarm timing, missing-data settings, metric delivery, or actions.
 
 Operationally, choose a metric that represents user impact, set a threshold from baseline and SLO context, and test missing-data and action behavior. CloudWatch charges can arise from alarms, custom metrics, dashboards, logs, and data ingestion. Route 53 and CloudFront introduce DNS, caching, invalidation, certificate, and data-transfer considerations.
 
-For an interview: “An `Insufficient data` alarm is not proof that a threshold was crossed. I would check metric publication, dimensions, period/evaluation settings, and alarm history before claiming the alert worked.”
+“An `Insufficient data` alarm is not proof that a threshold was crossed. I would check metric publication, dimensions, period/evaluation settings, and alarm history before claiming the alert worked.”
 
 ## Limits and links
 

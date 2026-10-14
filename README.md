@@ -1,8 +1,8 @@
 # AWS Cloud Engineering Internship Portfolio
 
-A recruiter-facing record of a 12-week AWS Cloud Engineering internship with Davine Technologies and the TalentFlow AI capstone. This repository separates **portal schedule status**, **retained internship evidence**, and **independent technical demonstrations** so that a topic, report, screenshot, or Terraform file is not mistaken for something it does not prove.
+A recruiter-facing record of a 12-week AWS Cloud Engineering internship with Davine Technologies and the TalentFlow AI capstone. It separates **portal schedule status**, **retained internship material**, and **added portfolio work** so a topic, report, screenshot, or Terraform file is not mistaken for something it does not prove.
 
-**Start here:** [12-week map](#12-week-map) · [Evidence gallery](evidence/README.md) · [Evidence timeline](docs/internship-timeline.md) · [Reproducible demos](demos/README.md) · [Week 12 Terraform](assignments/week-12-talentflow-ai/infrastructure/terraform/README.md)
+**Start here:** [Strongest work](#strongest-inspectable-work) · [12-week map](#12-week-map) · [Evidence gallery](evidence/README.md) · [Reproducible demos and tests](demos/README.md) · [Week 12 Terraform](assignments/week-12-talentflow-ai/infrastructure/terraform/README.md) · [Validation index](evidence/validation/README.md)
 
 This is a personal portfolio, not an official Davine Technologies repository or company endorsement.
 
@@ -10,20 +10,20 @@ This is a personal portfolio, not an official Davine Technologies repository or 
 
 - **Internship schedule, as reported by the user:** Weeks 1–11 marked Completed; Week 12 marked Current / Final Week; schedule progress shown as 92%.
 - **Portal submission history, as reported by the user:** “No weekly submissions yet.” No saved portal screenshot or export was found, so portal state is not independently screenshot-verified.
-- **Retained technical evidence:** original reports, briefings, and console captures exist for multiple weeks. Only selected, redacted screenshot derivatives are public; they show historical observations with narrow captions.
-- **Independent work in this repository:** six small, standard-library demonstrations with tests; explanatory diagrams; and a reconstructed Week 12 Terraform baseline. These are not original internship submissions.
+- **Retained technical evidence:** the existing portfolio record describes reports, briefings, and console captures for multiple weeks. Selected screenshot derivatives are public and show historical observations with scoped captions. Source provenance and redactions require owner verification; see the [evidence policy](docs/evidence-and-validation.md).
+- **Added portfolio work:** six standard-library demonstrations with tests, explanatory diagrams, and a reconstructed Week 12 Terraform baseline. These are separate from internship submissions and do not make an authorship claim about the retained source material.
 - **Deployment status:** the reconstructed Terraform has not been applied. Nothing in this repository establishes a deployed TalentFlow AI application.
 
 ## Strongest inspectable work
 
-1. [Historical evidence gallery](evidence/README.md): genuine, sanitized console captures from Weeks 2, 5, 7, 8, 9, 10, and 12, each captioned with what it shows and does not establish.
+1. [Historical evidence gallery](evidence/README.md): selected screenshot derivatives described by the prior portfolio record, with captions for the visible observation and its limits. Source correspondence and redactions remain **OWNER TO VERIFY** against private originals.
 2. [Local engineering demonstrations](demos/README.md): CIDR/route checks, a health-threshold state machine, event parsing, alarm math, retry/idempotency behavior, and a narrow static policy example. Run them with `python -m unittest discover -s tests -v`.
-3. [TalentFlow AI capstone record](assignments/week-12-talentflow-ai/README.md): the proposed architecture, actual report observations, the independent Terraform subset, validation status, and explicit implementation gaps.
+3. [TalentFlow AI capstone record](assignments/week-12-talentflow-ai/README.md): the proposed architecture, report observations as recorded in the portfolio, the reconstructed Terraform subset, validation status, and implementation gaps.
 4. [Terraform source and validation record](assignments/week-12-talentflow-ai/infrastructure/terraform/README.md): a non-deployed VPC/S3/IAM/monitoring baseline with backend-free static checks; no credentials or AWS deployment are required for the documented validation workflow.
 
 ## 12-week map
 
-The schedule column reflects only the user-supplied portal state. It is not evidence of a submission. “Retained work” describes source artifacts found in the supplied materials; independent portfolio work is listed separately.
+The schedule column reflects only the user-supplied portal state. It is not evidence of a submission. Source-dependent descriptions below are carried forward from the existing portfolio record and require owner verification against the private originals; added portfolio work is listed separately.
 
 | Week | Focus | Portal schedule (reported) | Retained internship evidence | Portfolio page and independent work |
 | --- | --- | --- | --- | --- |
@@ -40,7 +40,7 @@ The schedule column reflects only the user-supplied portal state. It is not evid
 | 11 | Capstone briefing and planning | Completed | No Week 11 assignment/submission; a duplicated 34-page Week 12 capstone briefing is planning context only | [Week 11](assignments/week-11-capstone-planning/README.md) |
 | 12 | TalentFlow AI capstone | Current / Final Week | Final report and partial console evidence retained; no portal receipt or full original application/IaC source | [Week 12](assignments/week-12-talentflow-ai/README.md) · independent Terraform baseline |
 
-## Reproduce the independent work
+## Reproduce the added demonstrations
 
 From a local clone with Python 3.11 or newer:
 
@@ -59,17 +59,17 @@ terraform init -backend=false -input=false
 terraform validate
 ```
 
-On Windows with Terraform v1.16.5 and the locked AWS provider v5.100.0, the current [local validation record](evidence/validation/terraform/local-validation-2026-10-14.md) shows `terraform fmt -check` and backend-free initialization passing; `terraform validate` failed before schema output because the provider plugin did not respond. The [release-branch GitHub Actions run](evidence/validation/terraform/github-actions-release-2026-10-14.md) passed its Markdown, portfolio-manifest, demonstration-test, and Ubuntu Terraform format/init/validate jobs for commit `33ef86f22bb362894d9460fd6bce2aae0bb9a480`. **No plan, apply, AWS CLI deployment, or cloud resource operation was run for this portfolio update.**
+The [validation index](evidence/validation/README.md) links the dated local and hosted records and distinguishes a Windows provider-process failure from successful Ubuntu schema validation. Those checks do not establish an AWS plan or deployment. **No plan, apply, AWS CLI deployment, or cloud resource operation was run for this portfolio update.**
 
 ## Evidence and technical limits
 
 - A completed portal week does not prove that a weekly assignment was submitted. The supplied portal state says no weekly submissions are listed; no portal screenshot/export was found.
-- The “Week 11” architecture PDF is a duplicate of the “Week 12” PDF and is a capstone briefing, not a Week 11 task or submission.
+- Existing portfolio records classify the duplicated “Week 11/12” architecture PDF as a Week 12 capstone briefing, not a Week 11 task or submission; verify that source classification against the private original before relying on it.
 - Historical screenshots show only the visible state at their capture time. They do not prove current resources, continuous availability, or ownership of every configuration.
-- The capstone report’s `4 to add` Terraform plan was not an apply. Its alarm was `Insufficient data`, and the SNS email subscription was pending confirmation.
-- The Week 12 Terraform source is an **independent reconstruction**, not original internship code. It does not provision EC2, an ALB, RDS, application code, Lambda, queues, API Gateway, or a log producer.
+- The prior portfolio record describes a capstone report with a `4 to add` Terraform plan, an `Insufficient data` alarm, and an SNS email subscription pending confirmation. **OWNER TO VERIFY** those source-dependent details; a plan is not an apply, and the described state does not establish notification delivery.
+- The Week 12 Terraform is a **reconstruction**, not recovered internship code. It does not provision EC2, an ALB, RDS, application code, Lambda, queues, API Gateway, or a log producer.
 - Original PDFs, archives, unredacted screenshots, billing views, personal sample data, and unsafe configuration captures are withheld. The [gallery](evidence/README.md) and [manifest](evidence/manifest.csv) state why.
-- TalentFlow AI upstream source is linked, not copied; the inspected repository had no visible licence.
+- TalentFlow AI upstream source is linked rather than copied.
 
 ## Repository guide
 

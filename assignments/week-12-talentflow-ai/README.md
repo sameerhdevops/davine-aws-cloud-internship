@@ -2,6 +2,8 @@
 
 ## Project goal and source boundary
 
+**OWNER TO VERIFY:** report, screenshot, date, and source-provenance descriptions below are carried forward from the existing portfolio record; this review did not reopen private originals. Confirm those details against the originals before presenting them as first-person work or a submission.
+
 TalentFlow AI is described in the retained final report as a recruitment and talent-management platform for candidate profiles, resume intake, job/application tracking, interview scheduling, evaluations, and analytics. A separate 34-page briefing—duplicated under Week 11 and Week 12 filenames—describes the target architecture. It is planning context for this capstone, not a Week 11 submission and not proof that the proposed stack was deployed.
 
 The source set includes a 13-page report titled “Final Submission,” but the report’s title does not prove that it was uploaded to the portal or accepted. No portal screenshot/export was found; the user-reported portal state says Week 12 is the Current/Final Week and the submission history says “No weekly submissions yet.” The report itself contains technical claims and screenshots; the public evidence below is deliberately limited to sanitized crops that support narrow historical observations.
@@ -42,6 +44,6 @@ The reconstructed monitoring source declares a CloudWatch log group with seven-d
 
 Reasonable next steps are to recover/licence-review the application source, define API/data contracts and candidate-data retention, add tests for object access and event retries, decide private egress, configure actionable metric/log/alert behavior, and validate a deployment plan in a separate approved environment. These are recommendations, not completed work.
 
-For an interview: “I separate the proposed capstone architecture, what the final report’s screenshots actually show, and the smaller Terraform baseline I reconstructed later. The baseline is source- and schema-validated where recorded, but it was not applied and does not provision the application.”
+Explain the distinction between the proposed capstone architecture, the report observations recorded in the portfolio, and the smaller Terraform reconstruction present in the repository. The recorded baseline validation is source/schema validation only; it was not applied and does not provision the application.
 
 See the [central evidence gallery](../../evidence/README.md#week-12-talentflow-ai-capstone), [evidence timeline](../../docs/internship-timeline.md), and [Terraform project](infrastructure/terraform/README.md).

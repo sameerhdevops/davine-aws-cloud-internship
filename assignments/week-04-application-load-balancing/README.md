@@ -18,7 +18,7 @@ An actual ALB health check also depends on listener rules, protocol/port/path, m
 
 Expose only the listener protocols required, terminate TLS with a managed certificate for production traffic, and allow target ingress from the load balancer security group instead of the Internet. ALBs and data transfer can incur cost even when request volume is low; lab designs should use a budget and a cleanup plan.
 
-For an interview: “I would check listener/rule matching, target registration and health reason, then compare the ALB-to-target security-group path and application response. A green listener does not prove the target is healthy.”
+“I would check listener/rule matching, target registration and health reason, then compare the ALB-to-target security-group path and application response. A green listener does not prove the target is healthy.”
 
 ## Limits and links
 

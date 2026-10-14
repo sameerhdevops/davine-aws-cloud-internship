@@ -20,7 +20,7 @@ The pattern separates the public listener from instance targets and uses a launc
 
 Operationally, compare the target’s health reason, instance status checks, application logs, and scaling activity before changing capacity. Scaling increases can raise compute, load-balancer, and data-transfer charges; set bounds and alarms and plan cleanup.
 
-For an interview: “The screenshot shows an unhealthy target followed by a successful replacement event. It demonstrates one recovery action, not a measured availability SLO. I would still verify replacement health and the end-to-end response.”
+“The screenshot shows an unhealthy target followed by a successful replacement event. It demonstrates one recovery action, not a measured availability SLO. I would still verify replacement health and the end-to-end response.”
 
 ## Reproduction and limits
 

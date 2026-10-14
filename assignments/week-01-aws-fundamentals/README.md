@@ -19,7 +19,7 @@ The useful foundation is to start with the requirement and the responsibility bo
 - Network reachability depends on routes, security groups, network ACLs, DNS, and service endpoints—not only on whether a subnet is called public or private.
 - Managed services reduce some host work but introduce service-specific availability, limits, observability, and billing dimensions.
 
-For an interview: “I learned to explain why a component exists and which boundary it owns, then verify the actual permission, route, or metric rather than infer state from a diagram.”
+Start with the requirement and the service boundary, then verify the relevant permission, route, or metric instead of inferring runtime state from a diagram.
 
 ## Validation and limits
 

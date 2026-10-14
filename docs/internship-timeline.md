@@ -1,8 +1,8 @@
 # Evidence-rated 12-week timeline
 
-The weekly schedule status below is the portal state supplied by the user. It is not a local screenshot verification or a weekly-submission receipt. No saved portal screenshot/export was found in the inspected source materials; the supplied portal history says **“No weekly submissions yet.”** The second and third evidence columns describe retained source material and independent portfolio work separately.
+The weekly schedule status below is the portal state supplied by the user. It is not a screenshot verification or a weekly-submission receipt. No saved portal screenshot/export was reported in the existing portfolio record; the supplied portal history says **“No weekly submissions yet.”** Source-dependent details in this table are **OWNER TO VERIFY** against private originals. Added portfolio work is listed separately.
 
-| Week | Framework topic | Portal schedule (reported) | Original internship material recovered | Public record / independent portfolio work |
+| Week | Framework topic | Portal schedule (reported) | Retained material (prior record; owner verify) | Public page / added portfolio work |
 | --- | --- | --- | --- | --- |
 | 1 | AWS cloud fundamentals | Completed | Named Week 1 report, brief, and service-console screenshots | [Week 1](../assignments/week-01-aws-fundamentals/README.md); source images withheld because none was both useful and safely attributable as a focused public crop |
 | 2 | EC2 and host-level security | Completed | Brief, dated report, EC2/Linux/security-group/Elastic IP/alarm captures | [Week 2](../assignments/week-02-ec2-web-server/README.md); one sanitized EC2 status and alarm-created capture |

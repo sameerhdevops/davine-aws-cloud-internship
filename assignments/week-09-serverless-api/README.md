@@ -8,9 +8,9 @@ The retained Week 9 activity reports describe combining a web path (Route 53, AL
 
 *Original internship screenshot, sanitized derivative. The capture date is unknown. It shows a console test result only; it does not establish API Gateway integration, durable storage, or end-to-end business behavior.*
 
-![Sanitized Auto Scaling row showing one instance at desired capacity and 1/1 healthy across a displayed three-AZ group configuration.](../../evidence/assets/week-09-integration/week-09-asg-capacity-health.png)
+![Auto Scaling row with the group and launch-template names redacted; the image shows one instance at desired capacity and 1/1 healthy across the displayed three-AZ group configuration.](../../evidence/assets/week-09-integration/week-09-asg-capacity-health.png)
 
-*Original internship screenshot, sanitized derivative. Capture date is unknown. It is a point-in-time group view, not continuous availability or proof of the Week 5 deployment.*
+*Derivative identified as an original internship screenshot in the existing portfolio record; the private original was not reopened in this review. Capture date is unknown. Group and launch-template names are redacted. It is a point-in-time view, not continuous availability or proof of the Week 5 deployment.*
 
 **Portal schedule:** Week 9 is marked Completed as reported by the user. No saved portal screenshot/export was found; the portal submission history separately says “No weekly submissions yet.” The activity reports and captures do not establish portal upload or reviewer acceptance.
 
@@ -22,7 +22,7 @@ Keep API request validation at the boundary, return a clear synchronous response
 
 The reports describe a successful Step Functions test and an Available RDS state, but the original application/API/State Machine/RDS source was not recovered. Those statements remain report-described. A visible DynamoDB example row contains person-like sample data and is not published.
 
-For an interview: “I would trace one request by a correlation identifier across API Gateway, Lambda, storage, and any queue; then verify retry/idempotency and observability at each asynchronous boundary.”
+“I would trace one request by a correlation identifier across API Gateway, Lambda, storage, and any queue; then verify retry/idempotency and observability at each asynchronous boundary.”
 
 ## Limitations
 

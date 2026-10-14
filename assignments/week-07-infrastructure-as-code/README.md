@@ -14,7 +14,7 @@ The recovered September 4 report and screenshots discuss Terraform/CloudFormatio
 
 The local file set does not contain the raw Week 7 `.tf`/YAML templates, so the historical apply cannot be reproduced or reviewed for drift, state safety, or full resource scope. A separate original launch-form capture displays SSH ingress from `0.0.0.0/0` and AWS’s warning that it allows access from all IP addresses. It is not evidence that this rule was applied to the Terraform-created instance, but it is a genuine unsafe configuration shown during the same learning period; it is withheld from the public gallery and documented as a security lesson. Prefer a managed access channel or tightly scoped temporary ingress, and never commit state, credentials, or real variable files.
 
-For an interview: “A successful apply only says Terraform completed its requested changes. I would also review the plan, state handling, post-apply health, IAM scope, ingress, and cleanup. Here the screenshot supports one historical resource creation, not the Week 12 project.”
+“A successful apply only says Terraform completed its requested changes. I would also review the plan, state handling, post-apply health, IAM scope, ingress, and cleanup. Here the screenshot supports one historical resource creation, not the Week 12 project.”
 
 ## Reproduction and limits
 
