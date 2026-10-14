@@ -26,7 +26,9 @@ def evaluate(
         threshold_is_finite = False
     if not threshold_is_finite:
         raise ValueError("threshold must be finite")
-    if not isinstance(datapoints, RuntimeSequence) or isinstance(datapoints, (str, bytes, bytearray)):
+    if not isinstance(datapoints, RuntimeSequence) or isinstance(
+        datapoints, (str, bytes, bytearray)
+    ):
         raise TypeError("datapoints must be a sequence of numbers or None")
     window = list(datapoints[-evaluation_periods:])
     numeric: list[int | float] = []

@@ -1,0 +1,3 @@
+check_id,resource_type,resource_id,region,status,summary,details_json
+security-group-wide-ingress,security-group,sg-synthetic-example,ap-south-1,FINDING,"Inbound rules allow traffic from a world-open CIDR: 1 rule(s).","{""rules"":[{""address"":""0.0.0.0/0"",""ports"":""22-22"",""protocol"":""tcp""}]}"
+required-tags,ec2-instance,i-synthetic-example,ap-south-1,PASS,"All configured required tag keys are present.","{""missing_tag_keys"":[],""required_tag_keys"":[""Owner"",""Environment"",""Project""]}"

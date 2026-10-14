@@ -10,7 +10,17 @@ from urllib.parse import unquote, urlsplit
 
 
 ROOT = Path(__file__).resolve().parents[1]
-SKIP_PARTS = {".git", ".terraform", ".local-review", "node_modules", "recovery-audit", "weeks"}
+SKIP_PARTS = {
+    ".git",
+    ".terraform",
+    ".local-review",
+    "node_modules",
+    "recovery-audit",
+    "weeks",
+    ".venv",
+    "venv",
+    "__pycache__",
+}
 FENCE_RE = re.compile(r"(?ms)^\s*(```+|~~~+).*?^\s*\1\s*$")
 INLINE_RE = re.compile(r"(?<!!)\[[^\]]*\]\(\s*(?:<([^>]+)>|([^\s)]+))(?:\s+[^)]*)?\)")
 IMAGE_RE = re.compile(r"!\[[^\]]*\]\(\s*(?:<([^>]+)>|([^\s)]+))(?:\s+[^)]*)?\)")
@@ -117,7 +127,10 @@ def check_target(source: Path, raw_target: str) -> str | None:
         return "target resolves outside the repository"
 
     if target.is_dir():
-        target = next((target / name for name in ("README.md", "index.md") if (target / name).is_file()), target)
+        target = next(
+            (target / name for name in ("README.md", "index.md") if (target / name).is_file()),
+            target,
+        )
     if not target.exists():
         return "target does not exist"
     if fragment and target.suffix.lower() == ".md" and fragment not in heading_anchors(target):
@@ -144,10 +157,14 @@ def main() -> int:
         print("Broken local Markdown links:")
         for failure in failures:
             print(f"- {failure}")
-        print(f"Found {len(failures)} broken targets among {checked} local links in {len(files)} Markdown files.")
+        print(
+            f"Found {len(failures)} broken targets among {checked} local links in {len(files)} Markdown files."
+        )
         return 1
 
-    print(f"Checked {checked} local Markdown links in {len(files)} Markdown files; no broken targets found.")
+    print(
+        f"Checked {checked} local Markdown links in {len(files)} Markdown files; no broken targets found."
+    )
     return 0
 
 

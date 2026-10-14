@@ -5,7 +5,6 @@ from __future__ import annotations
 
 import csv
 import re
-import sys
 from pathlib import Path, PurePosixPath
 
 
@@ -32,9 +31,57 @@ CATEGORIES = {
     "Independently validated",
     "Not established by retained evidence",
 }
-SKIP = {".git", ".terraform", ".local-review", "recovery-audit", "weeks", "node_modules"}
+SKIP = {
+    ".git",
+    ".terraform",
+    ".local-review",
+    "recovery-audit",
+    "weeks",
+    "node_modules",
+    ".venv",
+    "venv",
+    "__pycache__",
+}
 ABSOLUTE_PATH = re.compile(r"(?i)(?:[a-z]:\\|\\\\[a-z0-9_.-]+\\)")
 PLACEHOLDER = re.compile(r"(?i)\b(?:TODO|TBD|lorem ipsum|insert here|coming soon)\b")
+REQUIRED_ARTIFACTS = (
+    "scripts/aws_audit/audit.py",
+    "scripts/aws_audit/cli.py",
+    "scripts/aws_audit/README.md",
+    "tests/test_aws_audit.py",
+    "docs/EVIDENCE.md",
+    "docs/SCOPE.md",
+    "docs/SECURITY-NOTES.md",
+    "samples/aws-audit-report.json",
+    "samples/aws-audit-report.csv",
+    "diagrams/aws-audit-workflow.mmd",
+    "diagrams/repository-structure.mmd",
+)
+AI_DISCLOSURE = (
+    "AI tools assisted with parts of the implementation and documentation. "
+    "I review the project, test its behavior, and am responsible for explaining the work I present."
+)
+
+
+def check_required_artifacts(root: Path, errors: list[str]) -> None:
+    for relative in REQUIRED_ARTIFACTS:
+        if not (root / relative).is_file():
+            errors.append(f"required portfolio artifact is missing: {relative}")
+    readme = root / "README.md"
+    if not readme.is_file():
+        return
+    content = readme.read_text(encoding="utf-8")
+    if AI_DISCLOSURE not in content:
+        errors.append("root README is missing the required AI-assistance disclosure")
+    for link in (
+        "scripts/aws_audit/README.md",
+        "docs/EVIDENCE.md",
+        "docs/SCOPE.md",
+        "docs/SECURITY-NOTES.md",
+        "evidence/README.md",
+    ):
+        if f"]({link})" not in content:
+            errors.append(f"root README must link to {link}")
 
 
 def check_week_pages(errors: list[str]) -> None:
@@ -43,13 +90,21 @@ def check_week_pages(errors: list[str]) -> None:
         path = ROOT / "assignments" / folder / "README.md"
         if not path.is_file():
             errors.append(f"missing weekly page: assignments/{folder}/README.md")
-        elif not re.search(rf"\]\(assignments/{re.escape(folder)}/README\.md(?:#[^)]*)?\)", root_readme):
+        elif not re.search(
+            rf"\]\(assignments/{re.escape(folder)}/README\.md(?:#[^)]*)?\)", root_readme
+        ):
             errors.append(f"root README does not link weekly page: assignments/{folder}/README.md")
     if len(WEEKS) != 12:
         errors.append("internal quality check does not list exactly 12 weeks")
-    for phrase in ("No weekly submissions yet", "Current / Final Week", "Weeks 1–11 marked Completed"):
+    for phrase in (
+        "No weekly submissions yet",
+        "Current / Final Week",
+        "Weeks 1–11 marked Completed",
+    ):
         if phrase not in root_readme:
-            errors.append(f"root README does not clearly report portal schedule/submission fact: {phrase}")
+            errors.append(
+                f"root README does not clearly report portal schedule/submission fact: {phrase}"
+            )
 
     week11 = ROOT / "assignments/week-11-capstone-planning/README.md"
     if week11.is_file():
@@ -100,7 +155,9 @@ def validate_manifest_rows(rows: list[dict[str, str]], root: Path) -> tuple[list
                 continue
             relative = PurePosixPath(publication_path)
             if relative.is_absolute() or ".." in relative.parts or "\\" in publication_path:
-                errors.append(f"manifest line {line}: publication_path must be repository-relative with forward slashes")
+                errors.append(
+                    f"manifest line {line}: publication_path must be repository-relative with forward slashes"
+                )
                 continue
             target = (root / Path(*relative.parts)).resolve()
             try:
@@ -109,10 +166,14 @@ def validate_manifest_rows(rows: list[dict[str, str]], root: Path) -> tuple[list
                 errors.append(f"manifest line {line}: publication_path escapes the repository")
                 continue
             if not target.is_file():
-                errors.append(f"manifest line {line}: publication_path does not resolve to a file: {publication_path}")
+                errors.append(
+                    f"manifest line {line}: publication_path does not resolve to a file: {publication_path}"
+                )
         elif visibility == "withheld":
             if publication_path:
-                errors.append(f"manifest line {line}: withheld artifact must not have a publication_path")
+                errors.append(
+                    f"manifest line {line}: withheld artifact must not have a publication_path"
+                )
         else:
             errors.append(f"manifest line {line}: visibility must be public or withheld")
     if not rows:
@@ -142,7 +203,7 @@ def check_manifest(errors: list[str]) -> int:
 def check_public_text(errors: list[str]) -> tuple[int, int]:
     checked = 0
     placeholders = 0
-    extensions = {".md", ".csv", ".py", ".json", ".tf", ".mmd", ".yml", ".yaml"}
+    extensions = {".md", ".csv", ".py", ".json", ".tf", ".mmd", ".yml", ".yaml", ".toml"}
     for path in ROOT.rglob("*"):
         if not path.is_file() or path.suffix.lower() not in extensions:
             continue
@@ -169,6 +230,7 @@ def check_public_text(errors: list[str]) -> tuple[int, int]:
 
 def main() -> int:
     errors: list[str] = []
+    check_required_artifacts(ROOT, errors)
     check_week_pages(errors)
     public_count = check_manifest(errors)
     checked_text, _ = check_public_text(errors)
@@ -178,7 +240,9 @@ def main() -> int:
         for error in errors:
             print(f"- {error}")
         return 1
-    print(f"Portfolio quality check passed: {len(WEEKS)} weekly pages, {public_count} public manifest paths, and {checked_text} public text files checked.")
+    print(
+        f"Portfolio quality check passed: {len(WEEKS)} weekly pages, {public_count} public manifest paths, and {checked_text} public text files checked."
+    )
     return 0
 
 

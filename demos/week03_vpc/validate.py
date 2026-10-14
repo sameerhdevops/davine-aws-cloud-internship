@@ -69,14 +69,18 @@ def validate_plan(plan: Any) -> list[str]:
             errors.append(f"{name}: exposure must be public or private")
 
         routes = subnet.get("routes")
-        if not isinstance(routes, list) or any(not isinstance(route, str) or not route for route in routes):
+        if not isinstance(routes, list) or any(
+            not isinstance(route, str) or not route for route in routes
+        ):
             errors.append(f"{name}: routes must be a list of nonempty strings")
             continue
         if len(routes) != len(set(routes)):
             errors.append(f"{name}: route labels must not be duplicated")
         unsupported_routes = set(routes) - {"local", "internet-gateway"}
         if unsupported_routes:
-            errors.append(f"{name}: unsupported illustrative route label(s): {', '.join(sorted(unsupported_routes))}")
+            errors.append(
+                f"{name}: unsupported illustrative route label(s): {', '.join(sorted(unsupported_routes))}"
+            )
         route_set = set(routes)
         if "local" not in route_set:
             errors.append(f"{name}: route set must include the VPC-local route")
@@ -100,7 +104,9 @@ def main() -> int:
         for error in errors:
             print(f"- {error}")
         return 1
-    print(f"Illustrative plan is internally consistent: {len(plan['subnets'])} subnets within {plan['vpc_cidr']}. No AWS API was called.")
+    print(
+        f"Illustrative plan is internally consistent: {len(plan['subnets'])} subnets within {plan['vpc_cidr']}. No AWS API was called."
+    )
     return 0
 
 

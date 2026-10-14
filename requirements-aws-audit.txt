@@ -1,0 +1,2 @@
+# Runtime dependency for scripts/aws_audit.
+boto3==1.43.113

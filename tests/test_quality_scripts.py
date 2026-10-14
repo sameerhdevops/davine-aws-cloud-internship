@@ -3,10 +3,8 @@ from __future__ import annotations
 import copy
 import csv
 import unittest
-from pathlib import Path
-
 from scripts.check_markdown_links import check_target, targets
-from scripts.check_portfolio import ROOT, validate_manifest_rows
+from scripts.check_portfolio import ROOT, check_required_artifacts, validate_manifest_rows
 
 
 class MarkdownLinkParsingTests(unittest.TestCase):
@@ -33,7 +31,9 @@ class MarkdownLinkParsingTests(unittest.TestCase):
     def test_checks_url_encoded_paths_and_existing_heading_fragments(self) -> None:
         source = ROOT / "README.md"
         self.assertIsNone(check_target(source, "evidence/manifest%2Ecsv"))
-        self.assertIsNone(check_target(source, "docs/evidence-and-validation.md#classification-standard"))
+        self.assertIsNone(
+            check_target(source, "docs/evidence-and-validation.md#classification-standard")
+        )
         self.assertIn("does not exist", check_target(source, "missing%2Etxt"))
 
 
@@ -72,6 +72,17 @@ class PortfolioManifestTests(unittest.TestCase):
             with self.subTest(path=publication_path, visibility=visibility):
                 errors, _ = validate_manifest_rows([row], ROOT)
                 self.assert_error(expected, errors)
+
+    def test_required_publication_artifacts_exist_and_missing_artifacts_are_reported(self) -> None:
+        errors: list[str] = []
+        check_required_artifacts(ROOT, errors)
+        self.assertEqual([], errors)
+
+        missing_errors: list[str] = []
+        check_required_artifacts(ROOT / "missing-fixture", missing_errors)
+        self.assertTrue(
+            any("required portfolio artifact is missing" in error for error in missing_errors)
+        )
 
 
 if __name__ == "__main__":
