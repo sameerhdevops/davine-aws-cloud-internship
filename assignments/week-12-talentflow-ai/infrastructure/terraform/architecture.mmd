@@ -6,8 +6,8 @@ flowchart TB
 
     subgraph VPC["VPC: 10.0.0.0/16\naws_vpc.main"]
       PublicRT["Public route table\n0.0.0.0/0 → IGW"]
-      PrivateRT1["Private route table 1\nlocal routes only"]
-      PrivateRT2["Private route table 2\nlocal routes only"]
+      PrivateRT1["Private route table 1\nlocal + S3 endpoint route"]
+      PrivateRT2["Private route table 2\nlocal + S3 endpoint route"]
 
       subgraph PublicTier["Public subnets (two AZs) — no automatic public IPs"]
         Public1["aws_subnet.public[0]"]
@@ -20,6 +20,7 @@ flowchart TB
       end
 
       FutureWorkload["Future EC2 application workload\nnot declared by this configuration"]
+      S3Endpoint["S3 gateway endpoint\nprivate route-table associations"]
 
       IngressSG["Ingress security group\nfuture ALB only"]
       AppSG["Application security group\nfuture EC2 only"]
@@ -38,8 +39,12 @@ flowchart TB
   PublicRT --> Public2
   PrivateRT1 --> Private1
   PrivateRT2 --> Private2
-  IngressSG -. "ingress 80/443; egress 80 to VPC" .-> AppSG
-  AppSG -. "inbound 80 from ALB SG; MySQL egress 3306" .-> DbSG
+  PrivateRT1 --> S3Endpoint
+  PrivateRT2 --> S3Endpoint
+  IngressSG -. "ingress 80/443; egress 80 to app SG" .-> AppSG
+  AppSG -. "inbound 80 from ALB SG; MySQL egress only to DB SG" .-> DbSG
+  AppSG -. "HTTPS egress to S3 prefix list" .-> S3Endpoint
+  S3Endpoint --> S3
   Role -. "read-only S3 policy for future EC2" .-> S3
   S3 --> Alarm --> Topic
   AppSG -. "rules only; no instance or ENI" .-> FutureWorkload

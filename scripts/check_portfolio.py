@@ -1,0 +1,175 @@
+#!/usr/bin/env python3
+"""Check expected weekly pages and public evidence-manifest integrity."""
+
+from __future__ import annotations
+
+import csv
+import re
+import sys
+from pathlib import Path, PurePosixPath
+
+
+ROOT = Path(__file__).resolve().parents[1]
+WEEKS = [
+    "week-01-aws-fundamentals",
+    "week-02-ec2-web-server",
+    "week-03-vpc-networking",
+    "week-04-application-load-balancing",
+    "week-05-high-availability",
+    "week-06-serverless-architecture",
+    "week-07-infrastructure-as-code",
+    "week-08-monitoring-cdn-dns",
+    "week-09-serverless-api",
+    "week-10-governance-audit",
+    "week-11-capstone-planning",
+    "week-12-talentflow-ai",
+]
+CATEGORIES = {
+    "Original internship artifact",
+    "Sanitized evidence derivative",
+    "Independent reconstruction",
+    "Reproducible demonstration",
+    "Independently validated",
+    "Not established by retained evidence",
+}
+SKIP = {".git", ".terraform", ".local-review", "recovery-audit", "weeks", "node_modules"}
+ABSOLUTE_PATH = re.compile(r"(?i)(?:[a-z]:\\|\\\\[a-z0-9_.-]+\\)")
+PLACEHOLDER = re.compile(r"(?i)\b(?:TODO|TBD|lorem ipsum|insert here|coming soon)\b")
+
+
+def check_week_pages(errors: list[str]) -> None:
+    root_readme = (ROOT / "README.md").read_text(encoding="utf-8")
+    for folder in WEEKS:
+        path = ROOT / "assignments" / folder / "README.md"
+        if not path.is_file():
+            errors.append(f"missing weekly page: assignments/{folder}/README.md")
+        elif f"assignments/{folder}/README.md" not in root_readme:
+            errors.append(f"root README does not link weekly page: assignments/{folder}/README.md")
+    if len(WEEKS) != 12:
+        errors.append("internal quality check does not list exactly 12 weeks")
+    for phrase in ("No weekly submissions yet", "Current / Final Week", "Weeks 1–11 marked Completed"):
+        if phrase not in root_readme:
+            errors.append(f"root README does not clearly report portal schedule/submission fact: {phrase}")
+
+    week11 = ROOT / "assignments/week-11-capstone-planning/README.md"
+    if week11.is_file():
+        content = week11.read_text(encoding="utf-8")
+        for phrase in ("not a Week 11 task", "not a Week 11 submission", "planning context"):
+            if phrase not in content:
+                errors.append(f"Week 11 page must explicitly contain: {phrase}")
+
+
+def check_manifest(errors: list[str]) -> int:
+    path = ROOT / "evidence/manifest.csv"
+    required = {
+        "artifact_id",
+        "week",
+        "type",
+        "provenance",
+        "evidence_category",
+        "visibility",
+        "publication_path",
+        "date_status",
+        "supported_claim",
+        "limitations",
+        "sanitization_or_withheld_reason",
+    }
+    try:
+        with path.open(encoding="utf-8-sig", newline="") as stream:
+            reader = csv.DictReader(stream)
+            missing = required - set(reader.fieldnames or [])
+            if missing:
+                errors.append(f"manifest missing columns: {', '.join(sorted(missing))}")
+                return 0
+            rows = list(reader)
+    except (OSError, csv.Error) as exc:
+        errors.append(f"could not read evidence manifest: {exc}")
+        return 0
+
+    seen: set[str] = set()
+    public_count = 0
+    for line, row in enumerate(rows, start=2):
+        artifact_id = row["artifact_id"].strip()
+        if not artifact_id or artifact_id in seen:
+            errors.append(f"manifest line {line}: blank or duplicate artifact_id")
+        seen.add(artifact_id)
+        if row["evidence_category"] not in CATEGORIES:
+            errors.append(f"manifest line {line}: unrecognized evidence_category")
+        visibility = row["visibility"].strip().lower()
+        publication_path = row["publication_path"].strip()
+        if visibility == "public":
+            public_count += 1
+            if not publication_path:
+                errors.append(f"manifest line {line}: public artifact has no publication_path")
+                continue
+            relative = PurePosixPath(publication_path)
+            if relative.is_absolute() or ".." in relative.parts or "\\" in publication_path:
+                errors.append(f"manifest line {line}: publication_path must be repository-relative with forward slashes")
+                continue
+            target = (ROOT / Path(*relative.parts)).resolve()
+            try:
+                target.relative_to(ROOT.resolve())
+            except ValueError:
+                errors.append(f"manifest line {line}: publication_path escapes the repository")
+                continue
+            if not target.is_file():
+                errors.append(f"manifest line {line}: publication_path does not resolve to a file: {publication_path}")
+        elif visibility == "withheld":
+            if publication_path:
+                errors.append(f"manifest line {line}: withheld artifact must not have a publication_path")
+            if not row["sanitization_or_withheld_reason"].strip():
+                errors.append(f"manifest line {line}: withheld artifact needs a reason")
+        else:
+            errors.append(f"manifest line {line}: visibility must be public or withheld")
+        if not row["supported_claim"].strip() or not row["limitations"].strip():
+            errors.append(f"manifest line {line}: supported_claim and limitations are required")
+    if not rows:
+        errors.append("evidence manifest contains no records")
+    return public_count
+
+
+def check_public_text(errors: list[str]) -> tuple[int, int]:
+    checked = 0
+    placeholders = 0
+    extensions = {".md", ".csv", ".py", ".json", ".tf", ".mmd", ".yml", ".yaml"}
+    for path in ROOT.rglob("*"):
+        if not path.is_file() or path.suffix.lower() not in extensions:
+            continue
+        if path.resolve() == Path(__file__).resolve():
+            continue  # This checker contains its own path and placeholder detection patterns.
+        relative = path.relative_to(ROOT)
+        if any(part in SKIP for part in relative.parts):
+            continue
+        try:
+            text = path.read_text(encoding="utf-8")
+        except UnicodeDecodeError:
+            errors.append(f"public text file is not UTF-8: {relative.as_posix()}")
+            continue
+        checked += 1
+        if ABSOLUTE_PATH.search(text):
+            errors.append(f"possible absolute machine path in public text: {relative.as_posix()}")
+        if PLACEHOLDER.search(text):
+            placeholders += 1
+            errors.append(f"placeholder text found in public text: {relative.as_posix()}")
+        if path.suffix.lower() == ".md" and re.search(r"(?m)^#{1,6}\s*$", text):
+            errors.append(f"empty Markdown heading found: {relative.as_posix()}")
+    return checked, placeholders
+
+
+def main() -> int:
+    errors: list[str] = []
+    check_week_pages(errors)
+    public_count = check_manifest(errors)
+    checked_text, _ = check_public_text(errors)
+
+    if errors:
+        print("Portfolio quality check failed:")
+        for error in errors:
+            print(f"- {error}")
+        return 1
+    print(f"Portfolio quality check passed: {len(WEEKS)} weekly pages, {public_count} public manifest paths, and {checked_text} public text files checked.")
+    return 0
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())

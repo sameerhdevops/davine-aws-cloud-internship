@@ -1,28 +1,29 @@
-# Week 2 - EC2 web server
+# Week 2 — EC2 and host-level security
 
-## Evidence status
+## Objective and observed workflow
 
-**Verified complete.** A recovered assignment brief, a dated Wednesday submission, and related EC2/Linux/Elastic IP/security-group/alarm captures establish the exercise. They are retained privately.
+The recovered exercise combined a small EC2 web host with basic Linux access and monitoring. The report and captures show an instance in `running` state, type `t3.micro`, all three instance status checks passing in one historical capture, a CPU alarm creation notification, browser-based access to a simple page, and an Elastic IP association.
 
-## Objective
+![Sanitized Week 2 console crop showing an EC2 instance running as a t3.micro with three status checks passed and an alarm creation notification; account, host, and resource identifiers are redacted.](../../evidence/assets/week-02-ec2/week-02-ec2-observed-status.png)
 
-Document a basic web-hosting workflow using an EC2 instance and verify that a simple page was reachable.
+*Original internship screenshot, published as a sanitized derivative. It records a historical instance view and an alarm-created notification; it does not establish current state, alarm evaluation, or notification delivery.*
 
-## Observed workflow
+## Recovered evidence and portal status
 
-1. An EC2 instance was shown running.
-2. Browser-based Linux access was shown.
-3. A public address was associated and a basic page was rendered.
-4. A CPU-related CloudWatch alarm was shown as created.
+**Original internship artifacts:** a task brief, a dated Week 2 report, and several EC2/Linux/network/monitoring screenshots were found. The public image is a redacted crop of one original screenshot; the original remains unchanged and private. Other screenshots include an IP address, instance identifiers, and host/account context, so they are not published.
 
-## Security considerations
+**Portal schedule:** Week 2 is marked Completed as reported by the user. No portal screenshot/export was found. The supplied portal submission history separately says “No weekly submissions yet.” The recovered report is not proof of a portal upload or acceptance.
 
-Historical screenshots show SSH/network exposure details. They are not published because addresses and resource identifiers are visible, and they should not be read as a recommended public-access pattern. Production access should use least privilege, restricted ingress, current patching, and managed access paths where appropriate.
+## Security and operational decisions
 
-## Limitations
+The historical security-group capture shows SSH limited to one `/32`, while HTTP on port 80 is open to `0.0.0.0/0` for the web exercise. A separate launch form later displays an SSH-from-anywhere warning; it is not evidence that this rule was applied. These are contextual observations, not recommended defaults. For a real host, restrict ingress to the required source, patch the OS, use a managed access path where feasible, separate web traffic from administration, and review alarms and logs. A running instance is not the same as a healthy application.
 
-No server configuration, user-data script, web-page source, or infrastructure definition is available. The exercise demonstrates capture-time evidence, not an active deployment.
+Elastic IPs and continuously running instances can incur charges. Review address attachment and instance lifecycle, and remove lab resources through an authorized cleanup process after use.
 
-## Evidence
+For an interview: “I distinguish EC2 instance checks from application health. The instance can pass platform checks while the service is unavailable, so I would also verify the process, listener, security-group path, and application response.”
 
-Week 2 captures remain private because they expose addresses and resource identifiers. No Week 2 screenshot is published; see the [central evidence gallery](../../evidence/README.md) for the portfolio's public-safe evidence.
+## Limitations and links
+
+No user-data script, web-root content, security-group source file, or Terraform configuration was recovered. The screenshot is not a current deployment or proof that the alarm fired. See the [gallery entry](../../evidence/README.md#week-2-ec2-and-host-level-security) and [evidence manifest](../../evidence/manifest.csv).
+
+Next: [Week 3 — VPC networking](../week-03-vpc-networking/README.md).

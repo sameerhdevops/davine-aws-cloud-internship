@@ -10,7 +10,7 @@ from urllib.parse import unquote, urlsplit
 
 
 ROOT = Path(__file__).resolve().parents[1]
-SKIP_PARTS = {".git", ".terraform", "node_modules", "recovery-audit"}
+SKIP_PARTS = {".git", ".terraform", ".local-review", "node_modules", "recovery-audit", "weeks"}
 FENCE_RE = re.compile(r"(?ms)^\s*(```+|~~~+).*?^\s*\1\s*$")
 INLINE_RE = re.compile(r"(?<!!)\[[^\]]*\]\(\s*(?:<([^>]+)>|([^\s)]+))(?:\s+[^)]*)?\)")
 IMAGE_RE = re.compile(r"!\[[^\]]*\]\(\s*(?:<([^>]+)>|([^\s)]+))(?:\s+[^)]*)?\)")

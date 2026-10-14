@@ -1,0 +1,9 @@
+{
+  "vpc_cidr": "10.20.0.0/16",
+  "subnets": [
+    {"name": "public-a", "cidr": "10.20.1.0/24", "az": "az-a", "exposure": "public", "routes": ["local", "internet-gateway"]},
+    {"name": "private-a", "cidr": "10.20.11.0/24", "az": "az-a", "exposure": "private", "routes": ["local"]},
+    {"name": "public-b", "cidr": "10.20.2.0/24", "az": "az-b", "exposure": "public", "routes": ["local", "internet-gateway"]},
+    {"name": "private-b", "cidr": "10.20.12.0/24", "az": "az-b", "exposure": "private", "routes": ["local"]}
+  ]
+}

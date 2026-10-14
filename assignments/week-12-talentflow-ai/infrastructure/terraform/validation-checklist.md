@@ -1,16 +1,16 @@
 # Terraform validation checklist
 
-## Latest Windows run (2026-10-13)
+## Latest Windows run (2026-10-14)
 
 Terraform v1.16.5, Windows `windows_amd64`, locked `hashicorp/aws` provider v5.100.0:
 
 - [x] `terraform fmt -check` — passed, exit code 0.
 - [x] `terraform init -backend=false -input=false -no-color` — initialized using the provider selected by `.terraform.lock.hcl`, exit code 0. No remote backend was configured.
-- [ ] `terraform validate -no-color` — **not completed**. The local AWS provider plugin failed to respond to Terraform's `GetProviderSchema` request. See the verbatim safe output in the [validation record](../../../../evidence/validation/terraform/local-validation-2026-10-13.md).
+- [ ] `terraform validate -no-color` — **not completed**. The local AWS provider plugin failed to respond to Terraform's `GetProviderSchema` request. See the verbatim safe output in the [validation record](../../../../evidence/validation/terraform/local-validation-2026-10-14.md).
 
 An earlier validation note reported a successful local validation after a lifecycle-rule warning was corrected with an explicit empty `filter {}`. A fresh rerun in this release environment did not reproduce that result because the provider process failed before returning its schema. The earlier observation is not used as a substitute for the latest result.
 
-The [GitHub Actions run](https://github.com/sameerhdevops/github-portfolio/actions/runs/38402304332) completed successfully on Ubuntu for commit `cb3653c345e0d7f8284ae910d92b10ece35d885d`; formatting, backend-free initialization, and validation passed. See the [hosted validation record](../../../../evidence/validation/terraform/github-actions-2026-10-13.md). This does not replace the separate local result above.
+The release-branch [GitHub Actions run](https://github.com/sameerhdevops/github-portfolio/actions/runs/38515781949) passed formatting, backend-free initialization, and validation for commit `33ef86f22bb362894d9460fd6bce2aae0bb9a480`; the [run record](../../../../evidence/validation/terraform/github-actions-release-2026-10-14.md) documents the full scope. This validates the Terraform source against provider schemas only. It does not produce a plan or establish deployed resources.
 
 ## Earlier plan attempt
 

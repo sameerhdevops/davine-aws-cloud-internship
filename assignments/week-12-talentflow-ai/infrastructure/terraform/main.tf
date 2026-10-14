@@ -106,6 +106,19 @@ resource "aws_route_table_association" "private" {
   route_table_id = aws_route_table.private[count.index].id
 }
 
+# A gateway endpoint keeps private-subnet access to the resume bucket on the
+# AWS network without adding a NAT Gateway or public egress route.
+resource "aws_vpc_endpoint" "s3" {
+  vpc_id            = aws_vpc.main.id
+  service_name      = "com.amazonaws.${var.aws_region}.s3"
+  vpc_endpoint_type = "Gateway"
+  route_table_ids   = aws_route_table.private[*].id
+
+  tags = {
+    Name = "${var.project_name}-S3-Gateway-Endpoint"
+  }
+}
+
 # -----------------------------------------------------------------------------
 # 4. Tiered Security Groups (ALB -> EC2 -> RDS)
 # -----------------------------------------------------------------------------
@@ -140,12 +153,12 @@ resource "aws_vpc_security_group_ingress_rule" "alb_https" {
 }
 
 resource "aws_vpc_security_group_egress_rule" "alb_to_vpc_http" {
-  security_group_id = aws_security_group.alb.id
-  description       = "Allow outbound HTTP traffic to targets inside the TalentFlow VPC"
-  cidr_ipv4         = var.vpc_cidr
-  from_port         = 80
-  ip_protocol       = "tcp"
-  to_port           = 80
+  security_group_id            = aws_security_group.alb.id
+  description                  = "Allow outbound HTTP traffic only to the application tier"
+  referenced_security_group_id = aws_security_group.ec2.id
+  from_port                    = 80
+  ip_protocol                  = "tcp"
+  to_port                      = 80
 }
 
 # 4B. EC2 Application Tier Security Group
@@ -180,18 +193,18 @@ resource "aws_vpc_security_group_ingress_rule" "ec2_ssh_restricted" {
 }
 
 resource "aws_vpc_security_group_egress_rule" "ec2_to_rds_mysql" {
-  security_group_id = aws_security_group.ec2.id
-  description       = "Allow outbound MySQL traffic to private database tier within VPC"
-  cidr_ipv4         = var.vpc_cidr
-  from_port         = 3306
-  ip_protocol       = "tcp"
-  to_port           = 3306
+  security_group_id            = aws_security_group.ec2.id
+  description                  = "Allow outbound MySQL traffic only to the database tier"
+  referenced_security_group_id = aws_security_group.rds.id
+  from_port                    = 3306
+  ip_protocol                  = "tcp"
+  to_port                      = 3306
 }
 
-resource "aws_vpc_security_group_egress_rule" "ec2_https_outbound" {
+resource "aws_vpc_security_group_egress_rule" "ec2_https_to_s3" {
   security_group_id = aws_security_group.ec2.id
-  description       = "Allow outbound HTTPS for AWS API and package repository calls"
-  cidr_ipv4         = "0.0.0.0/0"
+  description       = "Allow HTTPS only to the regional S3 gateway endpoint prefix list"
+  prefix_list_id    = aws_vpc_endpoint.s3.prefix_list_id
   from_port         = 443
   ip_protocol       = "tcp"
   to_port           = 443
