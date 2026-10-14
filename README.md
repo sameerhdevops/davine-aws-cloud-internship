@@ -59,7 +59,7 @@ terraform init -backend=false -input=false
 terraform validate
 ```
 
-On Windows with Terraform v1.16.5 and the locked AWS provider v5.100.0, the current [local validation record](evidence/validation/terraform/local-validation-2026-10-14.md) shows `terraform fmt -check` and backend-free initialization passing; `terraform validate` failed before schema output because the provider plugin did not respond. The last published-main Ubuntu run passed its recorded link/format/init/validate jobs for commit `1d75790fa9a37e29b1f2afb65603567070e3404b` ([run record](evidence/validation/terraform/github-actions-main-2026-10-13.md)). The release branch’s CI result will be recorded after GitHub evaluates it. **No plan, apply, AWS CLI deployment, or cloud resource operation was run for this portfolio update.**
+On Windows with Terraform v1.16.5 and the locked AWS provider v5.100.0, the current [local validation record](evidence/validation/terraform/local-validation-2026-10-14.md) shows `terraform fmt -check` and backend-free initialization passing; `terraform validate` failed before schema output because the provider plugin did not respond. The [release-branch GitHub Actions run](evidence/validation/terraform/github-actions-release-2026-10-14.md) passed its Markdown, portfolio-manifest, demonstration-test, and Ubuntu Terraform format/init/validate jobs for commit `33ef86f22bb362894d9460fd6bce2aae0bb9a480`. **No plan, apply, AWS CLI deployment, or cloud resource operation was run for this portfolio update.**
 
 ## Evidence and technical limits
 

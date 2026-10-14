@@ -38,7 +38,7 @@ terraform init -backend=false -input=false
 terraform validate
 ```
 
-The most recent local Windows result and the last published-main hosted result are recorded separately in the [local validation record](../../../../evidence/validation/terraform/local-validation-2026-10-14.md) and [main-branch validation record](../../../../evidence/validation/terraform/github-actions-main-2026-10-13.md). These are formatting/backend-free initialization/schema checks only; the hosted run is tied to its specific commit and predates this branch. Neither check produces an AWS plan or proves deployed resources. The release branch must pass its own GitHub Actions run before merge.
+The most recent local Windows result and this branch’s Ubuntu result are recorded separately in the [local validation record](../../../../evidence/validation/terraform/local-validation-2026-10-14.md) and [release-branch validation record](../../../../evidence/validation/terraform/github-actions-release-2026-10-14.md). Windows formatting and backend-free initialization passed; its provider process failed before returning a schema. The recorded Ubuntu CI run completed formatting, backend-free initialization, and schema validation successfully for its exact commit. Neither check produces an AWS plan or proves deployed resources.
 
 Do not run `terraform plan`, `terraform apply`, or `terraform destroy` for this portfolio review. A separately recorded earlier plan invocation failed before producing a plan because valid AWS credentials were unavailable; this update did not run a plan. No cloud resource should be created to inspect or validate this code.
 

@@ -10,7 +10,7 @@ Terraform v1.16.5, Windows `windows_amd64`, locked `hashicorp/aws` provider v5.1
 
 An earlier validation note reported a successful local validation after a lifecycle-rule warning was corrected with an explicit empty `filter {}`. A fresh rerun in this release environment did not reproduce that result because the provider process failed before returning its schema. The earlier observation is not used as a substitute for the latest result.
 
-The last published-main Ubuntu result is the [GitHub Actions run](https://github.com/sameerhdevops/github-portfolio/actions/runs/38403674986) for commit `1d75790fa9a37e29b1f2afb65603567070e3404b`. Formatting, backend-free initialization, and validation passed; the [run record](../../../../evidence/validation/terraform/github-actions-main-2026-10-13.md) notes that it predates this release branch. The current release branch must pass its own CI checks before it is considered validated.
+The release-branch [GitHub Actions run](https://github.com/sameerhdevops/github-portfolio/actions/runs/38515781949) passed formatting, backend-free initialization, and validation for commit `33ef86f22bb362894d9460fd6bce2aae0bb9a480`; the [run record](../../../../evidence/validation/terraform/github-actions-release-2026-10-14.md) documents the full scope. This validates the Terraform source against provider schemas only. It does not produce a plan or establish deployed resources.
 
 ## Earlier plan attempt
 

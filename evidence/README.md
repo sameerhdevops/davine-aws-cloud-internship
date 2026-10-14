@@ -74,7 +74,7 @@ The remaining report pages and captures are withheld because they expose account
 
 - [Independent demonstration tests](validation/local-demo-tests-2026-10-14.md): 11 standard-library tests passed locally on Windows/Python 3.14.7.
 - [Local Terraform checks](validation/terraform/local-validation-2026-10-14.md): format and backend-free initialization passed; Windows provider-schema validation failed before reading the configuration.
-- [Last published-main CI run](https://github.com/sameerhdevops/github-portfolio/actions/runs/38403674986): the recorded Markdown link check and Ubuntu Terraform formatting, backend-free initialization, and validation jobs passed for `1d75790fa9a37e29b1f2afb65603567070e3404b`. This run predates the release branch; its [record](validation/terraform/github-actions-main-2026-10-13.md) states its scope. The branch-specific CI result will be added after GitHub runs it.
+- [Release-branch CI run](https://github.com/sameerhdevops/github-portfolio/actions/runs/38515781949): both jobs passed for `33ef86f22bb362894d9460fd6bce2aae0bb9a480`, including Markdown links, portfolio/manifests, 11 local tests, Terraform formatting, backend-free initialization, and Ubuntu schema validation. The [run record](validation/terraform/github-actions-release-2026-10-14.md) states its exact scope. It does not establish an AWS plan or deployment.
 
 These records do not establish an AWS plan or deployment. The workflow has read-only repository permissions and no AWS credentials or deployment steps.
 
