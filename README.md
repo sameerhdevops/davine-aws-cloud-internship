@@ -104,6 +104,6 @@ The [diagram source](diagrams/repository-structure.mmd) and [Terraform security-
 
 Retained internship descriptions, added portfolio work, independent reconstructions, and validation results have distinct labels. The term “reconstruction” describes how an artifact relates to the available source material; it is not a personal-authorship or deployment claim. The [evidence gallery](evidence/README.md) includes captions and a [file-level manifest](evidence/manifest.csv).
 
-AI tools assisted with parts of the implementation and documentation. I review the project, test its behavior, and am responsible for explaining the work I present.
+AI tools assisted with parts of the implementation and documentation. The repository records the checks run, their scope, and the limits of what they establish.
 
 GitHub profile: [sameerhdevops](https://github.com/sameerhdevops).

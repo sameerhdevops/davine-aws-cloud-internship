@@ -59,7 +59,7 @@ REQUIRED_ARTIFACTS = (
 )
 AI_DISCLOSURE = (
     "AI tools assisted with parts of the implementation and documentation. "
-    "I review the project, test its behavior, and am responsible for explaining the work I present."
+    "The repository records the checks run, their scope, and the limits of what they establish."
 )
 
 

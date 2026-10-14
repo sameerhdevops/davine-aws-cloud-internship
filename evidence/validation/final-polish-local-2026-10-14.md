@@ -30,6 +30,8 @@ Baseline is published-main commit `aad300cf6825342ffffea30900874d84fff7cb70`, be
 
 The correct Terraform working directory is the Week 12 `infrastructure/terraform/` directory. An earlier command accidentally targeted the repository root, which has no Terraform configuration; its empty-directory result is excluded from this record. The validated configuration and lock file are unchanged by this review. Hosted validation for the pull-request commit is reported on the PR Checks tab when available.
 
+After source commit `b8511cb`, the root README disclosure was revised to avoid making a first-person claim about the portfolio owner's review process, and the corresponding quality-check string was updated. On that follow-up working tree, the full Python suite again passed (44 tests), the VPC demo passed, Markdown and portfolio checks passed (197 links in 37 files; 12 weeks, 36 public manifest paths, 73 public text files), compileall passed, and both Ruff checks passed. Terraform source was unchanged. The final GitHub Actions run is the check for the resulting PR commit.
+
 ## Additional review notes
 
 - The bounded edge-case probe found one mismatch: the S3 event parser accepted whitespace in a bucket name. The handler now rejects whitespace there, and a regression test confirms whitespace-only object keys remain accepted as keys.
