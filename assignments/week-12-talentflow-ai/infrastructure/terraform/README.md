@@ -1,6 +1,31 @@
 # TalentFlow AI — reconstructed Terraform baseline
 
-This repository contains a Terraform reconstruction for portfolio study. It is **not** recovered Week 7 or Week 12 source, and it has not been applied to AWS. The [architecture diagram](architecture.mmd) describes only resources declared by this configuration and labels future application tiers separately. The classification does not establish personal authorship; see the [evidence policy](../../../../docs/evidence-and-validation.md#terms-and-owner-verification).
+This repository contains a Terraform reconstruction for portfolio study. It is **not** recovered Week 7 or Week 12 source, and it has not been applied to AWS. The [architecture diagram](architecture.mmd) describes only resources declared by this configuration and labels future application tiers separately. “Reconstruction” describes provenance, not personal authorship; see the [evidence policy](../../../../docs/EVIDENCE.md).
+
+## Declared resource map
+
+| Layer | Terraform resources | Purpose and boundary |
+| --- | --- | --- |
+| Network | `aws_vpc.main`, `aws_internet_gateway.main`, `aws_subnet.public`, `aws_subnet.private`, route tables, associations, `aws_vpc_endpoint.s3` | Two public and two isolated private subnets; no NAT Gateway or application workload. |
+| Security groups | `aws_security_group.alb`, `.ec2`, `.rds` and standalone ingress/egress rules | Models future ALB → EC2 → RDS flows. The groups are not attached to created compute resources. |
+| Object storage | `aws_s3_bucket.resumes` plus ownership, public-access-block, policy, versioning, encryption, and lifecycle resources | Private versioned bucket with SSE-S3, TLS-only bucket policy, and noncurrent-version cleanup. |
+| Identity | `aws_iam_role.ec2_s3_role`, `aws_iam_role_policy.ec2_s3_least_privilege`, `aws_iam_instance_profile.ec2_profile` | EC2 trust and bucket/object-scoped read permissions; no instance is created or attached. |
+| Monitoring and notification | `aws_cloudwatch_log_group.app_logs`, `aws_cloudwatch_metric_alarm.storage_warning`, `aws_sns_topic.alerts` | Seven-day log retention and a daily S3 storage metric alarm. No log producer or SNS subscription is defined. |
+
+The [resource diagram source](architecture.mmd) provides the relationships. Its future workload components are explicitly not provisioned here.
+
+```mermaid
+flowchart LR
+  Internet --> IGW[aws_internet_gateway.main]
+  IGW --> PublicRT[aws_route_table.public]
+  PublicRT --> PublicSubnets[Two public subnets<br/>automatic public IPv4 disabled]
+  PrivateSubnets[Two private subnets] --> PrivateRT[Separate private route tables]
+  PrivateRT --> S3Endpoint[aws_vpc_endpoint.s3]
+  S3Endpoint --> Bucket[Private S3 bucket]
+  FutureALB[Future ALB<br/>not created] -. port 80 .-> FutureApp[Future EC2<br/>not created]
+  FutureApp -. port 3306 .-> FutureDB[Future RDS<br/>not created]
+  FutureApp -. HTTPS via S3 prefix list .-> S3Endpoint
+```
 
 ## What the configuration declares
 
@@ -19,7 +44,7 @@ Each private subnet has its own route table. An S3 gateway endpoint adds the ser
 
 The sample subnet CIDRs were checked for containment in the default VPC range and for overlap with one another. Variable validation checks CIDR syntax and distinct entries, but does not compare overridden subnet ranges with each other or with an overridden VPC range. Review containment and overlap manually before using changed CIDRs.
 
-The ALB, EC2, and RDS security groups are preparatory configuration resources. Their rules do not expose a running load balancer, application, or database because this configuration creates no matching compute, load-balancer, or database resources. The security-group resources omit inline rules and use standalone ingress/egress rule resources. The locked AWS provider v5.100.0 documentation says Terraform removes AWS's initial allow-all egress rule when it creates a VPC security group; the declared standalone rules therefore express the scoped egress described above. See the [versioned provider reference](https://registry.terraform.io/providers/hashicorp/aws/5.100.0/docs/resources/security_group#note-on-egress-rules) and [AWS security-group rule behavior](https://docs.aws.amazon.com/vpc/latest/userguide/creating-security-groups.html).
+The ALB, EC2, and RDS security groups are preparatory configuration resources. Their rules do not expose a running load balancer, application, or database because this configuration creates no matching compute, load-balancer, or database resources. The security-group resources omit inline rules and use standalone ingress/egress rule resources. The locked AWS provider v5.100.0 documentation says Terraform removes AWS's initial allow-all egress rule when it creates a VPC security group; the declared standalone rules therefore express the scoped egress described above. The RDS security group has no explicit egress rule. See the [versioned provider reference](https://registry.terraform.io/providers/hashicorp/aws/5.100.0/docs/resources/security_group#note-on-egress-rules) and [AWS security-group rule behavior](https://docs.aws.amazon.com/vpc/latest/userguide/creating-security-groups.html).
 
 ## Security and cost considerations
 
@@ -34,17 +59,17 @@ The ALB, EC2, and RDS security groups are preparatory configuration resources. T
 
 ## Local validation
 
-From this directory, the checks are:
+From this directory, the safe static checks are:
 
 ```powershell
 terraform fmt -check
-terraform init -backend=false -input=false
+terraform init -backend=false -input=false -lockfile=readonly
 terraform validate
 ```
 
-The [local Terraform record](../../../../evidence/validation/terraform/local-validation-2026-10-14.md) describes the Windows provider-process failure; the [previous release-branch record](../../../../evidence/validation/terraform/github-actions-release-2026-10-14.md) applies to a different commit and passed on Ubuntu. This review’s Python and local Terraform results are in the [final-review record](../../../../evidence/validation/final-review-2026-10-14.md). Its Windows formatting and backend-free initialization passed, but the provider process failed before returning a schema. The current pull request’s hosted result applies to its own exact commit. These checks do not produce an AWS plan or prove deployed resources.
+See the [validation index](../../../../evidence/validation/README.md) for commit-scoped local and hosted results. The previous Windows Terraform validation passed formatting and backend-free initialization but failed before the provider returned a schema; hosted Ubuntu validation passed for its recorded commit. These checks do not produce an AWS plan or prove deployed resources.
 
-Do not run `terraform plan`, `terraform apply`, or `terraform destroy` for this portfolio review. A separately recorded earlier plan invocation failed before producing a plan because valid AWS credentials were unavailable; this update did not run a plan. No cloud resource should be created to inspect or validate this code.
+The portfolio checks are limited to formatting, backend-free initialization, and static validation. Do not run `terraform plan`, `terraform apply`, or `terraform destroy`. A separately recorded earlier plan invocation failed before producing a plan because valid AWS credentials were unavailable. No cloud resource should be created to inspect or validate this code.
 
 ## Files
 
@@ -53,3 +78,5 @@ Do not run `terraform plan`, `terraform apply`, or `terraform destroy` for this 
 - [Inputs](variables.tf) and [safe example values](terraform.tfvars.example)
 - [Resources](main.tf) and [outputs](outputs.tf)
 - [Terraform-specific ignore rules](.gitignore)
+- [Future sandbox runbook](sandbox-runbook.md)
+- [Future sandbox evidence checklist](validation-checklist.md#future-sandbox-evidence-checklist)

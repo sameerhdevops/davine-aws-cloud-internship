@@ -9,7 +9,7 @@ This page consolidates the Week 10 audit observations and security/cost reasonin
 - **Well-Architected Tool:** the screenshot shows 0 of 57 questions answered and 0 issues displayed. It is not evidence of a completed review.
 - **Billing:** the Cost Explorer capture shows $0 under its selected date/filter view. A separate budget capture shows spend above a $1 budget and a higher forecast, with exceeded alerts. These are different screens and contexts; the amounts are not combined into a monthly or account-wide claim. Billing screenshots are withheld.
 
-These are historical observations, not current account state. The portal schedule marks Week 10 Completed only in the user-reported status; no portal screenshot/export was found, and the supplied submission history says “No weekly submissions yet.”
+These are historical observations, not current account state. The supplied portal information marks Week 10 Completed; no portal screenshot/export is retained, and the submission history is listed as “No weekly submissions yet.”
 
 ## Independent least-privilege example
 

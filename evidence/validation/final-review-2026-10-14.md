@@ -29,8 +29,8 @@ A bounded stdin edge-case probe exercised malformed VPC input, duplicate routes,
 
 The separate older Ubuntu workflow result in the [release-branch record](terraform/github-actions-release-2026-10-14.md) applies to its exact older commit. The initial pull-request run [38531004190](https://github.com/sameerhdevops/github-portfolio/actions/runs/38531004190) passed for commit `27e437238c17b56acb7b48e4da3394b83e4fb3ed`; see the [commit-scoped PR record](github-actions-pr-3-2026-10-14.md). That hosted run is separate from the Windows provider-process failure.
 
-No `terraform plan`, `apply`, or `destroy`, AWS CLI resource operation, or AWS deployment was run for this review. This repository’s Terraform remains a reconstruction and has not been applied.
+No `terraform plan`, `apply`, or `destroy`, AWS CLI resource operation, or AWS deployment was run during that validation. The repository’s Terraform is a reconstruction and has not been applied.
 
 ## Security and visual-review notes
 
-A high-confidence credential and absolute-local-path pattern scan of 74 tracked and nonignored working-tree files found no matches. Nine published PNG derivatives were visually reviewed and their available metadata was checked; source correspondence and prior claims about private originals still require owner verification. SVG/XML structure and labels were parsed, but no local renderer was available: **VISUAL REVIEW: OWNER REQUIRED** for diagram layout.
+A high-confidence credential and absolute-local-path pattern scan of 74 tracked and nonignored working-tree files found no matches. Nine published PNG derivatives were visually reviewed and their available metadata was checked; correspondence to private originals and statements about those originals have not been independently checked. SVG/XML structure and labels were parsed, but no local renderer was available, so diagram layout has not been visually reviewed.

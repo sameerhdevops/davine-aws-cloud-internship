@@ -19,7 +19,9 @@ ROOT = Path(__file__).resolve().parents[1]
 
 class VpcPlanTests(unittest.TestCase):
     def setUp(self) -> None:
-        self.plan = json.loads((ROOT / "demos/week03_vpc/network-plan.json").read_text(encoding="utf-8"))
+        self.plan = json.loads(
+            (ROOT / "demos/week03_vpc/network-plan.json").read_text(encoding="utf-8")
+        )
 
     def assert_error(self, expected: str, errors: list[str]) -> None:
         self.assertTrue(any(expected in error for error in errors), errors)
@@ -132,11 +134,28 @@ class ServerlessEventTests(unittest.TestCase):
     def test_plus_decoding_distinguishes_space_from_encoded_plus(self) -> None:
         self.assertEqual([{"bucket": "example", "key": "a b+c"}], handle(self.event_for("a+b%2Bc")))
 
+    def test_rejects_whitespace_in_bucket_names_but_preserves_whitespace_object_keys(self) -> None:
+        invalid_bucket = {
+            "Records": [{"s3": {"bucket": {"name": "bad bucket"}, "object": {"key": "k"}}}]
+        }
+        with self.assertRaisesRegex(ValueError, "bucket name"):
+            handle(invalid_bucket)
+        self.assertEqual([{"bucket": "example", "key": "  "}], handle(self.event_for("  ")))
+
     def test_accepts_empty_records_list_as_no_work(self) -> None:
         self.assertEqual([], handle({"Records": []}))
 
     def test_rejects_bad_event_records_and_nested_values_as_value_errors(self) -> None:
-        for event in (None, [], "event", {}, {"Records": None}, {"Records": "bad"}, {"Records": [None]}, {"Records": [{}]}):
+        for event in (
+            None,
+            [],
+            "event",
+            {},
+            {"Records": None},
+            {"Records": "bad"},
+            {"Records": [None]},
+            {"Records": [{}]},
+        ):
             with self.subTest(event=event), self.assertRaises(ValueError):
                 handle(event)
         for event in (
@@ -213,7 +232,9 @@ class IdempotencyTests(unittest.TestCase):
 
 class PolicyReviewTests(unittest.TestCase):
     def setUp(self) -> None:
-        self.policy = json.loads((ROOT / "demos/week10_governance/example-policy.json").read_text(encoding="utf-8"))
+        self.policy = json.loads(
+            (ROOT / "demos/week10_governance/example-policy.json").read_text(encoding="utf-8")
+        )
 
     def errors_for(self, **statement_changes: object) -> list[str]:
         policy = copy.deepcopy(self.policy)
@@ -233,7 +254,13 @@ class PolicyReviewTests(unittest.TestCase):
         self.assertEqual([], validate_policy(policy))
 
     def test_rejects_every_all_bucket_and_bucket_segment_wildcard_form(self) -> None:
-        for resource in ("*", "arn:aws:s3:::*", "arn:aws:s3:::*/*", "arn:aws:s3:::bucket*/*", "arn:aws:s3:::bu*cket/key"):
+        for resource in (
+            "*",
+            "arn:aws:s3:::*",
+            "arn:aws:s3:::*/*",
+            "arn:aws:s3:::bucket*/*",
+            "arn:aws:s3:::bu*cket/key",
+        ):
             with self.subTest(resource=resource):
                 self.assert_error("object ARNs", self.errors_for(Resource=resource))
 
@@ -262,15 +289,38 @@ class PolicyReviewTests(unittest.TestCase):
             {"Resource": ["arn:aws:s3:::example-talentflow-upload/*", "*"]},
         ):
             with self.subTest(changes=changes):
-                errors = validate_policy(self.policy | {"Statement": [{**self.policy["Statement"][0], **changes}]})
-                self.assert_error("action outside" if "Action" in changes else "object ARNs", errors)
+                errors = validate_policy(
+                    self.policy | {"Statement": [{**self.policy["Statement"][0], **changes}]}
+                )
+                self.assert_error(
+                    "action outside" if "Action" in changes else "object ARNs", errors
+                )
 
     def test_rejects_wrong_types_empty_and_unhashable_action_or_resource_values(self) -> None:
-        for value in (None, 1, True, "", [], {}, ["s3:GetObject", None], ["s3:GetObject", {}], [["s3:GetObject"]]):
+        for value in (
+            None,
+            1,
+            True,
+            "",
+            [],
+            {},
+            ["s3:GetObject", None],
+            ["s3:GetObject", {}],
+            [["s3:GetObject"]],
+        ):
             with self.subTest(field="Action", value=value):
                 errors = self.errors_for(Action=value)
                 self.assert_error("Action must be", errors)
-        for value in (None, 1, True, "", [], {}, ["arn:aws:s3:::example-talentflow-upload/*", None], [["arn:aws:s3:::example-talentflow-upload/*"]]):
+        for value in (
+            None,
+            1,
+            True,
+            "",
+            [],
+            {},
+            ["arn:aws:s3:::example-talentflow-upload/*", None],
+            [["arn:aws:s3:::example-talentflow-upload/*"]],
+        ):
             with self.subTest(field="Resource", value=value):
                 self.assert_error("Resource must be", self.errors_for(Resource=value))
 
@@ -285,14 +335,21 @@ class PolicyReviewTests(unittest.TestCase):
                 self.assert_error("Version must", validate_policy(policy))
         for statement in (None, [], "bad"):
             with self.subTest(statement=statement):
-                self.assert_error("Statement", validate_policy({"Version": "2012-10-17", "Statement": statement}))
-        self.assert_error("statement 0 must be an object", validate_policy({"Version": "2012-10-17", "Statement": [None]}))
+                self.assert_error(
+                    "Statement", validate_policy({"Version": "2012-10-17", "Statement": statement})
+                )
+        self.assert_error(
+            "statement 0 must be an object",
+            validate_policy({"Version": "2012-10-17", "Statement": [None]}),
+        )
 
     def test_rejects_missing_fields_effect_sid_and_unsupported_constructs(self) -> None:
         base = self.policy["Statement"][0]
         for field in ("Action", "Resource", "Effect"):
             statement = {key: value for key, value in base.items() if key != field}
-            self.assert_error("statement 0", validate_policy({"Version": "2012-10-17", "Statement": [statement]}))
+            self.assert_error(
+                "statement 0", validate_policy({"Version": "2012-10-17", "Statement": [statement]})
+            )
         for changes in (
             {"Effect": "Deny"},
             {"Sid": []},
@@ -320,7 +377,10 @@ class PolicyReviewTests(unittest.TestCase):
         invalid = {"Effect": "Allow", "Action": ["s3:GetObject", 4], "Resource": "arn:aws:s3:::*"}
         errors = validate_policy({"Version": "2012-10-17", "Statement": [valid, invalid]})
         self.assert_error("statement 1", errors)
-        self.assert_error("policy contains unsupported fields", validate_policy(self.policy | {"Id": "unsupported"}))
+        self.assert_error(
+            "policy contains unsupported fields",
+            validate_policy(self.policy | {"Id": "unsupported"}),
+        )
 
 
 if __name__ == "__main__":

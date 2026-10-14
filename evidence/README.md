@@ -2,7 +2,7 @@
 
 This page displays nine screenshot derivatives described by the existing portfolio record as internship evidence. The captions state the visible historical observation and its limits. Historical captures do not establish current AWS state.
 
-**OWNER TO VERIFY:** this review inspected only the published image files; private originals were not reopened. Confirm each source-to-derivative match, date, redaction, and source description against the private originals before relying on these images as first-person work. The manifest records this provenance limitation. Current visual inspection covers only what is visible in the public derivatives.
+The captions and provenance descriptions follow existing portfolio records; private originals were not inspected. Source-to-derivative matches, dates, redactions, and source descriptions have not been independently checked against those private files. The manifest records this limitation. The gallery describes only what is visible in each published derivative.
 
 The [CSV manifest](manifest.csv) records artifact type, provenance, evidence category, public path, date confidence, supported claim, limitations, and redaction or withholding reason. Paths are repository-relative; private source-machine paths are not included.
 
@@ -80,17 +80,17 @@ These records do not establish an AWS plan or deployment. The workflow has read-
 
 ## Publication choices and labels
 
-**Published:** nine selected screenshot derivatives from Weeks 2, 5, 7, 8, 9, 10, and 12. The public copies were visually inspected in this review and have no embedded image metadata. Private originals were not reopened, so source correspondence and claims that the originals were left unchanged remain **OWNER TO VERIFY**. The Week 9 Auto Scaling derivative also masks its group and launch-template names.
+**Published:** nine selected screenshot derivatives from Weeks 2, 5, 7, 8, 9, 10, and 12. The public files were visually inspected and contain no embedded image metadata. Private originals were not inspected, so source correspondence and claims that originals were left unchanged have not been independently checked. The Week 9 Auto Scaling derivative also masks its group and launch-template names.
 
 **Withheld:** original reports and ZIP archives; account/billing and raw network/security-group screens; a launch form displaying SSH from `0.0.0.0/0`; a DynamoDB example row containing person-like sample data; endpoint/DNS/ARN/resource IDs; the incomplete Well-Architected review capture; and the full capstone/briefing PDFs. These add privacy, ownership, attribution, or interpretation risk beyond the narrow claims already supported by safe crops and written context. The public manifest records major withheld groups.
 
 ## Classification key
 
-- **Original internship artifact:** a source report, screenshot, or record described in the existing portfolio record; source details require owner verification in this review.
+- **Original internship artifact:** a source report, screenshot, or record described in existing portfolio records; source details have not been independently checked against private originals.
 - **Sanitized evidence derivative:** a publication copy with visible redaction/cropping; the underlying historical claim is unchanged.
 - **Independent reconstruction:** a later, reasoned diagram or infrastructure subset; the label does not establish personal authorship.
 - **Reproducible demonstration:** added local code or tests that demonstrate one bounded behavior; the label does not establish personal authorship.
 - **Independently validated:** a specific check actually run, with command, result, environment, and scope recorded.
 - **Not established by retained evidence:** a claim for which the available artifacts or checks are insufficient.
 
-The SVG diagrams’ XML, text labels, and internal links were checked against their documentation. No local SVG renderer was available for this pass: **VISUAL REVIEW: OWNER REQUIRED** before treating their layout as visually approved.
+The SVG diagrams’ XML, text labels, and internal links were checked against their documentation. No local SVG renderer was available, so their layout has not been visually reviewed.

@@ -4,12 +4,14 @@
 
 | Path | Purpose | Provenance |
 | --- | --- | --- |
-| `assignments/week-01-...` through `week-12-...` | Weekly narrative and evidence boundary | Portfolio summaries with retained-source claims marked for owner verification, plus clearly labeled added work |
+| `assignments/week-01-...` through `week-12-...` | Weekly narrative and evidence boundary | Portfolio summaries whose source details follow existing records and have not been checked against private originals, plus clearly labeled added work |
 | `evidence/` | Public gallery, CSV manifest, and validation records | Sanitized derivatives or actual local/hosted check records |
 | `demos/` and `tests/` | Small local engineering examples with tests | Added standard-library demonstrations; personal authorship is not asserted by the classification |
+| `scripts/aws_audit/` | Read-only EC2/security-group/S3 snapshot CLI | Added boto3 tool; tests use synthetic responses and make no AWS calls |
+| `samples/` | Example audit report files | Synthetic data only; no account output |
 | `diagrams/` | Week 5, Week 9, and capstone explanatory flows | Independent reconstructions; not AWS exports |
 | `assignments/week-12-talentflow-ai/infrastructure/terraform/` | Reconstructed baseline | Terraform reconstruction, not recovered Week 7 or capstone implementation |
-| `docs/` and `cross-cutting/` | Timeline, evidence policy, provenance, security, governance, cost | Added portfolio documentation |
+| `docs/` and `cross-cutting/` | Timeline, evidence, scope, security, governance, cost | Added portfolio documentation; some source details have not been checked against private originals |
 
 ## Public and private materials
 

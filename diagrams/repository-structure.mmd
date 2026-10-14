@@ -1,0 +1,12 @@
+flowchart TD
+  root[Repository root]
+  root --> readme[README and project scope]
+  root --> assignments[assignments/ - 12 weekly narratives]
+  root --> demos[demos/ - local engineering examples]
+  demos --> tests[tests/ - unittest suite]
+  root --> audit[scripts/aws_audit/ - read-only AWS snapshot]
+  audit --> deps[requirements-aws-audit.txt]
+  root --> infra[assignments/week-12.../infrastructure/terraform/]
+  root --> evidence[evidence/ - gallery and validation records]
+  root --> docs[docs/ - evidence, scope, and security notes]
+  root --> quality[.github/workflows/ and scripts/check_*.py]

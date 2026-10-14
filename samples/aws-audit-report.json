@@ -1,0 +1,62 @@
+{
+  "generated_at": null,
+  "limitations": [
+    "Synthetic sample only; no AWS API was called.",
+    "This is not a complete IAM, Organizations, network-path, or effective-access evaluator.",
+    "Bucket ACL checks inspect the bucket ACL, not every object's ACL.",
+    "An API error or missing configuration is not treated as a pass."
+  ],
+  "region": "ap-south-1",
+  "exit_code": 1,
+  "required_tag_keys": [
+    "Owner",
+    "Environment",
+    "Project"
+  ],
+  "schema_version": 1,
+  "scope": {
+    "ec2": "active instances and security groups in the selected Region",
+    "s3": "general purpose buckets owned by the caller across the account"
+  },
+  "summary": {
+    "FINDING": 1,
+    "NOT_CONFIGURED": 0,
+    "PASS": 1,
+    "UNKNOWN": 0
+  },
+  "findings": [
+    {
+      "check_id": "security-group-wide-ingress",
+      "details": {
+        "rules": [
+          {
+            "address": "0.0.0.0/0",
+            "ports": "22-22",
+            "protocol": "tcp"
+          }
+        ]
+      },
+      "region": "ap-south-1",
+      "resource_id": "sg-synthetic-example",
+      "resource_type": "security-group",
+      "status": "FINDING",
+      "summary": "Inbound rules allow traffic from a world-open CIDR: 1 rule(s)."
+    },
+    {
+      "check_id": "required-tags",
+      "details": {
+        "missing_tag_keys": [],
+        "required_tag_keys": [
+          "Owner",
+          "Environment",
+          "Project"
+        ]
+      },
+      "region": "ap-south-1",
+      "resource_id": "i-synthetic-example",
+      "resource_type": "ec2-instance",
+      "status": "PASS",
+      "summary": "All configured required tag keys are present."
+    }
+  ]
+}

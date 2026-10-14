@@ -26,8 +26,14 @@ def handle(event: Any, context: object | None = None) -> list[dict[str, str]]:
             raise ValueError(f"record {index} bucket and object data must be objects")
         bucket = bucket_data.get("name")
         key = object_data.get("key")
-        if not isinstance(bucket, str) or not bucket:
-            raise ValueError(f"record {index} bucket name must be a nonempty string")
+        if (
+            not isinstance(bucket, str)
+            or not bucket
+            or any(character.isspace() for character in bucket)
+        ):
+            raise ValueError(
+                f"record {index} bucket name must be a nonempty string without whitespace"
+            )
         if not isinstance(key, str) or not key:
             raise ValueError(f"record {index} object key must be a nonempty string")
         parsed.append({"bucket": bucket, "key": unquote_plus(key)})

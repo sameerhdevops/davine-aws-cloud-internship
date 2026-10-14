@@ -63,7 +63,9 @@ def validate_policy(policy: Any) -> list[str]:
     errors: list[str] = []
     unknown_policy_fields = set(policy) - SUPPORTED_POLICY_FIELDS
     if unknown_policy_fields:
-        errors.append(f"policy contains unsupported fields: {', '.join(sorted(map(str, unknown_policy_fields)))}")
+        errors.append(
+            f"policy contains unsupported fields: {', '.join(sorted(map(str, unknown_policy_fields)))}"
+        )
 
     if policy.get("Version") != "2012-10-17":
         errors.append('policy Version must be the supported string "2012-10-17"')
@@ -82,7 +84,9 @@ def validate_policy(policy: Any) -> list[str]:
 
         unknown_fields = set(statement) - SUPPORTED_STATEMENT_FIELDS
         if unknown_fields:
-            errors.append(f"statement {index} contains unsupported fields: {', '.join(sorted(map(str, unknown_fields)))}")
+            errors.append(
+                f"statement {index} contains unsupported fields: {', '.join(sorted(map(str, unknown_fields)))}"
+            )
 
         if "Effect" not in statement or statement.get("Effect") != "Allow":
             errors.append(f"statement {index} must use Effect Allow")
@@ -92,14 +96,20 @@ def validate_policy(policy: Any) -> list[str]:
 
         actions = _nonempty_strings(statement.get("Action"))
         if actions is None:
-            errors.append(f"statement {index} Action must be a nonempty string or list of nonempty strings")
+            errors.append(
+                f"statement {index} Action must be a nonempty string or list of nonempty strings"
+            )
         elif any(action not in ALLOWED_ACTIONS for action in actions):
             errors.append(f"statement {index} contains an action outside the example allow-list")
 
         resources = _nonempty_strings(statement.get("Resource"))
         if resources is None:
-            errors.append(f"statement {index} Resource must be a nonempty string or list of nonempty strings")
+            errors.append(
+                f"statement {index} Resource must be a nonempty string or list of nonempty strings"
+            )
         elif any(not _is_supported_object_arn(resource) for resource in resources):
-            errors.append(f"statement {index} must target named-bucket S3 object ARNs in the supported subset")
+            errors.append(
+                f"statement {index} must target named-bucket S3 object ARNs in the supported subset"
+            )
 
     return errors

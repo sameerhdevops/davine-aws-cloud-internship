@@ -1,0 +1,10 @@
+flowchart LR
+  cli[CLI arguments<br/>Region, profile, tag keys] --> session[Boto3 Session<br/>read-only credentials]
+  session --> ec2[EC2 DescribeInstances<br/>DescribeSecurityGroups]
+  session --> s3list[S3 ListBuckets<br/>account-wide inventory]
+  s3list --> controls[S3 GetBucketLocation<br/>GetBucketTagging<br/>GetPublicAccessBlock<br/>GetBucketPolicyStatus<br/>GetBucketAcl]
+  ec2 --> results[PASS / FINDING<br/>UNKNOWN / NOT_CONFIGURED]
+  controls --> results
+  results --> json[Optional JSON report]
+  results --> csv[Optional CSV report]
+  results --> exit[Exit code: 0 clean<br/>1 findings<br/>2 incomplete]
