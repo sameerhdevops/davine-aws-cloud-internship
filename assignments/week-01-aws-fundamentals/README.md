@@ -1,28 +1,30 @@
 # Week 1 — AWS cloud fundamentals
 
-## Objective and concepts
+## Objective
 
-The retained Week 1 material surveys core AWS service boundaries: IAM for identity and authorization; EC2 for virtual machines; S3 for object storage; VPC for network isolation; RDS and DynamoDB for relational and key-value/document data; Lambda for event-driven compute; CloudWatch for operational telemetry; and Route 53 and CloudFront for DNS and content delivery.
+Introduce the main AWS service boundaries and the habit of connecting a requirement to the service, permission, network path, and operational signal that supports it.
 
-The useful foundation is to start with the requirement and the responsibility boundary. A service name in a report is not itself evidence that a resource was configured. A console screenshot is a historical observation, not a current account audit.
+## What I did or implemented
 
-## Recovered internship work and evidence
+Retained Week 1 material surveys IAM, EC2, S3, VPC, RDS, DynamoDB, Lambda, CloudWatch, Route 53, and CloudFront. The available portal information marks Week 1 Completed and separately reports “No weekly submissions yet”; no portal screenshot or export is retained here.
 
-**Original internship artifacts:** a named Week 1 report, a task brief, and console captures associated with core AWS services were found. The report supports that these services were explored and summarized. The retained set does not provide a reproducible deployment or a cleanly attributable, public-safe Week 1 screenshot.
+## Key concepts
 
-**Portal schedule:** Week 1 is marked Completed in the portal state reported by the user. No saved portal screenshot or export was found; the portal state is therefore reported, not independently screenshot-verified. The supplied portal history says “No weekly submissions yet,” which is separate from schedule status.
+- IAM identity and resource policies answer different authorization questions. Grant only the required actions on the required resources, then verify both sides of cross-service access.
+- S3 public-access controls, encryption, lifecycle retention, and object permissions are distinct. Encryption alone does not make a bucket private.
+- Network reachability depends on routes, security groups, network ACLs, DNS, and service endpoints; a subnet label is not enough to establish connectivity.
+- Managed services reduce some host-management work while introducing service-specific limits, availability behavior, observability, and billing dimensions.
 
-## Security, operations, and cost reasoning
+Start with the requirement and responsibility boundary. A service name in a report does not establish that a resource was configured, and a historical console image does not establish current account state.
 
-- IAM identity policies and resource policies answer different authorization questions; grant the smallest action/resource set needed and verify both sides of cross-service access.
-- S3 public access, encryption, lifecycle retention, and object-level access are separate controls. “Encrypted” does not mean “private.”
-- Network reachability depends on routes, security groups, network ACLs, DNS, and service endpoints—not only on whether a subnet is called public or private.
-- Managed services reduce some host work but introduce service-specific availability, limits, observability, and billing dimensions.
+## Evidence and links
 
-Start with the requirement and the service boundary, then verify the relevant permission, route, or metric instead of inferring runtime state from a diagram.
+The existing portfolio record describes a Week 1 report, task brief, and service-console captures. The report supports documented exploration; its source files have not been independently inspected. See the [evidence policy](../../docs/EVIDENCE.md) and [gallery](../../evidence/README.md).
 
-## Validation and limits
+## Limitations
 
-There is no Week 1 code in this repository to execute. Earlier portfolio records describe a report and captures, but the private originals were not reopened for this final review. No completion certificate, portal upload, reviewer approval, or current AWS state is established here. See the [evidence policy](../../docs/EVIDENCE.md) and [gallery](../../evidence/README.md) for the publication boundary.
+No Week 1 code is available to run, and no focused public screenshot is included. The retained descriptions do not establish a reproducible deployment, portal upload, acceptance, reviewer approval, completion certificate, or current AWS state.
 
-Next: [Week 2 — EC2 and host-level security](../week-02-ec2-web-server/README.md).
+## Next improvements
+
+Build a small local request-flow map that follows one example workload through identity, network, storage, and monitoring boundaries, then record which claims are design assumptions and which can be checked locally.

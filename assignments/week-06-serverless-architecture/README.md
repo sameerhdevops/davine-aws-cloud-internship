@@ -1,29 +1,33 @@
 # Week 6 — Serverless architecture
 
-## Objective and recovered material
+## Objective
 
-A dated, two-page Week 6 report titled “Serverless & Event-Driven Architecture” discusses Lambda and API Gateway, asynchronous processing, and least-privilege access. No standalone execution screenshot, API definition, Lambda package, IAM policy, or test harness from that internship exercise was retained.
+Review event-driven compute, API entry points, asynchronous processing, retries, idempotency, and least-privilege execution roles.
 
-**Portal schedule:** Week 6 is marked Completed in the portal state reported by the user. No saved portal screenshot/export was found; the supplied portal history separately says “No weekly submissions yet.” The report is evidence of documented exploration, not proof of upload or deployed behavior.
+## What I did or implemented
 
-## Local S3 event-parser demonstration
+A dated two-page Week 6 report titled “Serverless & Event-Driven Architecture” discusses Lambda, API Gateway, asynchronous processing, and least privilege. The available portal information marks Week 6 Completed and separately reports “No weekly submissions yet”; no portal screenshot or export is retained.
 
-[`handler.py`](../../demos/week06_serverless/handler.py) accepts a small S3-notification-shaped event, validates its record structure, URL-decodes object keys, and returns bucket/key pairs. It uses only Python’s standard library and runs locally; it is not deployed Lambda code.
+The added [handler.py](../../demos/week06_serverless/handler.py) accepts a small S3-notification-shaped event, validates its record structure, URL-decodes object keys, and returns bucket/key pairs. It runs locally using the standard library.
 
-```powershell
-python -m unittest discover -s tests -v
-```
+## Key concepts
 
-The broader serverless design separates a synchronous API response from asynchronous work. API Gateway can authenticate/throttle HTTP entry points; Lambda handles bounded event-driven compute; a queue can absorb bursts and support retries; a dead-letter path and idempotency strategy are needed for poison messages and duplicate delivery. IAM execution roles should grant only the actions needed on the required resources.
+Separate a synchronous API response from work that can run asynchronously. API Gateway can provide an HTTP entry point; Lambda handles bounded event-driven compute; a queue can absorb bursts and support retries. A dead-letter path helps isolate poison messages, while idempotency protects side effects from duplicate delivery. Execution roles should grant only the actions and resources required.
 
-## Operations, security, and cost
+Validate input, use correlation identifiers without logging applicant data, set timeouts and measured memory, and bound concurrency when downstream capacity is limited. Monitor errors, throttles, duration, and queue age. Cost depends on request volume, duration, provisioned concurrency, transfer, logging, and downstream services.
 
-Retries can repeat side effects, so handlers should validate input, log correlation identifiers without exposing applicant data, and make writes idempotent. Set timeouts and memory based on measured work, bound concurrency when downstream capacity is limited, and alarm on errors, throttles, duration, and queue age. Request and duration pricing can be attractive at low utilization, but high volume, provisioned concurrency, data transfer, logs, and downstream services affect cost.
+## Evidence and links
 
-“I would decide whether a request needs an immediate response or can be queued, then set retry, idempotency, timeout, and observability behavior around that boundary.”
+Run the regression suite from the repository root:
 
-## Validation and limits
+    python -m unittest discover -s tests -v
 
-The local tests verify event parsing and malformed-input handling only. They do not test AWS event delivery, Lambda runtime behavior, IAM, API Gateway, retries, or notification delivery. The Week 6 report’s described concepts remain report-described. See [independent demonstrations](../../demos/README.md) and the [gallery](../../evidence/README.md).
+The local tests cover event parsing and malformed-input handling. See the [demo catalog](../../demos/README.md) and [evidence gallery](../../evidence/README.md).
 
-Next: [Week 7 — Infrastructure as Code](../week-07-infrastructure-as-code/README.md).
+## Limitations
+
+No standalone execution capture, API definition, Lambda package, IAM policy, or test harness from the internship exercise is retained. The local parser is not deployed Lambda code and does not test AWS event delivery, runtime behavior, IAM, retries, API Gateway, or notification delivery. Report descriptions do not establish portal upload or deployed behavior.
+
+## Next improvements
+
+Add a local fixture for duplicate event delivery and document where a durable idempotency record would be required before processing events with real side effects.

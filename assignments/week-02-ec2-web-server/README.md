@@ -1,29 +1,29 @@
 # Week 2 — EC2 and host-level security
 
-## Objective and observed workflow
+## Objective
 
-The recovered exercise combined a small EC2 web host with basic Linux access and monitoring. The report and captures show an instance in `running` state, type `t3.micro`, all three instance status checks passing in one historical capture, a CPU alarm creation notification, browser-based access to a simple page, and an Elastic IP association.
+Explore a small EC2 web host, basic Linux access, instance-health signals, and the difference between platform status and application health.
 
-![Sanitized Week 2 console crop showing an EC2 instance running as a t3.micro with three status checks passed and an alarm creation notification; account, host, and resource identifiers are redacted.](../../evidence/assets/week-02-ec2/week-02-ec2-observed-status.png)
+## What I did or implemented
 
-*Original internship screenshot, published as a sanitized derivative. It records a historical instance view and an alarm-created notification; it does not establish current state, alarm evaluation, or notification delivery.*
+The retained report and console captures describe an instance in **running** state as **t3.micro**, three instance status checks passing in one capture, an alarm-creation notification, browser access to a simple page, and an Elastic IP association. The available portal information marks Week 2 Completed and separately reports “No weekly submissions yet”; no portal screenshot or export is retained.
 
-## Recovered evidence and portal status
+## Key concepts
 
-**Original internship artifacts:** a task brief, a dated Week 2 report, and several EC2/Linux/network/monitoring screenshots were found. The public image is a redacted crop of one original screenshot; the original remains unchanged and private. Other screenshots include an IP address, instance identifiers, and host/account context, so they are not published.
+The historical security-group capture shows SSH limited to one **/32** and HTTP on port 80 open to **0.0.0.0/0** for the web exercise. A separate launch form displays a warning about SSH from anywhere, but does not establish that the rule was applied. These are observations, not recommended defaults. For a real host, restrict ingress, patch the OS, prefer a managed access path where practical, separate web and administration traffic, and review alarms and logs.
 
-**Portal schedule:** Week 2 is marked Completed as reported by the user. No portal screenshot/export was found. The supplied portal submission history separately says “No weekly submissions yet.” The recovered report is not proof of a portal upload or acceptance.
+Instance status checks are not application checks. A host can pass platform checks while its process, listener, or application response is failing. Elastic IPs and continuously running instances can also incur charges; review address attachment and the lab cleanup plan.
 
-## Security and operational decisions
+## Evidence and links
 
-The historical security-group capture shows SSH limited to one `/32`, while HTTP on port 80 is open to `0.0.0.0/0` for the web exercise. A separate launch form later displays an SSH-from-anywhere warning; it is not evidence that this rule was applied. These are contextual observations, not recommended defaults. For a real host, restrict ingress to the required source, patch the OS, use a managed access path where feasible, separate web traffic from administration, and review alarms and logs. A running instance is not the same as a healthy application.
+![Historical EC2 console crop showing a running t3.micro, three status checks passed, and an alarm-created notification; account, host, and resource identifiers are redacted.](../../evidence/assets/week-02-ec2/week-02-ec2-observed-status.png)
 
-Elastic IPs and continuously running instances can incur charges. Review address attachment and instance lifecycle, and remove lab resources through an authorized cleanup process after use.
+*Sanitized derivative described in the existing portfolio record as an internship screenshot. It records a historical instance view and an alarm-created notification; it does not show alarm evaluation or notification delivery.* See the [gallery entry](../../evidence/README.md#week-2-ec2-and-host-level-security) and [evidence manifest](../../evidence/manifest.csv).
 
-“I distinguish EC2 instance checks from application health. The instance can pass platform checks while the service is unavailable, so I would also verify the process, listener, security-group path, and application response.”
+## Limitations
 
-## Limitations and links
+No user-data script, web-root content, security-group source, or Terraform configuration is available in the repository. Other described screenshots contain identifiers and are not published. The report and image do not establish present AWS state, a functioning alarm, or portal upload or acceptance.
 
-No user-data script, web-root content, security-group source file, or Terraform configuration was recovered. The screenshot is not a current deployment or proof that the alarm fired. See the [gallery entry](../../evidence/README.md#week-2-ec2-and-host-level-security) and [evidence manifest](../../evidence/manifest.csv).
+## Next improvements
 
-Next: [Week 3 — VPC networking](../week-03-vpc-networking/README.md).
+A follow-up local lab could define a minimal host and security-group configuration, restrict SSH to a supplied test CIDR, and check host and application health separately. Any future AWS exercise would require an authorized budget and cleanup plan.

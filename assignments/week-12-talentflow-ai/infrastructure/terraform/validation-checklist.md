@@ -28,7 +28,7 @@ Before any real deployment, obtain explicit authorization, replace the example S
 
 ## Future sandbox evidence checklist
 
-This section is intentionally empty. No live sandbox was created or inspected for this portfolio review. Only complete items after a separately authorized and funded exercise, and keep source records private until reviewed for publication.
+This section is intentionally empty. No live sandbox was created or inspected. Only complete items after a separately authorized and funded exercise, and keep source records private until checked for publication.
 
 - [ ] Record approved account/Region scope in a private log; do not publish account IDs.
 - [ ] Record the exact source commit, Terraform/provider versions, and operator window.

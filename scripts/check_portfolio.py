@@ -59,8 +59,36 @@ REQUIRED_ARTIFACTS = (
 )
 AI_DISCLOSURE = (
     "AI tools assisted with parts of the implementation and documentation. "
-    "The repository records the checks run, their scope, and the limits of what they establish."
+    "I review the project, test its behavior, and am responsible for explaining the work I present."
 )
+WEEK_PAGE_HEADINGS = (
+    "Objective",
+    "What I did or implemented",
+    "Key concepts",
+    "Evidence and links",
+    "Limitations",
+    "Next improvements",
+)
+INTERNAL_MARKER = re.compile(
+    r"(?i)\bOWNER\s+TO\s+VERIFY\b"
+    r"|\bas reported by the user\b"
+    r"|\buser-reported\b"
+    r"|\breported by (?:the )?user\b"
+    r"|\b(?:the )?user supplied\b"
+    r"|\bthis (?:review|task|update)\b"
+    r"|\bTODO\b|\bTBD\b"
+)
+
+
+def internal_markers(text: str) -> list[str]:
+    """Return internal-review phrases that must not appear in public prose."""
+    return [match.group(0) for match in INTERNAL_MARKER.finditer(text)]
+
+
+def missing_week_headings(content: str) -> list[str]:
+    """Return required level-two headings absent from a weekly page."""
+    headings = set(re.findall(r"(?m)^##\s+(.+?)\s*$", content))
+    return [heading for heading in WEEK_PAGE_HEADINGS if heading not in headings]
 
 
 def check_required_artifacts(root: Path, errors: list[str]) -> None:
@@ -84,16 +112,23 @@ def check_required_artifacts(root: Path, errors: list[str]) -> None:
             errors.append(f"root README must link to {link}")
 
 
-def check_week_pages(errors: list[str]) -> None:
-    root_readme = (ROOT / "README.md").read_text(encoding="utf-8")
+def check_week_pages(errors: list[str], root: Path = ROOT) -> None:
+    root_readme_path = root / "README.md"
+    root_readme = root_readme_path.read_text(encoding="utf-8") if root_readme_path.is_file() else ""
     for folder in WEEKS:
-        path = ROOT / "assignments" / folder / "README.md"
+        path = root / "assignments" / folder / "README.md"
         if not path.is_file():
             errors.append(f"missing weekly page: assignments/{folder}/README.md")
-        elif not re.search(
+            continue
+        content = path.read_text(encoding="utf-8")
+        if not re.search(
             rf"\]\(assignments/{re.escape(folder)}/README\.md(?:#[^)]*)?\)", root_readme
         ):
             errors.append(f"root README does not link weekly page: assignments/{folder}/README.md")
+        for heading in missing_week_headings(content):
+            errors.append(
+                f"weekly page is missing required heading '## {heading}': assignments/{folder}/README.md"
+            )
     if len(WEEKS) != 12:
         errors.append("internal quality check does not list exactly 12 weeks")
     for phrase in (
@@ -106,7 +141,7 @@ def check_week_pages(errors: list[str]) -> None:
                 f"root README does not clearly report portal schedule/submission fact: {phrase}"
             )
 
-    week11 = ROOT / "assignments/week-11-capstone-planning/README.md"
+    week11 = root / "assignments/week-11-capstone-planning/README.md"
     if week11.is_file():
         content = week11.read_text(encoding="utf-8")
         for phrase in ("not a Week 11 task", "not a Week 11 submission", "planning context"):
@@ -228,11 +263,33 @@ def check_public_text(errors: list[str]) -> tuple[int, int]:
     return checked, placeholders
 
 
+def check_public_markers(root: Path, errors: list[str]) -> None:
+    """Reject internal-review language in public Markdown and the evidence CSV."""
+    paths = list(root.rglob("*.md"))
+    manifest = root / "evidence/manifest.csv"
+    if manifest.is_file():
+        paths.append(manifest)
+    for path in paths:
+        relative = path.relative_to(root)
+        if any(part in SKIP for part in relative.parts):
+            continue
+        try:
+            content = path.read_text(encoding="utf-8")
+        except UnicodeDecodeError:
+            errors.append(f"public marker file is not UTF-8: {relative.as_posix()}")
+            continue
+        for marker in internal_markers(content):
+            errors.append(
+                f"internal-review marker '{marker}' in public text: {relative.as_posix()}"
+            )
+
+
 def main() -> int:
     errors: list[str] = []
     check_required_artifacts(ROOT, errors)
     check_week_pages(errors)
     public_count = check_manifest(errors)
+    check_public_markers(ROOT, errors)
     checked_text, _ = check_public_text(errors)
 
     if errors:

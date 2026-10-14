@@ -69,7 +69,7 @@ terraform validate
 
 See the [validation index](../../../../evidence/validation/README.md) for commit-scoped local and hosted results. The previous Windows Terraform validation passed formatting and backend-free initialization but failed before the provider returned a schema; hosted Ubuntu validation passed for its recorded commit. These checks do not produce an AWS plan or prove deployed resources.
 
-Do not run `terraform plan`, `terraform apply`, or `terraform destroy` for this portfolio review. A separately recorded earlier plan invocation failed before producing a plan because valid AWS credentials were unavailable; this update did not run a plan. No cloud resource should be created to inspect or validate this code.
+The portfolio checks are limited to formatting, backend-free initialization, and static validation. Do not run `terraform plan`, `terraform apply`, or `terraform destroy`. A separately recorded earlier plan invocation failed before producing a plan because valid AWS credentials were unavailable. No cloud resource should be created to inspect or validate this code.
 
 ## Files
 

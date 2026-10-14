@@ -1,12 +1,12 @@
 # AWS Cloud Engineering Portfolio
 
-[![Portfolio quality](https://github.com/sameerhdevops/davine-aws-cloud-internship/actions/workflows/portfolio-quality.yml/badge.svg?branch=final-polish)](https://github.com/sameerhdevops/davine-aws-cloud-internship/actions/workflows/portfolio-quality.yml?query=branch%3Afinal-polish)
+[![Portfolio quality](https://github.com/sameerhdevops/davine-aws-cloud-internship/actions/workflows/portfolio-quality.yml/badge.svg?branch=main)](https://github.com/sameerhdevops/davine-aws-cloud-internship/actions/workflows/portfolio-quality.yml?query=branch%3Amain)
 
 A 12-week AWS Cloud Engineering internship learning record with the TalentFlow AI capstone context. The repository combines retained-material descriptions, local demonstrations, tests, a read-only AWS posture snapshot tool, and a limited Terraform reconstruction. It separates schedule status, retained evidence, added portfolio work, and deployment status.
 
 This is a personal portfolio. It is not an official Davine Technologies repository or company endorsement.
 
-The portal schedule state reported by the owner is **Weeks 1–11 marked Completed** and **Week 12 marked Current / Final Week**. Schedule status does not establish assignment submission or acceptance.
+The supplied portal information lists **Weeks 1–11 marked Completed** and **Week 12 marked Current / Final Week**. Schedule status does not establish assignment submission or acceptance.
 
 ## Strongest inspectable work
 
@@ -22,7 +22,7 @@ The capstone illustration below is a documented target architecture reconstructe
 
 ## Twelve-week map
 
-The schedule column reflects the portal state reported by the owner. A completed schedule week is not evidence of a submitted or accepted assignment. See the [timeline](docs/internship-timeline.md) and [evidence policy](docs/EVIDENCE.md) for provenance and detail.
+The schedule column reflects the supplied portal information. A completed schedule week is not evidence of a submitted or accepted assignment. See the [timeline](docs/internship-timeline.md) and [evidence policy](docs/EVIDENCE.md) for provenance and detail.
 
 | Week | Focus | Reported schedule | Page and inspectable work |
 | --- | --- | --- | --- |
@@ -39,7 +39,7 @@ The schedule column reflects the portal state reported by the owner. A completed
 | 11 | Capstone briefing and planning | Completed | [Week 11](assignments/week-11-capstone-planning/README.md) · planning context, not a Week 11 submission |
 | 12 | TalentFlow AI capstone | Current / Final Week | [Week 12](assignments/week-12-talentflow-ai/README.md) · [reconstructed Terraform](assignments/week-12-talentflow-ai/infrastructure/terraform/README.md) |
 
-The portal state reported for the internship also shows 92% schedule progress and “No weekly submissions yet” in the submission-history panel. No portal screenshot or export is retained in this repository; the status is owner-reported.
+The supplied portal information also lists 92% schedule progress and “No weekly submissions yet” in the submission-history panel. No portal screenshot or export is retained in this repository.
 
 ## Reproduce the local checks
 
@@ -73,13 +73,13 @@ terraform init -backend=false -input=false -lockfile=readonly
 terraform validate
 ```
 
-The [validation index](evidence/validation/README.md) distinguishes local Windows provider-process failure from hosted Linux validation. These checks do not run a plan or apply. **No AWS resources were created, changed, or destroyed for this portfolio review.**
+The [validation index](evidence/validation/README.md) distinguishes local Windows provider-process failure from hosted Linux validation. These checks do not run a plan or apply. **No AWS resources were created, changed, or destroyed.**
 
 ## Evidence and implementation boundaries
 
 - The portal schedule is reported separately from retained-material descriptions and local demonstrations. The available schedule information does not establish weekly submissions or acceptance.
-- Existing portfolio records classify the duplicated 34-page Week 11/12 architecture PDF as a Week 12 capstone briefing, not as a Week 11 task or submission. The private PDF was not reopened for this final pass; its details remain **OWNER TO VERIFY**.
-- Published screenshots are historical observations. The public copies were visually checked, but matching them to private originals and confirming the source redactions remain **OWNER TO VERIFY**.
+- Existing portfolio records classify the duplicated 34-page Week 11/12 architecture PDF as a Week 12 capstone briefing, not as a Week 11 task or submission. The private files were not inspected; their page count and duplicate relationship have not been rechecked against source files.
+- Published screenshots are historical observations described by the existing portfolio records. Their source-to-derivative correspondence and redaction fidelity have not been checked against private originals.
 - The TalentFlow AI application and its original infrastructure source are not present in the tracked repository. The proposed architecture is distinct from the smaller Terraform reconstruction.
 - The Terraform defines selected network, security-group, S3, IAM, CloudWatch, and SNS resources. It does not provision the application instances, ALB, database, Lambda/API, or a log producer, and it has not been applied.
 - See [scope](docs/SCOPE.md), [evidence and provenance](docs/EVIDENCE.md), [security notes](docs/SECURITY-NOTES.md), and [validation records](evidence/validation/README.md).
@@ -104,6 +104,6 @@ The [diagram source](diagrams/repository-structure.mmd) and [Terraform security-
 
 Retained internship descriptions, added portfolio work, independent reconstructions, and validation results have distinct labels. The term “reconstruction” describes how an artifact relates to the available source material; it is not a personal-authorship or deployment claim. The [evidence gallery](evidence/README.md) includes captions and a [file-level manifest](evidence/manifest.csv).
 
-AI tools assisted with parts of the implementation and documentation. The repository records the checks run, their scope, and the limits of what they establish.
+AI tools assisted with parts of the implementation and documentation. I review the project, test its behavior, and am responsible for explaining the work I present.
 
 GitHub profile: [sameerhdevops](https://github.com/sameerhdevops).

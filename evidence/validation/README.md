@@ -2,9 +2,9 @@
 
 This index points to checks that actually ran. Each record applies only to its stated commit, environment, command, and scope. A passing static check is not an AWS plan or deployment.
 
-## Published `main` before this review
+## Published `main` before the final-polish branch
 
-[Portfolio quality run 38516010770](https://github.com/sameerhdevops/github-portfolio/actions/runs/38516010770) completed successfully for the published `main` commit on 2026-10-14. Both the Markdown-link and Terraform jobs passed. The recorded workflow did not pin the Python minor version; this review adds an explicit Python 3.11 setup to future runs. No plan or deployment step was run. See the [commit-scoped run record](terraform/github-actions-main-2026-10-14.md).
+[Portfolio quality run 38516010770](https://github.com/sameerhdevops/github-portfolio/actions/runs/38516010770) completed successfully for the published `main` commit on 2026-10-14. Both the Markdown-link and Terraform jobs passed. The recorded workflow did not pin the Python minor version; the later workflow change sets up Python 3.11 for future runs. No plan or deployment step was run. See the [commit-scoped run record](terraform/github-actions-main-2026-10-14.md).
 
 ## Final-polish local review
 
@@ -24,7 +24,7 @@ The initial PR run [38531004190](https://github.com/sameerhdevops/github-portfol
 | [Final-review local checks](final-review-2026-10-14.md) | Review checks against source commit `19080df`; 35 tests and repository checks passed, while Windows Terraform schema validation was blocked by the provider process. |
 | [Windows Terraform validation](terraform/local-validation-2026-10-14.md) | Formatting and backend-free initialization passed; provider schema process failed before validation. |
 | [Published main Terraform validation](terraform/github-actions-main-2026-10-13.md) | Earlier hosted run for its recorded commit; formatting, initialization, and validation succeeded. |
-| [Earlier release-branch run](terraform/github-actions-release-2026-10-14.md) | Hosted validation for the exact branch commit in that record; it predates this review branch. |
+| [Earlier release-branch run](terraform/github-actions-release-2026-10-14.md) | Hosted validation for the exact branch commit in that record; it predates `final-polish`. |
 
 The final-review record separates local results from the pull request's hosted checks. Its 35 passing Python tests are not an AWS service-conformance result; its Windows Terraform failure is not a configuration validation pass.
 
