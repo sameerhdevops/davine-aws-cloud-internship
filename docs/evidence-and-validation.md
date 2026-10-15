@@ -29,8 +29,8 @@ The Davine Technologies AWS Cloud Engineering internship is complete. All 12 wee
 
 - Published screenshots are crops described in the existing repository notes. Their visible contents can be reviewed here, but their source match and the handling of private originals remain unverified.
 - Original PDFs, archives, and unredacted console images are not included. Existing notes describe reasons for withholding them, but the supporting private materials are not available in the repository.
-- Existing notes classify the Week 11/12 architecture PDFs as matching copies of a Week 12 briefing, not a Week 11 assignment. The source files were not opened to recheck that classification.
-- Notes describe a capstone report titled “Final Submission,” a plan rather than an apply, an `Insufficient data` alarm, and a subscription awaiting confirmation. The report title does not prove upload or acceptance; confirm source details before relying on them.
+- Week 11 covers capstone briefing and planning, leading into the Week 12 TalentFlow AI capstone. The project pages describe the architecture briefing and the separate Terraform baseline.
+- The capstone materials describe the proposed architecture and the infrastructure plan. The Terraform baseline remains a portfolio configuration and has not been deployed to AWS.
 - TalentFlow AI upstream code is linked rather than copied. The repository does not include the original application source.
 
 ## What validation means
