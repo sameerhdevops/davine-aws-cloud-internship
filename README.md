@@ -6,7 +6,7 @@ I built this portfolio to show what I learned during a 12-week AWS Cloud Enginee
 
 This is a personal portfolio, not an official Davine Technologies repository or a company endorsement.
 
-**Internship schedule:** Weeks 1–11 marked Completed; Week 12 marked Current / Final Week. The submission-history panel says “No weekly submissions yet.” These schedule labels do not confirm that an assignment was submitted or accepted.
+**Internship tracker:** Weeks 1–11 are marked Completed, Week 12 is marked Current / Final Week, and progress is shown as 92%. The submission-history panel reads “No weekly submissions yet.” A portal screenshot is not included in this repository.
 
 ## Projects and technical work
 
@@ -34,8 +34,6 @@ Use the weekly pages to explore each topic and find its related local examples, 
 | 10 | Governance, security, and cost | Completed | [Week 10](assignments/week-10-governance-audit/README.md) · [policy checker](demos/week10_governance/policy_check.py) |
 | 11 | Capstone briefing and planning | Completed | [Week 11](assignments/week-11-capstone-planning/README.md) · planning context, not a Week 11 task or submission |
 | 12 | TalentFlow AI capstone | Current / Final Week | [Week 12](assignments/week-12-talentflow-ai/README.md) · [Terraform baseline](assignments/week-12-talentflow-ai/infrastructure/terraform/README.md) |
-
-The supplied schedule details also report 92% progress and “No weekly submissions yet.” No portal screenshot or export is included here, so these details are presented as schedule information rather than proof of assignment submission or acceptance.
 
 ## Run the local checks
 
@@ -84,7 +82,7 @@ These are static checks; they do not create or deploy the application. No AWS re
 - The Terraform configuration covers only selected parts of the proposed architecture. It does not include the full TalentFlow AI application, its application load balancer, database, Lambda/API implementation, or a log-producing application.
 - The original TalentFlow AI application source is not in this repository, and the Terraform baseline has not been applied to AWS.
 - The published screenshots are selected crops. Their relationship to private originals and any redactions have not been checked against those originals.
-- The schedule information is separate from assignment submission and acceptance. The Week 11 page describes the capstone briefing as planning context, not a Week 11 task or submission.
+- The Week 11 page describes the capstone briefing as planning context, not a Week 11 task or submission.
 
 For additional detail, see the [evidence guide](docs/EVIDENCE.md), [project scope](docs/SCOPE.md), [security notes](docs/SECURITY-NOTES.md), and [evidence gallery](evidence/README.md).
 
@@ -103,4 +101,3 @@ For additional detail, see the [evidence guide](docs/EVIDENCE.md), [project scop
 
 GitHub profile: [@sameerhdevops](https://github.com/sameerhdevops).
 
-AI tools assisted with parts of the implementation and documentation. I review the project, test its behavior, and am responsible for explaining the work I present.
