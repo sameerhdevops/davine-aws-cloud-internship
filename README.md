@@ -2,11 +2,11 @@
 
 [![Portfolio quality](https://github.com/sameerhdevops/davine-aws-cloud-internship/actions/workflows/portfolio-quality.yml/badge.svg?branch=main)](https://github.com/sameerhdevops/davine-aws-cloud-internship/actions/workflows/portfolio-quality.yml?query=branch%3Amain)
 
-I built this portfolio to show what I learned during a 12-week AWS Cloud Engineering internship and the additional projects I developed to practise those skills. It brings together weekly learning pages, selected AWS console screenshots, six Python demonstrations with tests, a read-only Boto3 audit tool, and a Terraform baseline for a proposed TalentFlow AI architecture.
+This portfolio documents my completed 12-week AWS Cloud Engineering internship and the additional projects I developed to practise those skills. It brings together weekly learning pages, selected AWS console screenshots, six Python demonstrations with tests, a read-only Boto3 audit tool, and a Terraform baseline for a proposed TalentFlow AI architecture.
 
 This is a personal portfolio, not an official Davine Technologies repository or a company endorsement.
 
-**Internship tracker:** Weeks 1–11 are marked Completed, Week 12 is marked Current / Final Week, and progress is shown as 92%. The submission-history panel reads “No weekly submissions yet.” A portal screenshot is not included in this repository.
+**Internship completed:** All 12 weeks and the assigned weekly work are complete.
 
 ## Projects and technical work
 
@@ -16,11 +16,11 @@ This is a personal portfolio, not an official Davine Technologies repository or 
 - **[TalentFlow AI capstone](assignments/week-12-talentflow-ai/README.md):** the proposed architecture and the available project notes. The original application source is not included in this repository.
 - **[Week 12 Terraform baseline](assignments/week-12-talentflow-ai/infrastructure/terraform/README.md):** reviewable VPC, security-group, S3, IAM, logging, and monitoring configuration for part of the proposed design. It has not been applied to AWS.
 
-## 12-week learning map
+## Completed 12-week internship
 
-Use the weekly pages to explore each topic and find its related local examples, diagrams, or screenshots.
+Every week is complete. Use the linked pages to explore the topics, examples, diagrams, and screenshots from the internship portfolio.
 
-| Week | Focus | Schedule | Page and related work |
+| Week | Focus | Completion status | Page and related work |
 | --- | --- | --- | --- |
 | 1 | AWS cloud fundamentals | Completed | [Week 1](assignments/week-01-aws-fundamentals/README.md) |
 | 2 | EC2 and host-level security | Completed | [Week 2](assignments/week-02-ec2-web-server/README.md) · [project screenshots](evidence/README.md#week-2-ec2-and-host-level-security) |
@@ -33,7 +33,7 @@ Use the weekly pages to explore each topic and find its related local examples, 
 | 9 | Serverless integration and scaling | Completed | [Week 9](assignments/week-09-serverless-api/README.md) · [idempotency example](demos/week09_integration/idempotency.py) |
 | 10 | Governance, security, and cost | Completed | [Week 10](assignments/week-10-governance-audit/README.md) · [policy checker](demos/week10_governance/policy_check.py) |
 | 11 | Capstone briefing and planning | Completed | [Week 11](assignments/week-11-capstone-planning/README.md) · planning context, not a Week 11 task or submission |
-| 12 | TalentFlow AI capstone | Current / Final Week | [Week 12](assignments/week-12-talentflow-ai/README.md) · [Terraform baseline](assignments/week-12-talentflow-ai/infrastructure/terraform/README.md) |
+| 12 | TalentFlow AI capstone | Completed | [Week 12](assignments/week-12-talentflow-ai/README.md) · [Terraform baseline](assignments/week-12-talentflow-ai/infrastructure/terraform/README.md) |
 
 ## Run the local checks
 
@@ -82,7 +82,7 @@ These are static checks; they do not create or deploy the application. No AWS re
 - The Terraform configuration covers only selected parts of the proposed architecture. It does not include the full TalentFlow AI application, its application load balancer, database, Lambda/API implementation, or a log-producing application.
 - The original TalentFlow AI application source is not in this repository, and the Terraform baseline has not been applied to AWS.
 - The published screenshots are selected crops. Their relationship to private originals and any redactions have not been checked against those originals.
-- The Week 11 page describes the capstone briefing as planning context, not a Week 11 task or submission.
+- Week 11 covers capstone briefing and planning; Week 12 covers the completed TalentFlow AI capstone work and its portfolio Terraform baseline.
 
 For additional detail, see the [evidence guide](docs/EVIDENCE.md), [project scope](docs/SCOPE.md), [security notes](docs/SECURITY-NOTES.md), and [evidence gallery](evidence/README.md).
 
