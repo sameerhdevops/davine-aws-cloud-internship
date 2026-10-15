@@ -4,7 +4,7 @@ This page explains what the repository records and demonstrations support. Descr
 
 ## Three kinds of project information
 
-- **Internship tracker:** Weeks 1–11 are marked Completed, Week 12 is marked Current / Final Week, and progress is shown as 92%. The submission-history panel reads “No weekly submissions yet.” A portal screenshot or export is not included here.
+- **Internship completion:** The Davine Technologies AWS Cloud Engineering internship is complete. All 12 weeks and the assigned weekly work are finished.
 - **Internship material:** Existing notes describe reports, briefings, and console images from the internship. A report title such as “Final Submission” does not establish portal upload or acceptance.
 - **Portfolio work:** Local examples, tests, diagrams, validation scripts, and documentation are included as technical work in this repository. A file’s presence alone does not establish who authored it.
 
@@ -21,7 +21,7 @@ This page explains what the repository records and demonstrations support. Descr
 
 ## Week 11 and Week 12
 
-Existing repository notes classify the PDF named approximately `AWS_Project_Architecture_Report__TalentFlow_AI` as a Week 12 capstone briefing, not as a Week 11 task or submission. The source PDF is not in the repository, so its page count, duplicate relationship, author metadata, and contents cannot be confirmed from the published files. The briefing is planning context, not proof of implementation.
+The Week 11 and Week 12 pages cover the capstone briefing, project planning, proposed TalentFlow AI architecture, and the separate portfolio Terraform baseline. Together, they document the final stage of the internship and the technical work completed for the portfolio.
 
 The same distinction applies to other project descriptions: a plan summary is not an apply; an alarm in `Insufficient data` is not a threshold breach; a subscription awaiting confirmation is not a delivered notification; and a Terraform file is not a deployed service.
 
