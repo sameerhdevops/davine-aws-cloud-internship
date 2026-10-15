@@ -4,13 +4,11 @@
 
 This portfolio documents my completed 12-week AWS Cloud Engineering internship and the additional projects I developed to practise those skills. It brings together weekly learning pages, selected AWS console screenshots, six Python demonstrations with tests, a read-only Boto3 audit tool, and a Terraform baseline for a proposed TalentFlow AI architecture.
 
-This is a personal portfolio, not an official Davine Technologies repository or a company endorsement.
-
 **Internship completed:** All 12 weeks and the assigned weekly work are complete.
 
 ## Projects and technical work
 
-- **[Project screenshots](evidence/README.md):** selected AWS console crops with captions explaining what is visible. They show console views from the time they were captured; their match to private originals and the completeness of redactions have not been checked against those originals.
+- **[Project screenshots](evidence/README.md):** selected AWS console screenshots with captions describing the historical configuration or event visible in each image.
 - **[Read-only AWS audit tool](scripts/aws_audit/README.md):** a Boto3 snapshot of regional EC2 and security-group settings and account-owned S3 bucket controls. The repository includes synthetic [JSON](samples/aws-audit-report.json) and [CSV](samples/aws-audit-report.csv) examples.
 - **[Six Python demonstrations and tests](demos/README.md):** VPC route and CIDR checks, health-threshold transitions, S3 event parsing, alarm calculations, idempotency, and a limited S3 object-policy checker. These examples use synthetic data and make no AWS API calls.
 - **[TalentFlow AI capstone](assignments/week-12-talentflow-ai/README.md):** the proposed architecture and the available project notes. The original application source is not included in this repository.
@@ -81,7 +79,6 @@ These are static checks; they do not create or deploy the application. No AWS re
 - The Python demonstrations and their tests run locally with synthetic data. They do not call AWS APIs or act as complete AWS service simulators.
 - The Terraform configuration covers only selected parts of the proposed architecture. It does not include the full TalentFlow AI application, its application load balancer, database, Lambda/API implementation, or a log-producing application.
 - The original TalentFlow AI application source is not in this repository, and the Terraform baseline has not been applied to AWS.
-- The published screenshots are selected crops. Their relationship to private originals and any redactions have not been checked against those originals.
 - Week 11 covers capstone briefing and planning; Week 12 covers the completed TalentFlow AI capstone work and its portfolio Terraform baseline.
 
 For additional detail, see the [evidence guide](docs/EVIDENCE.md), [project scope](docs/SCOPE.md), [security notes](docs/SECURITY-NOTES.md), and [evidence gallery](evidence/README.md).
