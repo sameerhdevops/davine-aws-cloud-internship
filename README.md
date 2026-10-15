@@ -32,7 +32,7 @@ Every week is complete. Use the linked pages to explore the topics, examples, di
 | 8 | Observability, DNS, and CDN | Completed | [Week 8](assignments/week-08-monitoring-cdn-dns/README.md) · [alarm calculation demo](demos/week08_observability/alarm_math.py) |
 | 9 | Serverless integration and scaling | Completed | [Week 9](assignments/week-09-serverless-api/README.md) · [idempotency example](demos/week09_integration/idempotency.py) |
 | 10 | Governance, security, and cost | Completed | [Week 10](assignments/week-10-governance-audit/README.md) · [policy checker](demos/week10_governance/policy_check.py) |
-| 11 | Capstone briefing and planning | Completed | [Week 11](assignments/week-11-capstone-planning/README.md) · planning context, not a Week 11 task or submission |
+| 11 | Capstone briefing and planning | Completed | [Week 11](assignments/week-11-capstone-planning/README.md) · capstone planning work |
 | 12 | TalentFlow AI capstone | Completed | [Week 12](assignments/week-12-talentflow-ai/README.md) · [Terraform baseline](assignments/week-12-talentflow-ai/infrastructure/terraform/README.md) |
 
 ## Run the local checks
