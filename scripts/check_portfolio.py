@@ -127,7 +127,9 @@ def check_week_pages(errors: list[str], root: Path = ROOT) -> None:
         errors.append("internal quality check does not list exactly 12 weeks")
     completion_statement = "All 12 weeks and the assigned weekly work are complete."
     if completion_statement not in root_readme:
-        errors.append("root README must clearly state that all 12 weeks and assigned work are complete")
+        errors.append(
+            "root README must clearly state that all 12 weeks and assigned work are complete"
+        )
 
     week12_row = re.search(
         r"(?m)^\|\s*12\s*\|\s*TalentFlow AI capstone\s*\|\s*Completed\s*\|",
