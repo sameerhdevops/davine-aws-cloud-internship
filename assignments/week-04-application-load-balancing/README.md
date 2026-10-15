@@ -2,32 +2,26 @@
 
 ## Objective
 
-Understand listener-to-target-group routing, health checks, and how an Application Load Balancer distributes traffic across registered targets.
+I wanted to understand how an Application Load Balancer sends requests from listeners to target groups and uses health checks when routing traffic.
 
 ## What I did or implemented
 
-No Week 4-specific brief, report, screenshot, source configuration, or submission is retained. The available portal information marks Week 4 Completed and separately reports “No weekly submissions yet”; no portal screenshot or export is available. Week 5 evidence is kept with its own date and is not used to fill this gap.
-
-The added [health_threshold.py](../../demos/week04_alb/health_threshold.py) is a local state machine for consecutive successful and failed observations. It demonstrates threshold transitions and recovery behavior.
+No Week 4-specific brief, report, screenshot, or source configuration is published, and Week 5 material is kept with its own date. The local [health-threshold example](../../demos/week04_alb/health_threshold.py) models state changes after consecutive successful or failed observations. Its tests cover deterministic transitions; it is not an ALB emulator.
 
 ## Key concepts
 
-An ALB health check depends on listener rules, protocol, port and path, matcher codes, thresholds, interval, timeout, target registration, security-group paths, and connection draining. An unhealthy target may be removed from routing. Auto Scaling replacement is a separate control loop driven by instance health and group policy, so the two signals should be diagnosed independently.
-
-Expose only required listener protocols, terminate production TLS with a managed certificate, and permit target ingress from the load balancer security group rather than the Internet. Load balancers and data transfer can incur cost even at low request volume; a lab needs a budget and cleanup plan.
+- **Health-check configuration:** Protocol, port, path, matcher, thresholds, timeout, target registration, and security-group paths all affect target health.
+- **Separate control loops:** An ALB can stop routing to an unhealthy target, while Auto Scaling decides whether to replace capacity; diagnose their signals separately.
+- **Secure listeners:** Expose only required listener protocols, use managed TLS for production traffic, and permit target ingress from the load-balancer tier rather than the Internet.
 
 ## Evidence and links
 
-Run the local regression suite from the repository root:
-
-    python -m unittest discover -s tests -v
-
-See the [demo catalog](../../demos/README.md) and the separately dated [Week 5 evidence](../week-05-high-availability/README.md).
+Run `python -m unittest discover -s tests -v` from the repository root. See the [demo catalog](../../demos/README.md) and separately dated [Week 5 page](../week-05-high-availability/README.md).
 
 ## Limitations
 
-The health-threshold example is a reproducible demonstration, not an ALB emulator. Its tests cover deterministic state transitions, not probe timing, HTTP response semantics, DNS, fail-open behavior, or AWS control-plane state. No Week 4 internship deliverable is established by retained material.
+The example does not model probe timing, HTTP response semantics, DNS, fail-open behavior, or AWS control-plane state. No Week 4 internship deliverable is established in the repository.
 
 ## Next improvements
 
-If the example is extended, model health-check observations separately from target registration and Auto Scaling replacement. Keep timing and AWS-specific behavior explicitly outside the local state machine unless a reproducible service fixture is added.
+A follow-up could model health observations separately from target registration and Auto Scaling replacement, keeping AWS-specific timing outside the local state machine.
