@@ -1,36 +1,36 @@
-# Evidence and provenance
+# Reading the evidence
 
-This page explains what the public materials support. Source-dependent descriptions follow existing portfolio records; private internship originals were not inspected.
+This page explains what the repository records and demonstrations support. Descriptions of private internship files follow existing notes in the repository; those files were not opened for this writing pass.
 
-## Three kinds of project status
+## Three kinds of project information
 
-- **Portal schedule:** the supplied portal information lists Weeks 1–11 marked Completed, Week 12 marked Current / Final Week, and 92% progress. It also lists “No weekly submissions yet.” No portal screenshot or export is retained here, so these details are not screenshot-verified.
-- **Retained internship material:** original reports and screenshots are described in the existing portfolio records. Titles such as “Final Submission” do not establish portal upload or acceptance.
-- **Added portfolio work:** local examples, tests, diagrams, validation scripts, and documentation are clearly marked as portfolio additions. Their presence does not establish authorship beyond the provenance statement attached to each artifact.
+- **Program schedule:** Details supplied for this portfolio list Weeks 1–11 as Completed, Week 12 as Current / Final Week, and 92% progress. The submission-history panel is reported as “No weekly submissions yet.” No portal screenshot or export appears in the repository.
+- **Internship material:** Existing notes describe reports, briefings, and console images from the internship. A report title such as “Final Submission” does not establish portal upload or acceptance.
+- **Portfolio work:** Local examples, tests, diagrams, validation scripts, and documentation are included as technical work in this repository. A file’s presence alone does not establish who authored it.
 
-## Classification
+## Labels used in this portfolio
 
 | Label | Meaning |
 | --- | --- |
-| Original internship artifact | A report, screenshot, or record described in existing portfolio records as originating in the internship source set. The private-source mapping has not been independently checked. |
-| Sanitized evidence derivative | A published crop or redacted copy described in existing records as derived from a source image. The public file can be inspected directly; its source match and redaction fidelity have not been checked against private originals. |
-| Independent reconstruction | A reasoned diagram or configuration assembled from incomplete descriptions. This label describes provenance, not personal authorship or deployment. |
-| Reproducible demonstration | Added local code or data that a reviewer can run. It demonstrates only the behavior described with it. |
-| Independently validated | A specified command was run against an identified revision and environment; the validation record states its scope and result. |
-| Not established by retained evidence | The available repository material is insufficient to support the claim. |
+| Original internship file (as described in repository notes) | A report, screenshot, or record identified by existing notes as originating in the internship source set. The private source mapping has not been checked in this pass. |
+| Sanitized screenshot copy | A published crop or redacted image described in the existing notes as coming from an internship screenshot. Its match to the private source and the completeness of its redaction have not been checked here. |
+| Portfolio design based on project descriptions | A reasoned diagram or configuration assembled from incomplete descriptions. It does not show deployment or establish personal authorship. |
+| Reproducible demonstration | Local code or data a reviewer can run to observe the behavior described on its page. |
+| Validated check | A named command run against identified code or configuration; the record states its environment, result, and scope. |
+| Not established | The available repository files do not support the claim. |
 
 ## Week 11 and Week 12
 
-Existing portfolio records classify the duplicated 34-page PDF named approximately `AWS_Project_Architecture_Report__TalentFlow_AI` as a **Week 12 capstone briefing**. It is planning context, not a separate Week 11 assignment or submission. The private PDF was not inspected; its page count, duplicate relationship, author metadata, and contents have not been independently checked against that source.
+Existing repository notes classify the PDF named approximately `AWS_Project_Architecture_Report__TalentFlow_AI` as a Week 12 capstone briefing, not as a Week 11 task or submission. The source PDF is not in the repository, so its page count, duplicate relationship, author metadata, and contents cannot be confirmed from the published files. The briefing is planning context, not proof of implementation.
 
-The capstone report description and historical screenshots likewise remain source-dependent. A plan summary is not an apply; an alarm in `Insufficient data` is not a threshold breach; a pending SNS subscription is not a delivered notification; and a Terraform configuration is not a deployed service.
+The same distinction applies to other project descriptions: a plan summary is not an apply; an alarm in `Insufficient data` is not a threshold breach; a subscription awaiting confirmation is not a delivered notification; and a Terraform file is not a deployed service.
 
-## Public screenshots
+## Published screenshots
 
-Nine screenshots are embedded in the [evidence gallery](../evidence/README.md) and relevant weekly pages. The public derivatives were visually reviewed for visible account identifiers, resource IDs, IP addresses, endpoints, credentials, personal information, billing data, and content/caption mismatches. No visible credential or personal contact detail was observed. Inspection of the published images does not establish correspondence with private originals, crop completeness, or whether originals were left unchanged; those source-provenance details remain unverified.
+The [evidence gallery](../evidence/README.md) embeds selected console images with captions, and the weekly pages link to relevant views. A screenshot records only what was visible at its capture time; it does not establish current account state or sustained operation. Reviewing the published copy cannot confirm whether it matches a private original or whether the full original was safely handled. Those source checks remain for the owner.
 
-Do not read a gallery image as current account state. Each caption limits the claim to the visible historical observation. Original PDFs, archives, unredacted screenshots, billing views, and images containing unrelated personal or resource details remain withheld.
+Original PDFs, archives, unredacted screenshots, billing views, and images containing unrelated personal or resource details are not published. See the [file-level manifest](../evidence/manifest.csv) for each public item and its stated scope.
 
 ## Validation records
 
-The [validation index](../evidence/validation/README.md) separates local tests and static checks from hosted CI. A passing Python test, Markdown check, Terraform format/init/validate command, or GitHub job does not establish an AWS plan, application deployment, continuous availability, or live resource state.
+The [validation index](../evidence/validation/README.md) separates local checks from hosted CI. A passing Python test, Markdown check, Terraform format/init/validate command, or GitHub job does not establish an AWS plan, application deployment, continuous availability, or live resource state.

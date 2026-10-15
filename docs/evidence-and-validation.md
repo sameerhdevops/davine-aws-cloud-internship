@@ -1,37 +1,39 @@
-# Evidence and validation policy
+# Evidence and validation guide
 
-The [evidence gallery](../evidence/README.md) displays selected screenshot derivatives described in the existing portfolio record and links the [CSV manifest](../evidence/manifest.csv). The [12-week timeline](internship-timeline.md) keeps portal schedule status separate from retained artifacts and local demonstrations.
+The [evidence gallery](../evidence/README.md) displays selected console images and links the [CSV manifest](../evidence/manifest.csv). The [12-week timeline](internship-timeline.md) keeps the program schedule distinct from source files and local demonstrations.
 
-## Terms and source limits
+## How to read project claims
 
-**Retained internship material** means source reports, briefings, and screenshots described in the existing portfolio record. **Added portfolio work** means the repository’s demonstrations, tests, explanatory diagrams, validation scripts, and documentation; these labels do not assert who authored each item. **Reconstructed Terraform** is a configuration assembled for the portfolio because the original infrastructure source was not recovered. **Validated** applies only to the specific command, code, environment, and result recorded; it does not mean planned or deployed.
+**Internship material** refers to reports, briefings, and screenshots described in repository notes. **Added portfolio work** refers to local examples, tests, explanatory diagrams, validation scripts, and documentation; these labels do not establish who authored an item. **Portfolio Terraform baseline** means configuration assembled for the portfolio because the original infrastructure source is not in the repository. **Validated** applies only to the specific command, code, environment, and result recorded; it does not mean planned or deployed.
 
-The public documentation relies on existing portfolio records for source-dependent descriptions. Private internship originals have not been inspected, so artifact identity, dates, duplicate-PDF classification, report contents, screenshot correspondence, redactions, and withholding reasons have not been independently checked against those files. Provenance should be confirmed before an item is presented as personally authored or as a submission record. The public manifest records these limits.
+Descriptions tied to private files follow existing repository notes. The source originals are not in the repository, so their identity, dates, contents, screenshot matches, redactions, and withholding details cannot be checked here. Do not present an item as personally authored or as a submission record based only on a repository description.
 
-## Classification standard
+<a id="classification-standard"></a>
 
-| Classification | Meaning in this portfolio |
+## Evidence labels
+
+| Label | Meaning in this portfolio |
 | --- | --- |
-| Original internship artifact | A report, screenshot, or record described in existing portfolio records as originating in the internship source set. Private source details have not been independently checked. |
-| Sanitized evidence derivative | A separate publication crop/redaction described in existing records as derived from an original; source correspondence and redactions have not been checked against private originals. |
-| Independent reconstruction | A reasoned diagram or configuration assembled for the portfolio from incomplete source material. It does not establish deployment or imply personal authorship. |
-| Reproducible demonstration | Added local code or a test that demonstrates one bounded behavior; the label does not assert who authored it. |
-| Independently validated | A specific check actually run, with command, environment, result, and limitations recorded. |
-| Not established by retained evidence | No retained source or reproducible check supports the claim. |
+| Original internship file (as described in repository notes) | An item identified by the existing notes as originating in the internship source set. Private source details were not checked in this pass. |
+| Sanitized screenshot copy | A separate crop or redacted image described as coming from an original screenshot; its source match and redaction have not been checked against the private original. |
+| Portfolio design based on project descriptions | A diagram or configuration assembled from incomplete descriptions; it does not imply deployment or personal authorship. |
+| Reproducible demonstration | Local code or a test showing one bounded behavior; it is not a complete AWS service emulator. |
+| Validated check | A specific check actually run, with command, environment, result, and scope recorded. |
+| Not established | No available source or reproducible check supports the claim. |
 
-## Portal schedule versus submission evidence
+## Schedule and submissions
 
-The supplied portal information lists Weeks 1–11 as Completed, Week 12 as Current/Final, and schedule progress as 92%. It also lists “No weekly submissions yet.” No portal screenshot/export is retained in the repository, so the portal details are not screenshot-verified. Schedule progress is not proof of weekly assignment submission, acceptance, or technical deployment.
+The schedule details supplied for this portfolio list Weeks 1–11 as Completed, Week 12 as Current / Final Week, and progress as 92%. They also report “No weekly submissions yet.” No portal screenshot or export appears in the repository, so the schedule and submission-history details have not been verified from a portal image. A schedule mark does not establish assignment submission, acceptance, or deployment.
 
-## Public release boundary
+## Public files
 
-- Public screenshots are publication derivatives described by existing portfolio records. Their visible content can be inspected in the published files, but source correspondence and claims that originals were unchanged have not been checked against private files.
-- Original PDFs, ZIPs, and unredacted console images are not included. Existing records give privacy, attribution, and interpretation reasons for withholding; those source-specific details have not been independently checked against private materials.
-- Existing records classify the Week 11/12 architecture PDFs as byte-identical copies of a Week 12 briefing, not a Week 11 assignment. The private originals have not been inspected to recheck that classification.
-- Prior records describe a capstone report titled “Final Submission,” a plan rather than an apply, an `Insufficient data` alarm, and an SNS subscription pending confirmation. The title does not itself prove upload/acceptance; confirm these source details against the report before relying on them.
-- TalentFlow AI upstream code is linked rather than copied. No source code or third-party assets are included in the portfolio.
+- Published screenshots are crops described in the existing repository notes. Their visible contents can be reviewed here, but their source match and the handling of private originals remain unverified.
+- Original PDFs, archives, and unredacted console images are not included. Existing notes describe reasons for withholding them, but the supporting private materials are not available in the repository.
+- Existing notes classify the Week 11/12 architecture PDFs as matching copies of a Week 12 briefing, not a Week 11 assignment. The source files were not opened to recheck that classification.
+- Notes describe a capstone report titled “Final Submission,” a plan rather than an apply, an `Insufficient data` alarm, and a subscription awaiting confirmation. The report title does not prove upload or acceptance; confirm source details before relying on them.
+- TalentFlow AI upstream code is linked rather than copied. The repository does not include the original application source.
 
-## Validation boundaries
+## What validation means
 
 The local demonstrations are tested with:
 
@@ -39,8 +41,8 @@ The local demonstrations are tested with:
 python -m unittest discover -s tests -v
 ```
 
-Their local tests validate only the included Python functions and assertions; they do not call AWS APIs or emulate complete AWS services. The run record is [local-demo-tests-2026-10-14.md](../evidence/validation/local-demo-tests-2026-10-14.md).
+Those tests check the included Python functions and assertions; they do not call AWS APIs or emulate full AWS services. The run record is [local-demo-tests-2026-10-14.md](../evidence/validation/local-demo-tests-2026-10-14.md).
 
-Terraform checks are `terraform fmt -check`, `terraform init -backend=false`, and `terraform validate`. See the [validation index](../evidence/validation/README.md) for the Windows and Ubuntu records, tested commits, and limitations. Neither static validation result proves a plan or deployment. No plan, apply, destroy, authenticated AWS CLI call, or cloud resource operation was performed.
+Terraform checks are `terraform fmt -check`, `terraform init -backend=false`, and `terraform validate`. See the [validation index](../evidence/validation/README.md) for Windows and Ubuntu records, tested commits, and scope. Neither static validation result proves a plan or deployment. No plan, apply, destroy, authenticated AWS CLI call, or cloud resource operation was performed.
 
-The Markdown check verifies repository-relative links and heading fragments, while ignoring link-like text in fenced and inline code. The portfolio check verifies all 12 weekly pages, standard headings, manifest field completeness, unique IDs, classifications, public paths, and prohibited internal-review markers. Neither script proves technical correctness by itself; code/configuration was reviewed separately, and source claims remain limited to the available repository records.
+The Markdown check verifies repository-relative links and heading fragments while ignoring link-like text inside fenced and inline code. The portfolio check verifies weekly pages, headings, manifest fields, unique IDs, labels, public paths, and internal-review markers. Neither script proves technical correctness by itself; code and configuration still need to be read, and claims tied to private files remain limited to what repository records describe.
