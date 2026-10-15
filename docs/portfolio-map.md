@@ -25,11 +25,10 @@ Existing repository notes treat the Week 11/12 briefing as Week 12 planning cont
 
 The public repository contains evidence curation, weekly summaries, local examples and tests, explanatory diagrams, validation automation, and a portfolio Terraform baseline. These items are not presented as employer-provided source or proof of deployment.
 
-## Claims not made
+## Project status
 
-- That all 12 weeks have original assignment submissions.
-- That a Week 11 submission exists.
-- That TalentFlow AI is live, deployed, production-ready, or personally authored.
-- That the portfolio Terraform baseline has been applied.
-- That a plan, diagram, or screenshot alone proves complete AWS behavior.
-- That a completed week or a report titled “Final Submission” proves upload or acceptance.
+- The Davine Technologies AWS Cloud Engineering internship is complete; all 12 weeks and the assigned weekly work are finished.
+- Week 11 covers capstone briefing and planning, followed by the Week 12 TalentFlow AI capstone work.
+- The public repository includes a proposed architecture and a Terraform baseline for selected infrastructure; it does not present the application as deployed.
+- The portfolio Terraform baseline has not been applied to AWS.
+- A plan, diagram, or screenshot is not by itself proof of live AWS behavior.

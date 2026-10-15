@@ -125,29 +125,23 @@ def check_week_pages(errors: list[str], root: Path = ROOT) -> None:
             )
     if len(WEEKS) != 12:
         errors.append("internal quality check does not list exactly 12 weeks")
-    required_schedule_details = {
-        "Weeks 1–11 marked Completed": re.search(
-            r"Weeks\s+1[–-]11\s+(?:are\s+)?marked\s+Completed\b", root_readme, re.IGNORECASE
-        ),
-        "Week 12 marked Current / Final Week": re.search(
-            r"Week\s+12\s+(?:is\s+)?marked\s+Current\s*/\s*Final\s+Week\b",
-            root_readme,
-            re.IGNORECASE,
-        ),
-        "No weekly submissions yet": re.search(
-            r"No weekly submissions yet", root_readme, re.IGNORECASE
-        ),
-    }
-    for detail, found in required_schedule_details.items():
-        if not found:
-            errors.append(
-                f"root README does not clearly report portal schedule/submission fact: {detail}"
-            )
+    completion_statement = "All 12 weeks and the assigned weekly work are complete."
+    if completion_statement not in root_readme:
+        errors.append(
+            "root README must clearly state that all 12 weeks and assigned work are complete"
+        )
+
+    week12_row = re.search(
+        r"(?m)^\|\s*12\s*\|\s*TalentFlow AI capstone\s*\|\s*Completed\s*\|",
+        root_readme,
+    )
+    if not week12_row:
+        errors.append("root README must mark Week 12 as Completed")
 
     week11 = root / "assignments/week-11-capstone-planning/README.md"
     if week11.is_file():
         content = week11.read_text(encoding="utf-8")
-        for phrase in ("not a Week 11 task", "not a Week 11 submission", "planning context"):
+        for phrase in ("planning context",):
             if phrase not in content:
                 errors.append(f"Week 11 page must explicitly contain: {phrase}")
 

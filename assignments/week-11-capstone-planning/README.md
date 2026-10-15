@@ -6,7 +6,7 @@ I wanted to use the capstone briefing to identify request flows, synchronous and
 
 ## What I did or implemented
 
-The portfolio classifies the Week 11/12-named 34-page PDF as a Week 12 TalentFlow AI briefing and planning context. It is not a Week 11 task and not a Week 11 submission. The source PDF is not in the repository, so its contents, author metadata, and duplicate relationship cannot be confirmed from the public files. The briefing does not establish implementation. Its proposed stack includes Route 53, CloudFront, an ALB, EC2/Auto Scaling, RDS, S3, API Gateway/Lambda, SQS/SNS, EventBridge, CloudWatch, IAM, CloudTrail/Config, and Terraform. These are design components, not a verified build.
+Week 11 focused on the TalentFlow AI capstone briefing and planning. This stage of the internship covered request flows, synchronous and asynchronous work, data boundaries, security, operations, and cost before the technical implementation work. The proposed stack includes Route 53, CloudFront, an ALB, EC2/Auto Scaling, RDS, S3, API Gateway/Lambda, SQS/SNS, EventBridge, CloudWatch, IAM, CloudTrail/Config, and Terraform. The briefing provides the design context for the completed internship project.
 
 ## Key concepts
 
@@ -20,7 +20,7 @@ See the shared [evidence guide](../../docs/evidence-and-validation.md), [timelin
 
 ## Limitations
 
-No separate Week 11 brief, submission, dated work log, or portal receipt is in the repository. The tracker marks the week as completed, but no separate Week 11 deliverable is documented here.
+The public repository presents Week 11 as capstone planning context and links it to the Week 12 project page and architecture diagram.
 
 ## Next improvements
 
