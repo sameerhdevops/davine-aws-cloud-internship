@@ -127,10 +127,10 @@ def check_week_pages(errors: list[str], root: Path = ROOT) -> None:
         errors.append("internal quality check does not list exactly 12 weeks")
     required_schedule_details = {
         "Weeks 1–11 marked Completed": re.search(
-            r"Weeks\\s+1[–-]11\\s+(?:are\\s+)?marked\\s+Completed\\b", root_readme, re.IGNORECASE
+            r"Weeks\s+1[–-]11\s+(?:are\s+)?marked\s+Completed\b", root_readme, re.IGNORECASE
         ),
         "Week 12 marked Current / Final Week": re.search(
-            r"Week\\s+12\\s+(?:is\\s+)?marked\\s+Current\\s*/\\s*Final\\s+Week\\b",
+            r"Week\s+12\s+(?:is\s+)?marked\s+Current\s*/\s*Final\s+Week\b",
             root_readme,
             re.IGNORECASE,
         ),
