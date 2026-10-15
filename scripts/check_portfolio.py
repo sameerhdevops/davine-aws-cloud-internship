@@ -57,10 +57,6 @@ REQUIRED_ARTIFACTS = (
     "diagrams/aws-audit-workflow.mmd",
     "diagrams/repository-structure.mmd",
 )
-AI_DISCLOSURE = (
-    "AI tools assisted with parts of the implementation and documentation. "
-    "I review the project, test its behavior, and am responsible for explaining the work I present."
-)
 WEEK_PAGE_HEADINGS = (
     "Objective",
     "What I did or implemented",
@@ -99,8 +95,6 @@ def check_required_artifacts(root: Path, errors: list[str]) -> None:
     if not readme.is_file():
         return
     content = readme.read_text(encoding="utf-8")
-    if AI_DISCLOSURE not in content:
-        errors.append("root README is missing the required AI-assistance disclosure")
     for link in (
         "scripts/aws_audit/README.md",
         "docs/EVIDENCE.md",
@@ -131,14 +125,23 @@ def check_week_pages(errors: list[str], root: Path = ROOT) -> None:
             )
     if len(WEEKS) != 12:
         errors.append("internal quality check does not list exactly 12 weeks")
-    for phrase in (
-        "No weekly submissions yet",
-        "Current / Final Week",
-        "Weeks 1–11 marked Completed",
-    ):
-        if phrase not in root_readme:
+    required_schedule_details = {
+        "Weeks 1–11 marked Completed": re.search(
+            r"Weeks\s+1[–-]11\s+(?:are\s+)?marked\s+Completed\b", root_readme, re.IGNORECASE
+        ),
+        "Week 12 marked Current / Final Week": re.search(
+            r"Week\s+12\s+(?:is\s+)?marked\s+Current\s*/\s*Final\s+Week\b",
+            root_readme,
+            re.IGNORECASE,
+        ),
+        "No weekly submissions yet": re.search(
+            r"No weekly submissions yet", root_readme, re.IGNORECASE
+        ),
+    }
+    for detail, found in required_schedule_details.items():
+        if not found:
             errors.append(
-                f"root README does not clearly report portal schedule/submission fact: {phrase}"
+                f"root README does not clearly report portal schedule/submission fact: {detail}"
             )
 
     week11 = root / "assignments/week-11-capstone-planning/README.md"

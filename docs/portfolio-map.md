@@ -32,4 +32,4 @@ The public repository contains evidence curation, weekly summaries, local exampl
 - That TalentFlow AI is live, deployed, production-ready, or personally authored.
 - That the portfolio Terraform baseline has been applied.
 - That a plan, diagram, or screenshot alone proves complete AWS behavior.
-- That schedule details or a report title serve as a portal receipt.
+- That a completed week or a report titled “Final Submission” proves upload or acceptance.

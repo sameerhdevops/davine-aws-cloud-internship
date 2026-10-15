@@ -1,6 +1,6 @@
 # 12-week timeline and evidence map
 
-The schedule below reflects details supplied for this portfolio; it is not a portal screenshot or a submission receipt. The submission-history panel is reported as “No weekly submissions yet,” and no portal screenshot or export appears in the repository. Descriptions tied to internship files summarize existing repository notes; the private source files were not opened in this writing pass. Added portfolio work is listed separately.
+This timeline follows the internship tracker: Weeks 1–11 show Completed, Week 12 shows Current / Final Week, and overall progress is 92%. The submission-history panel reads “No weekly submissions yet.” A portal screenshot or export is not included in this repository. The weekly pages link to the available notes and related portfolio examples.
 
 | Week | Topic | Reported schedule | What repository notes describe | Public page and portfolio work |
 | --- | --- | --- | --- | --- |

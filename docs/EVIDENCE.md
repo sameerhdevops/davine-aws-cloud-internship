@@ -4,7 +4,7 @@ This page explains what the repository records and demonstrations support. Descr
 
 ## Three kinds of project information
 
-- **Program schedule:** Details supplied for this portfolio list Weeks 1–11 as Completed, Week 12 as Current / Final Week, and 92% progress. The submission-history panel is reported as “No weekly submissions yet.” No portal screenshot or export appears in the repository.
+- **Internship tracker:** Weeks 1–11 are marked Completed, Week 12 is marked Current / Final Week, and progress is shown as 92%. The submission-history panel reads “No weekly submissions yet.” A portal screenshot or export is not included here.
 - **Internship material:** Existing notes describe reports, briefings, and console images from the internship. A report title such as “Final Submission” does not establish portal upload or acceptance.
 - **Portfolio work:** Local examples, tests, diagrams, validation scripts, and documentation are included as technical work in this repository. A file’s presence alone does not establish who authored it.
 

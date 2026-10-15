@@ -20,7 +20,7 @@ See the shared [evidence guide](../../docs/evidence-and-validation.md), [timelin
 
 ## Limitations
 
-No separate Week 11 brief, submission, dated work log, or portal receipt is in the repository. The available schedule information does not establish a Week 11 deliverable.
+No separate Week 11 brief, submission, dated work log, or portal receipt is in the repository. The tracker marks the week as completed, but no separate Week 11 deliverable is documented here.
 
 ## Next improvements
 
