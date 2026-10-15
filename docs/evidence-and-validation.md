@@ -23,7 +23,7 @@ Descriptions tied to private files follow existing repository notes. The source 
 
 ## Schedule and submissions
 
-The schedule details supplied for this portfolio list Weeks 1–11 as Completed, Week 12 as Current / Final Week, and progress as 92%. They also report “No weekly submissions yet.” No portal screenshot or export appears in the repository, so the schedule and submission-history details have not been verified from a portal image. A schedule mark does not establish assignment submission, acceptance, or deployment.
+The internship tracker shows Weeks 1–11 as completed, Week 12 as the current/final week, and overall progress at 92%. Its submission-history panel reads “No weekly submissions yet.” A portal screenshot or export is not included in this repository.
 
 ## Public files
 
