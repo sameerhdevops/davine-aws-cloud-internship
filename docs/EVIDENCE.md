@@ -5,7 +5,7 @@ This page explains what the repository records and demonstrations support. Descr
 ## Three kinds of project information
 
 - **Internship completion:** The Davine Technologies AWS Cloud Engineering internship is complete. All 12 weeks and the assigned weekly work are finished.
-- **Internship material:** Existing notes describe reports, briefings, and console images from the internship. A report title such as “Final Submission” does not establish portal upload or acceptance.
+- **Internship material:** The repository brings together weekly learning pages, reports and briefing context, and selected console images linked from the evidence gallery.
 - **Portfolio work:** Local examples, tests, diagrams, validation scripts, and documentation are included as technical work in this repository. A file’s presence alone does not establish who authored it.
 
 ## Labels used in this portfolio
