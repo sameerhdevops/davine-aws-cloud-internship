@@ -21,9 +21,9 @@ Descriptions tied to private files follow existing repository notes. The source 
 | Validated check | A specific check actually run, with command, environment, result, and scope recorded. |
 | Not established | No available source or reproducible check supports the claim. |
 
-## Schedule and submissions
+## Internship completion
 
-The internship tracker shows Weeks 1–11 as completed, Week 12 as the current/final week, and overall progress at 92%. Its submission-history panel reads “No weekly submissions yet.” A portal screenshot or export is not included in this repository.
+The Davine Technologies AWS Cloud Engineering internship is complete. All 12 weeks and the assigned weekly work are finished. This guide explains how the internship material, local demonstrations, screenshots, and infrastructure configuration relate to one another.
 
 ## Public files
 
